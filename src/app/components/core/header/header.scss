@@ -61,20 +61,34 @@
 .nav-container {
     display: flex;
     gap: 20px;
-    justify-content: center;
+    text-align: center;
     background-color: #3F51B5;
     
   .nav-links {
+    padding: 10px 0;
     a {
+      display: inline-block;
       color: #fff;
       text-decoration: none;
-      margin-left: 20px;
-      padding: 10px 0;
       font-size: 16px;
+      cursor: pointer;
+      padding: 2px 15px;
+      border-bottom: 2px solid transparent;
 
       &:hover {
-        text-decoration: underline;
+        border-bottom: 3px solid #fff;
       }
     }
   }
+}
+
+.app-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 70px;
+  color: red;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
