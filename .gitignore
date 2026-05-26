@@ -38,7 +38,6 @@ yarn-error.log
 testem.log
 /typings
 __screenshots__/
-angular.json
 package-lock.json
 
 # System files
