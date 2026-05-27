@@ -1,0 +1,47 @@
+<div class="card booking-panel">
+  <p-toolbar
+    [style]="{
+      'border-radius': '3rem',
+      padding: '3rem',
+      background: '#ffffff',
+      width: '100%',
+      border: 'none',
+    }"
+  >
+    <div class="row">
+      <div class="col">
+        <p-floatlabel>
+          <input type="text" pInputText id="fromInput" placeholder="Enter origin" />
+          <label for="fromInput">From</label>
+        </p-floatlabel>
+      </div>
+      <div class="col">
+        <p-floatlabel>
+          <input type="text" pInputText id="toInput" placeholder="Enter destination" />
+          <label for="toInput">To</label>
+        </p-floatlabel>
+      </div>
+      <div class="col">
+        <p-floatlabel>
+          <p-datepicker
+            [showButtonBar]="true"
+            placeholder="From date"
+            [style]="{ width: '100px' }"
+          />
+          <label for="dateInput">Date</label>
+        </p-floatlabel>
+      </div>
+      <div class="col">
+        <p-floatlabel>
+          <p-datepicker [showButtonBar]="true" placeholder="To date" [style]="{ width: '100px' }" />
+          <label for="dateInput">Date</label>
+        </p-floatlabel>
+      </div>
+      <div class="col">
+        <p-floatlabel>
+          <p-button label="Submit" />
+        </p-floatlabel>
+      </div>
+    </div>
+  </p-toolbar>
+</div>
