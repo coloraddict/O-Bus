@@ -72,8 +72,9 @@
       text-decoration: none;
       font-size: 16px;
       cursor: pointer;
-      padding: 2px 15px;
-      border-bottom: 2px solid transparent;
+      padding: 2px 0;
+      margin: 0 15px;
+      border-bottom: 3px solid transparent;
 
       &:hover {
         border-bottom: 3px solid #fff;
@@ -87,7 +88,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 70px;
+  font-size: 50px;
   color: red;
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
