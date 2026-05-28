@@ -1,11 +1,11 @@
-import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DatePickerModule } from 'primeng/datepicker';
 import { SelectModule } from 'primeng/select';
-import { Country } from '../../../types/city.model';
+import { Country } from '../../../types/country.model';
 import { FormsModule } from '@angular/forms';
 import { BookingPanelService } from '../../../services/booking-panel.service';
 import { AutoCompleteModule } from 'primeng/autocomplete';
