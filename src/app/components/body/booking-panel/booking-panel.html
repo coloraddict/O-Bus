@@ -3,13 +3,16 @@
     <div class="row">
       <div class="col">
         <p-floatlabel>
-          <input
-            type="text"
-            pInputText
-            id="fromInput"
-            class="inputtext"
-            placeholder="Enter origin"
-          />
+          <p-autocomplete
+            [(ngModel)]="selectedCity"
+            [suggestions]="cities"
+            (completeMethod)="search($event)"
+            optionLabel="cityName"
+          >
+            <ng-template let-city pTemplate="item">
+              {{ city.cityName }}
+            </ng-template>
+          </p-autocomplete>
           <label for="fromInput">From</label>
         </p-floatlabel>
       </div>
@@ -40,13 +43,14 @@
       <div class="col">
         <p-floatlabel>
           <p-select
-            [options]="cities"
-            [(ngModel)]="selectedCity"
+            [options]="country"
+            [(ngModel)]="selectedCountry"
             optionLabel="name"
             placeholder="Select a City"
             class="w-full md:w-56 booking-select"
-            styleClass="white-select"
+            id="city"
           />
+          <!-- <label for="city">City</label> -->
         </p-floatlabel>
       </div>
       <div class="col">
