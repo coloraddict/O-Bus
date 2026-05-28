@@ -1,45 +1,57 @@
 <div class="card booking-panel">
-  <p-toolbar
-    [style]="{
-      'border-radius': '3rem',
-      padding: '3rem',
-      background: '#ffffff',
-      width: '100%',
-      border: 'none',
-    }"
-  >
+  <p-toolbar class="booking-toolbar">
     <div class="row">
       <div class="col">
         <p-floatlabel>
-          <input type="text" pInputText id="fromInput" placeholder="Enter origin" />
+          <input
+            type="text"
+            pInputText
+            id="fromInput"
+            class="inputtext"
+            placeholder="Enter origin"
+          />
           <label for="fromInput">From</label>
         </p-floatlabel>
       </div>
       <div class="col">
         <p-floatlabel>
-          <input type="text" pInputText id="toInput" placeholder="Enter destination" />
+          <input
+            type="text"
+            pInputText
+            id="toInput"
+            class="inputtext"
+            placeholder="Enter destination"
+          />
           <label for="toInput">To</label>
         </p-floatlabel>
       </div>
       <div class="col">
         <p-floatlabel>
-          <p-datepicker
-            [showButtonBar]="true"
-            placeholder="From date"
-            [style]="{ width: '100px' }"
+          <p-datepicker [showButtonBar]="true" placeholder="From date" class="booking-datepicker" />
+          <label for="dateInput">Date</label>
+        </p-floatlabel>
+      </div>
+      <div class="col">
+        <p-floatlabel>
+          <p-datepicker [showButtonBar]="true" placeholder="To date" class="booking-datepicker" />
+          <label for="dateInput">Date</label>
+        </p-floatlabel>
+      </div>
+      <div class="col">
+        <p-floatlabel>
+          <p-select
+            [options]="cities"
+            [(ngModel)]="selectedCity"
+            optionLabel="name"
+            placeholder="Select a City"
+            class="w-full md:w-56 booking-select"
+            styleClass="white-select"
           />
-          <label for="dateInput">Date</label>
         </p-floatlabel>
       </div>
       <div class="col">
         <p-floatlabel>
-          <p-datepicker [showButtonBar]="true" placeholder="To date" [style]="{ width: '100px' }" />
-          <label for="dateInput">Date</label>
-        </p-floatlabel>
-      </div>
-      <div class="col">
-        <p-floatlabel>
-          <p-button label="Submit" />
+          <p-button label="Search Buses" class="booking-button" />
         </p-floatlabel>
       </div>
     </div>
