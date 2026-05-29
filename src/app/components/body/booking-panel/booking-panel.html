@@ -4,9 +4,9 @@
       <div class="col">
         <p-floatlabel>
           <p-autocomplete
-            [(ngModel)]="selectedCity"
-            [suggestions]="cities"
-            (completeMethod)="search($event)"
+            [(ngModel)]="selectedCity1"
+            [suggestions]="filteredCities1"
+            (completeMethod)="filterCities1($event)"
             optionLabel="cityName"
           >
             <ng-template let-city pTemplate="item">
@@ -18,13 +18,13 @@
       </div>
       <div class="col">
         <p-floatlabel>
-          <input
-            type="text"
-            pInputText
-            id="toInput"
-            class="inputtext"
-            placeholder="Enter destination"
-          />
+          <p-autoComplete
+            [(ngModel)]="selectedCity2"
+            [suggestions]="filteredCities2"
+            (completeMethod)="filterCities2($event)"
+            optionLabel="cityName"
+          >
+          </p-autoComplete>
           <label for="toInput">To</label>
         </p-floatlabel>
       </div>

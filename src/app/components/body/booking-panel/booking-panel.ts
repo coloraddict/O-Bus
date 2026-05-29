@@ -11,44 +11,61 @@ import { BookingPanelService } from '../../../services/booking-panel.service';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 
 interface AutoCompleteCompleteEvent {
-    originalEvent: Event;
-    query: string;
+  originalEvent: Event;
+  query: string;
 }
 
 @Component({
   selector: 'app-booking-panel',
-  imports: [ToolbarModule, ButtonModule, InputTextModule, FloatLabelModule, DatePickerModule, SelectModule, FormsModule, AutoCompleteModule],
+  imports: [
+    ToolbarModule,
+    ButtonModule,
+    InputTextModule,
+    FloatLabelModule,
+    DatePickerModule,
+    SelectModule,
+    FormsModule,
+    AutoCompleteModule,
+  ],
   templateUrl: './booking-panel.html',
   styleUrl: './booking-panel.scss',
 })
 export class BookingPanel implements OnInit {
-
   country!: Country[];
   selectedCountry: Country | undefined;
+  filteredCities1: any[] = [];
+  filteredCities2: any[] = [];
   cities: any[] = [];
-  cityList: any[] = [];
-  selectedCity: any;
+  selectedCity1: any;
+  selectedCity2: any;
 
   bookingService = inject(BookingPanelService);
 
   ngOnInit() {
-        this.country = [
-            { name: 'New York', code: 'NY' },
-            { name: 'Rome', code: 'RM' },
-            { name: 'London', code: 'LDN' },
-            { name: 'Istanbul', code: 'IST' },
-            { name: 'Paris', code: 'PRS' }
-        ];
+    this.country = [
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' },
+    ];
 
-        this.bookingService.getCities().subscribe((res: any) => {
-          this.cityList = res;
-        })
-    }
+    this.bookingService.getCities().subscribe((res: any) => {
+      this.cities = res;
+    });
+  }
 
-    search(event: AutoCompleteCompleteEvent) {
-        const query = event.query.toLowerCase();
-        this.cities = this.cityList.filter(city => 
-          city.cityName.toLowerCase().includes(query)
-        );
-    }
+  filterCities1(event: AutoCompleteCompleteEvent) {
+    const query = event.query.toLowerCase();
+    this.filteredCities1 = this.cities
+      .filter((city) => city.cityName.toLowerCase().includes(query))
+      .filter((city) => !this.selectedCity2 || city.cityName !== this.selectedCity2.cityName);
+  }
+
+  filterCities2(event: any) {
+    const query = event.query.toLowerCase();
+    this.filteredCities2 = this.cities
+      .filter((city) => city.cityName.toLowerCase().includes(query))
+      .filter((city) => !this.selectedCity1 || city.cityName !== this.selectedCity1.cityName);
+  }
 }
