@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <rect width="24" height="24" fill="#fff" rx="2"/>
+  <text x="3" y="16" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1f2937">
+    <tspan fill="#4285F4">G</tspan><tspan fill="#EA4335">o</tspan><tspan fill="#FBBC04">o</tspan><tspan fill="#4285F4">g</tspan><tspan fill="#34A853">l</tspan><tspan fill="#EA4335">e</tspan>
+  </text>
+  <text x="3" y="22" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="#1f2937">Pay</text>
+</svg>
