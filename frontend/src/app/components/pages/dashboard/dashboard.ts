@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { NgFor } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CardModule, NgFor, PanelModule],
+  imports: [CardModule, PanelModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
