@@ -1,0 +1,48 @@
+.card.booking-panel {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.booking-toolbar {
+  border-radius: 3rem;
+  padding: 3rem;
+  background: #ffffff;
+  width: 100%;
+  border: none;
+}
+
+.booking-datepicker {
+  width: 100px;
+}
+
+.booking-select {
+  background: white;
+  color: #333;
+}
+
+:host ::ng-deep p-button.booking-button .p-button {
+  width: 100px;
+  padding: 10px 0;
+  background-color: #fa6b6b;
+  border: none;
+}
+
+:host ::ng-deep .p-inputtext {
+  padding: 10px;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+:host ::ng-deep p-select.booking-select.p-select {
+  width: 150px;
+  padding: 5px;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+:host ::ng-deep p-select .p-select-label {
+  color: #333333;
+}

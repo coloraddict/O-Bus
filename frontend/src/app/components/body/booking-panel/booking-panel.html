@@ -1,0 +1,63 @@
+<div class="card booking-panel">
+  <p-toolbar class="booking-toolbar">
+    <div class="row">
+      <div class="col">
+        <p-floatlabel>
+          <p-autocomplete
+            [(ngModel)]="selectedCity1"
+            [suggestions]="filteredCities1"
+            (completeMethod)="filterCities1($event)"
+            optionLabel="cityName"
+          >
+            <ng-template let-city pTemplate="item">
+              {{ city.cityName }}
+            </ng-template>
+          </p-autocomplete>
+          <label for="fromInput">From</label>
+        </p-floatlabel>
+      </div>
+      <div class="col">
+        <p-floatlabel>
+          <p-autoComplete
+            [(ngModel)]="selectedCity2"
+            [suggestions]="filteredCities2"
+            (completeMethod)="filterCities2($event)"
+            optionLabel="cityName"
+          >
+          </p-autoComplete>
+          <label for="toInput">To</label>
+        </p-floatlabel>
+      </div>
+      <div class="col">
+        <p-floatlabel>
+          <p-datepicker [showButtonBar]="true" placeholder="From date" class="booking-datepicker" />
+          <label for="dateInput">Date</label>
+        </p-floatlabel>
+      </div>
+      <div class="col">
+        <p-floatlabel>
+          <p-datepicker [showButtonBar]="true" placeholder="To date" class="booking-datepicker" />
+          <label for="dateInput">Date</label>
+        </p-floatlabel>
+      </div>
+      <div class="col">
+        <p-floatlabel>
+          <p-select
+            [options]="country"
+            [(ngModel)]="selectedCountry"
+            optionLabel="name"
+            placeholder="Select a City"
+            class="w-full md:w-56 booking-select"
+            id="city"
+          />
+          <!-- <label for="city">City</label> -->
+        </p-floatlabel>
+      </div>
+      <div class="col">
+        <p-floatlabel>
+          <p-button label="Search Buses" class="booking-button" />
+        </p-floatlabel>
+      </div>
+    </div>
+  </p-toolbar>
+</div>

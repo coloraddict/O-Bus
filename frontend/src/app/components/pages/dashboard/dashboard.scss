@@ -1,0 +1,106 @@
+:host ::ng-deep p-card.popular-routes,
+:host ::ng-deep p-card.popular-routes .p-card-body,
+:host ::ng-deep p-card.why-choose,
+:host ::ng-deep p-card.why-choose .p-card-body {
+  color: #333;
+  background-color: #fff !important;
+}
+
+.dashboard-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+}
+
+.dashboard-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: #f8fbff;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.route-icon,
+.feature-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.route-icon {
+  color: #007ad9;
+}
+
+.route-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.feature-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.route-text,
+.feature-text {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+:host ::ng-deep p-panel .p-panel {
+  background-color: #fff !important;
+}
+
+:host ::ng-deep p-panel .p-panel-content {
+  background-color: #fff !important;
+}
+
+.payment-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.payment-icons img {
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.payment-icons img:hover {
+  transform: scale(1.1);
+}
+
+.attribution-list {
+  color: #333;
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+.attribution-list li {
+  margin: 8px 0;
+  font-size: 14px;
+}
+.attribution-list a {
+  color: #007ad9;
+  text-decoration: none;
+}
+.attribution-list a:hover {
+  text-decoration: underline;
+}
