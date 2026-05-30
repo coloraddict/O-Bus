@@ -2,42 +2,46 @@
   <div class="col-md-6">
     <p-card class="popular-routes" header="Popular Routes">
       <ul class="dashboard-list">
-        <li *ngFor="let route of routes">
-          <span class="route-icon" aria-hidden="true">
-            <svg
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 32 32"
-              xml:space="preserve"
-            >
-              <path d="M25,13c0,8-9,15-9,15s-9-7-9-15c0-5,4-9,9-9S25,8,25,13z" />
-              <circle cx="16" cy="13" r="3" />
-            </svg>
-          </span>
-          <span class="route-text">{{ route }}</span>
-        </li>
+        @for (route of routes; track route) {
+          <li>
+            <span class="route-icon" aria-hidden="true">
+              <svg
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                xml:space="preserve"
+              >
+                <path d="M25,13c0,8-9,15-9,15s-9-7-9-15c0-5,4-9,9-9S25,8,25,13z" />
+                <circle cx="16" cy="13" r="3" />
+              </svg>
+            </span>
+            <span class="route-text">{{ route }}</span>
+          </li>
+        }
       </ul>
     </p-card>
   </div>
   <div class="col-md-6">
     <p-card class="why-choose" header="Why to choose O-Bus">
       <ul class="dashboard-list">
-        <li *ngFor="let reason of reasons">
-          <span class="feature-icon" aria-hidden="true">
-            <svg
-              fill="#000000"
-              width="800px"
-              height="800px"
-              viewBox="0 0 1024 1024"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M760 380.4l-61.6-61.6-263.2 263.1-109.6-109.5L264 534l171.2 171.2L760 380.4z"
-              />
-            </svg>
-          </span>
-          <span class="feature-text">{{ reason }}</span>
-        </li>
+        @for (reason of reasons; track reason) {
+          <li>
+            <span class="feature-icon" aria-hidden="true">
+              <svg
+                fill="#000000"
+                width="800px"
+                height="800px"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M760 380.4l-61.6-61.6-263.2 263.1-109.6-109.5L264 534l171.2 171.2L760 380.4z"
+                />
+              </svg>
+            </span>
+            <span class="feature-text">{{ reason }}</span>
+          </li>
+        }
       </ul>
     </p-card>
   </div>
