@@ -1,10 +1,38 @@
+require ('dotenv').config ();
 const express = require ('express');
+const jwt = require ('jsonwebtoken');
+const bodyParser = require ('body-parser');
+const mongoose = require ('mongoose');
+
 const app = express ();
-const cors = require ('cors');
+
+const authRoute = require ('./routes/auth.route.js');
 const port = 3000;
 
-app.use (cors ());
+const cors = require ('cors');
+const corsOption = {
+  origin: 'http://localhost:4200',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+};
+
+mongoose.set ('strictQuery', true);
+
+mongoose
+  .connect (process.env.DB_CONN)
+  .then (() => {
+    console.log ('Connected to database');
+  })
+  .catch (err => {
+    console.log (err);
+    console.log ('Connection failed');
+  });
+
+app.use (bodyParser.json ());
+app.use (bodyParser.urlencoded ({extended: false}));
+app.use (cors (corsOption));
 app.use (express.json ());
+app.use ('/api/auth', authRoute);
 app.get ('/cities', (req, res) => {
   const result = [
     {cityName: 'Mumbai', state: 'Maharashtra'},
