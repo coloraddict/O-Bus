@@ -35,18 +35,14 @@ exports.login = (req, res, next) => {
   User.findOne ({email: req.body.email})
     .then (user => {
       if (!user) {
-        return res.status (401).json ({
-          message: 'Auth failed',
-        });
+        return Promise.reject (new Error ('User not found'));
       }
       fetchedUser = user;
       return bcrypt.compare (req.body.password, user.password);
     })
     .then (result => {
       if (!result) {
-        return res.status (401).json ({
-          message: 'Auth failed',
-        });
+        return Promise.reject (new Error ('Wrong password'));
       }
       const token = jwt.sign (
         {email: fetchedUser.email, userId: fetchedUser._id},
