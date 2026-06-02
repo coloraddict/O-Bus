@@ -35,7 +35,7 @@ export class BookingPanel implements OnInit {
   selectedCountry: Country | undefined;
   filteredCities1: any[] = [];
   filteredCities2: any[] = [];
-  cities: any[] = [];
+  cityList: any[] = [];
   selectedCity1: any;
   selectedCity2: any;
 
@@ -51,20 +51,21 @@ export class BookingPanel implements OnInit {
     ];
 
     this.bookingService.getCities().subscribe((res: any) => {
-      this.cities = res;
+      this.cityList = res.cities;
+      console.log(this.cityList);
     });
   }
 
   filterCities1(event: AutoCompleteCompleteEvent) {
     const query = event.query.toLowerCase();
-    this.filteredCities1 = this.cities
+    this.filteredCities1 = this.cityList
       .filter((city) => city.cityName.toLowerCase().includes(query))
       .filter((city) => !this.selectedCity2 || city.cityName !== this.selectedCity2.cityName);
   }
 
   filterCities2(event: any) {
     const query = event.query.toLowerCase();
-    this.filteredCities2 = this.cities
+    this.filteredCities2 = this.cityList
       .filter((city) => city.cityName.toLowerCase().includes(query))
       .filter((city) => !this.selectedCity1 || city.cityName !== this.selectedCity1.cityName);
   }
