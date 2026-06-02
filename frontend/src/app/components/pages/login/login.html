@@ -2,28 +2,30 @@
   <div class="col-md-12">
     <div class="login-panel">
       <p-card header="Login">
-        <div class="row mt-2">
-          <div class="col">
-            <label for="firstname">Email</label>
-            <input type="text" id="email" pInputText />
+        <form [formGroup]="loginForm">
+          <div class="row mt-2">
+            <div class="col">
+              <label for="email">Email</label>
+              <input type="text" id="email" formControlName="email" pInputText />
+            </div>
           </div>
-        </div>
-        <div class="row mt-2">
-          <div class="col">
-            <label for="firstname">Password</label>
-            <input type="password" id="password" pInputText />
+          <div class="row mt-2">
+            <div class="col">
+              <label for="password">Password</label>
+              <input type="password" id="password" formControlName="password" pInputText />
+            </div>
           </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col">
-            <p-button label="Login" />
+          <div class="row mt-3">
+            <div class="col">
+              <p-button label="Login" (click)="onLogin()" />
+            </div>
           </div>
-        </div>
-        <div class="row mt-2">
-          <div class="col">
-            <p class="text-center">New to O-Bus? <a routerLink="/register">Register Here</a></p>
+          <div class="row mt-2">
+            <div class="col">
+              <p class="text-center">New to O-Bus? <a routerLink="/register">Register Here</a></p>
+            </div>
           </div>
-        </div>
+        </form>
       </p-card>
     </div>
   </div>
