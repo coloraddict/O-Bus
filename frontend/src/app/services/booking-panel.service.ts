@@ -5,11 +5,9 @@ import { inject, Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class BookingPanelService {
-
   http = inject(HttpClient);
 
   getCities() {
-    return this.http.get("http://localhost:3000/cities");
+    return this.http.get('http://localhost:3000/api/travel/cities');
   }
-
 }
