@@ -12,8 +12,17 @@
   color: #333;
   background-color: #fff !important;
   width: 100%;
+  padding: 10px 15px;
 }
 
 :host ::ng-deep .p-button {
   width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+label {
+  font-size: 13px;
+  margin: 7px 0;
+  font-weight: 500;
 }
