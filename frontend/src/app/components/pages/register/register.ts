@@ -75,19 +75,4 @@ export class Register {
   get f() {
     return this.registerForm.controls;
   }
-
-  // passwordMatchValidator(group: FormGroup) {
-  //   const password = group.get('password')?.value;
-  //   const confirmPassword = group.get('confirmPassword')?.value;
-
-  //   if (password !== confirmPassword) {
-  //     group.get('confirmPassword')?.setErrors({
-  //       passwordMismatch: true,
-  //     });
-  //   } else {
-  //     group.get('confirmPassword')?.setErrors(null);
-  //   }
-
-  //   return null;
-  // }
 }
