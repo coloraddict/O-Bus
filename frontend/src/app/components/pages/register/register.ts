@@ -5,7 +5,6 @@ import { ButtonModule } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -25,7 +24,6 @@ import { PasswordModule } from 'primeng/password';
     RouterLink,
     FormsModule,
     ReactiveFormsModule,
-    NgClass,
     PasswordModule,
   ],
   templateUrl: './register.html',
