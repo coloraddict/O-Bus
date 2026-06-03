@@ -5,31 +5,31 @@
         <form [formGroup]="registerForm">
           <div class="row mt-3">
             <div class="col">
-              <label for="firstname">Firstname</label>
-              <input type="text" id="firstname" formControlName="firstName" pInputText />
+              <label for="firstName">Firstname</label>
+              <input type="text" id="firstName" formControlName="firstName" pInputText />
             </div>
           </div>
           <div class="row mt-2">
             <div class="col">
-              <label for="firstname">Lastname</label>
-              <input type="text" id="lastname" formControlName="lastName" pInputText />
+              <label for="lastName">Lastname</label>
+              <input type="text" id="lastName" formControlName="lastName" pInputText />
             </div>
           </div>
           <div class="row mt-2">
             <div class="col">
-              <label for="firstname">Email</label>
+              <label for="email">Email</label>
               <input type="email" id="email" formControlName="email" pInputText />
             </div>
           </div>
           <div class="row mt-2">
             <div class="col">
-              <label for="firstname">Username</label>
-              <input type="text" id="username" formControlName="userName" pInputText />
+              <label for="userName">Username</label>
+              <input type="text" id="userName" formControlName="userName" pInputText />
             </div>
           </div>
           <div class="row mt-2">
             <div class="col">
-              <label for="firstname">Password</label>
+              <label for="password">Password</label>
               <input type="password" id="password" formControlName="password" pInputText />
             </div>
           </div>
@@ -46,7 +46,7 @@
           </div>
           <div class="row mt-3">
             <div class="col">
-              <p-button label="Register" [disabled]="registerForm.invalid" (click)="onRegister()" />
+              <p-button label="Register" (click)="onRegister()" />
             </div>
           </div>
           <div class="row mt-2">
