@@ -7,41 +7,95 @@
             <div class="col">
               <label for="firstName">Firstname</label>
               <input type="text" id="firstName" formControlName="firstName" pInputText />
+              @if (f['firstName'].touched && f['firstName'].hasError('required')) {
+                <small class="p-error">Firstname is required</small>
+              }
+              @if (f['firstName'].touched && f['firstName'].hasError('minlength')) {
+                <small class="p-error">Must be at least 3 characters</small>
+              }
             </div>
           </div>
           <div class="row mt-2">
             <div class="col">
               <label for="lastName">Lastname</label>
               <input type="text" id="lastName" formControlName="lastName" pInputText />
+              @if (f['lastName'].touched && f['lastName'].hasError('required')) {
+                <small class="p-error">Lastname is required</small>
+              }
+              @if (f['lastName'].touched && f['lastName'].hasError('minlength')) {
+                <small class="p-error">Must be at least 3 characters</small>
+              }
             </div>
           </div>
           <div class="row mt-2">
             <div class="col">
               <label for="email">Email</label>
               <input type="email" id="email" formControlName="email" pInputText />
+              @if (f['email'].touched && f['email'].hasError('required')) {
+                <small class="p-error">Email is required</small>
+              }
+              @if (
+                (f['email'].touched && f['email'].hasError('email')) ||
+                f['email'].hasError('pattern')
+              ) {
+                <small class="p-error">Enter a valid email address</small>
+              }
             </div>
           </div>
           <div class="row mt-2">
             <div class="col">
               <label for="userName">Username</label>
               <input type="text" id="userName" formControlName="userName" pInputText />
+              @if (f['userName'].touched && f['userName'].hasError('required')) {
+                <small class="p-error">Username is required</small>
+              }
+              @if (f['userName'].touched && f['userName'].hasError('minlength')) {
+                <small class="p-error">Must be at least 4 characters</small>
+              }
+              @if (f['userName'].touched && f['userName'].hasError('maxlength')) {
+                <small class="p-error">Cannot exceed 20 characters.</small>
+              }
             </div>
           </div>
           <div class="row mt-2">
             <div class="col">
               <label for="password">Password</label>
-              <input type="password" id="password" formControlName="password" pInputText />
+              <p-password
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+                styleClass="w-100"
+              >
+              </p-password>
+              @if (f['password'].touched && f['password'].hasError('required')) {
+                <small class="p-error">Password is required</small>
+              }
+              @if (f['password'].touched && f['password'].hasError('minlength')) {
+                <small class="p-error">Must be at least 8 characters.</small>
+              }
+              @if (f['password'].touched && f['password'].hasError('pattern')) {
+                <small class="p-error"
+                  >Must contain an uppercase letter, a number, and a special character
+                  (@$!%*?&).</small
+                >
+              }
             </div>
           </div>
           <div class="row mt-2">
             <div class="col">
               <label for="firstname">Confirm Password</label>
-              <input
-                type="password"
-                id="confirmPassword"
+              <p-password
                 formControlName="confirmPassword"
-                pInputText
-              />
+                [toggleMask]="true"
+                [feedback]="false"
+                styleClass="w-100"
+              ></p-password>
+              @if (f['confirmPassword'].touched && f['confirmPassword'].hasError('required')) {
+                <small class="p-error">Please confirm your password.</small>
+              }
+              @if (f['confirmPassword'].touched && registerForm.hasError('passwordMismatch')) {
+                <small class="p-error">Passwords do not match.</small>
+              }
             </div>
           </div>
           <div class="row mt-3">
