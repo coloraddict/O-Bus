@@ -36,6 +36,7 @@ export class Register {
     email: new FormControl('', [Validators.required]),
     userName: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
+    confirmPassword: new FormControl('', [Validators.required]),
   });
 
   onRegister() {
