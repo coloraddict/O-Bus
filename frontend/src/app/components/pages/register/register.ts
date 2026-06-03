@@ -4,6 +4,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
@@ -11,6 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
+import { maxLength } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-register',
@@ -27,17 +29,21 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class Register {
   authService = inject(AuthService);
+  registerForm!: FormGroup;
 
-  constructor(private router: Router) {}
-
-  registerForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
-    userName: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required]),
-  });
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+  ) {
+    this.registerForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      userName: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+    });
+  }
 
   onRegister() {
     this.authService.register(this.registerForm.value).subscribe((response) => {
