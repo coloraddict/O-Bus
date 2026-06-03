@@ -36,12 +36,17 @@
           <div class="row mt-2">
             <div class="col">
               <label for="firstname">Confirm Password</label>
-              <input type="password" id="confirmPassword" pInputText />
+              <input
+                type="password"
+                id="confirmPassword"
+                formControlName="confirmPassword"
+                pInputText
+              />
             </div>
           </div>
           <div class="row mt-3">
             <div class="col">
-              <p-button label="Register" (click)="onRegister()" />
+              <p-button label="Register" [disabled]="registerForm.invalid" (click)="onRegister()" />
             </div>
           </div>
           <div class="row mt-2">
