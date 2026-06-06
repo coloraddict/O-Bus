@@ -31,6 +31,22 @@
             <div class="col">
               <label for="firstname">Password</label>
               <input type="password" id="password" formControlName="password" pInputText />
+              @if (
+                (passwordControl?.touched || passwordControl?.dirty) &&
+                  passwordControl?.errors?.['passwordStrength'];
+                as strength
+              ) {
+                @if (!strength.hasMinLength) {
+                  <p>Should be 6 characters long</p>
+                }
+              }
+              <!-- <div *ngIf="password?.errors?.['passwordStrength'] as strength">
+                <p *ngIf="!strength.hasMinLength">❌ At least 8 characters</p>
+                <p *ngIf="!strength.hasUpperCase">❌ At least one uppercase letter</p>
+                <p *ngIf="!strength.hasLowerCase">❌ At least one lowercase letter</p>
+                <p *ngIf="!strength.hasNumeric">❌ At least one number</p>
+                <p *ngIf="!strength.hasSpecialChar">❌ At least one special character (!@#$%^&*)</p>
+              </div> -->
             </div>
           </div>
           <div class="row mt-2">
@@ -46,7 +62,7 @@
           </div>
           <div class="row mt-3">
             <div class="col">
-              <p-button label="Register" [disabled]="registerForm.invalid" (click)="onRegister()" />
+              <p-button label="Register" (click)="onRegister()" />
             </div>
           </div>
           <div class="row mt-2">

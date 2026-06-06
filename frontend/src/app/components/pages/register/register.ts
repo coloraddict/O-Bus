@@ -12,7 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import { maxLength } from '@angular/forms/signals';
+import { passwordValidator } from '../../../utils/password.validator';
 
 @Component({
   selector: 'app-register',
@@ -40,7 +40,7 @@ export class Register {
       lastName: ['', Validators.required],
       email: ['', Validators.required],
       userName: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, passwordValidator()]],
       confirmPassword: ['', Validators.required],
     });
   }
@@ -49,5 +49,9 @@ export class Register {
     this.authService.register(this.registerForm.value).subscribe((response) => {
       this.router.navigateByUrl('/login');
     });
+  }
+
+  get passwordControl() {
+    return this.registerForm.get('password');
   }
 }
