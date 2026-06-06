@@ -5,14 +5,15 @@ import { ButtonModule } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import { passwordValidator } from '../../../utils/password.validator';
+import { passwordMatchValidator } from '../../../utils/password.validator';
+import { NgClass } from '@angular/common';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-register',
@@ -23,6 +24,7 @@ import { passwordValidator } from '../../../utils/password.validator';
     RouterLink,
     FormsModule,
     ReactiveFormsModule,
+    PasswordModule,
   ],
   templateUrl: './register.html',
   styleUrl: './register.scss',
@@ -30,28 +32,47 @@ import { passwordValidator } from '../../../utils/password.validator';
 export class Register {
   authService = inject(AuthService);
   registerForm!: FormGroup;
+  showPassword = false;
+  showConfirmPassword = false;
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
   ) {
-    this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      userName: ['', Validators.required],
-      password: ['', [Validators.required, passwordValidator()]],
-      confirmPassword: ['', Validators.required],
-    });
+    this.registerForm = this.fb.group(
+      {
+        firstName: ['', [Validators.required, Validators.minLength(3)]],
+        lastName: ['', [Validators.required, Validators.minLength(3)]],
+        email: [
+          '',
+          [Validators.required, Validators.email, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)],
+        ],
+        userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/),
+          ],
+        ],
+        confirmPassword: ['', [Validators.required]],
+      },
+      { validators: passwordMatchValidator },
+    );
   }
 
   onRegister() {
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
     this.authService.register(this.registerForm.value).subscribe((response) => {
       this.router.navigateByUrl('/login');
     });
   }
 
-  get passwordControl() {
-    return this.registerForm.get('password');
+  get f() {
+    return this.registerForm.controls;
   }
 }

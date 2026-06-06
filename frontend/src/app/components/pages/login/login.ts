@@ -5,12 +5,14 @@ import { ButtonModule } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +23,7 @@ import {
     RouterLink,
     FormsModule,
     ReactiveFormsModule,
+    PasswordModule,
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',
@@ -30,16 +33,27 @@ export class Login {
 
   loginForm!: FormGroup;
 
-  constructor(private router: Router) {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+  ) {
+    this.loginForm = this.fb.group({
+      userName: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
 
   onLogin() {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
     this.authService.login(this.loginForm.value).subscribe((response) => {
       this.router.navigateByUrl('');
     });
+  }
+
+  get f() {
+    return this.loginForm.controls;
   }
 }

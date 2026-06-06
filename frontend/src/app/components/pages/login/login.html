@@ -5,19 +5,31 @@
         <form [formGroup]="loginForm">
           <div class="row mt-2">
             <div class="col">
-              <label for="email">Email</label>
-              <input type="text" id="email" formControlName="email" pInputText />
+              <label for="userName">Username</label>
+              <input type="text" id="userName" formControlName="userName" pInputText />
+              @if (f['userName'].touched && f['userName'].hasError('required')) {
+                <small class="p-error">Username is required</small>
+              }
             </div>
           </div>
           <div class="row mt-2">
             <div class="col">
               <label for="password">Password</label>
-              <input type="password" id="password" formControlName="password" pInputText />
+              <p-password
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+                styleClass="w-100"
+              >
+              </p-password>
+              @if (f['password'].touched && f['password'].hasError('required')) {
+                <small class="p-error">Password is required</small>
+              }
             </div>
           </div>
           <div class="row mt-3">
             <div class="col">
-              <p-button label="Login" (click)="onLogin()" [disabled]="loginForm.invalid" />
+              <p-button label="Login" (click)="onLogin()" />
             </div>
           </div>
           <div class="row mt-2">

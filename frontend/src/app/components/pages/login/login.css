@@ -1,4 +1,4 @@
-.register-panel {
+.login-panel {
   width: 400px;
   margin: 0 auto;
 }
@@ -30,21 +30,4 @@ label {
 small.p-error {
   font-size: 11px;
   color: red;
-}
-
-.password-container {
-  position: relative;
-}
-
-.password-container input {
-  width: 100%;
-  padding-right: 2.5rem;
-}
-
-.password-container i {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
+}/*# sourceMappingURL=login.css.map */

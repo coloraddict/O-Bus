@@ -32,7 +32,7 @@ exports.register = (req, res, next) => {
 
 exports.login = (req, res, next) => {
   let fetchedUser;
-  User.findOne ({email: req.body.email})
+  User.findOne ({userName: req.body.userName})
     .then (user => {
       if (!user) {
         return Promise.reject (new Error ('User not found'));
@@ -45,7 +45,7 @@ exports.login = (req, res, next) => {
         return Promise.reject (new Error ('Wrong password'));
       }
       const token = jwt.sign (
-        {email: fetchedUser.email, userId: fetchedUser._id},
+        {userName: fetchedUser.userName, userId: fetchedUser._id},
         process.env.JWT_KEY,
         {expiresIn: '1h'}
       );
