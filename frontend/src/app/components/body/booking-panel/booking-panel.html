@@ -34,47 +34,54 @@
       <div>
         <p-datepicker
           [showButtonBar]="true"
-          placeholder="To date"
+          placeholder="+ Add return"
           class="booking-datepicker"
           [(ngModel)]="toDate"
         />
       </div>
       <div>
-        <div class="traveller-detail"></div>
+        <div class="traveller-detail" (click)="addTravellerDetails()">
+          <span>
+            <svg
+              width="25px"
+              height="25px"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z"
+                fill="#000000"
+              />
+              <path
+                d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z"
+                fill="#000000"
+              />
+            </svg>
+          </span>
+          <span> 1 - No discount </span>
+
+          @if (showDetails) {
+            <div class="details-block">
+              <div class="left-block">
+                <h5>Adult:&nbsp;</h5>
+                <span>(26-57 years)</span>
+                <h6>Adult 1</h6>
+              </div>
+              <div class="right-block">
+                <div class="count-container">
+                  <div><p-button icon="pi pi-minus-circle" aria-label="Save" /></div>
+                  <div class="count-display"><p>0</p></div>
+                  <div><p-button icon="pi pi-plus-circle" aria-label="Save" /></div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
       </div>
       <div>
         <p-button label="Search Buses" class="booking-button" />
       </div>
     </div>
-    <!-- <div class="row">>
-        <p-floatlabel>
-          <p-datepicker [showButtonBar]="true" placeholder="From date" class="booking-datepicker" />
-          <label for="dateInput">Date</label>
-        </p-floatlabel>
-      </div>
-      <div class="col">
-        <p-floatlabel>
-          <p-datepicker [showButtonBar]="true" placeholder="To date" class="booking-datepicker" />
-          <label for="dateInput">Date</label>
-        </p-floatlabel>
-      </div>
-      <div class="col">
-        <p-floatlabel>
-          <p-select
-            [options]="country"
-            [(ngModel)]="selectedCountry"
-            optionLabel="name"
-            placeholder="Select a City"
-            class="w-full md:w-56 booking-select"
-            id="city"
-          />
-        </p-floatlabel>
-      </div>
-      <div class="col">
-        <p-floatlabel>
-          <p-button label="Search Buses" class="booking-button" />
-        </p-floatlabel>
-      </div>
-    </div> -->
   </p-toolbar>
 </div>

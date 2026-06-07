@@ -39,12 +39,13 @@ export class BookingPanel implements OnInit {
   selectedCity1: any = 'Mumbai';
   selectedCity2: any = 'Bengaluru';
   fromDate: Date = new Date();
-  toDate: Date = new Date();
+  toDate: any;
+  showDetails: boolean = true;
 
   bookingService = inject(BookingPanelService);
 
   ngOnInit() {
-    this.toDate.setDate(this.fromDate.getDate() + 1);
+    // this.toDate.setDate(this.fromDate.getDate() + 1);
     this.country = [
       { name: 'New York', code: 'NY' },
       { name: 'Rome', code: 'RM' },
@@ -71,5 +72,9 @@ export class BookingPanel implements OnInit {
     this.filteredCities2 = this.cityList
       .filter((city) => city.cityName.toLowerCase().includes(query))
       .filter((city) => !this.selectedCity1 || city.cityName !== this.selectedCity1.cityName);
+  }
+
+  addTravellerDetails() {
+    this.showDetails = !this.showDetails;
   }
 }

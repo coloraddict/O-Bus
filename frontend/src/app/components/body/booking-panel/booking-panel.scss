@@ -36,6 +36,55 @@
       padding: 20px;
       background-color: #ddd;
       border-radius: 5px;
+      color: #333;
+      cursor: pointer;
+      position: relative;
+
+      .details-block {
+        display: block;
+        width: 400px;
+        padding: 15px;
+        margin-top: 5px;
+        background-color: #ddd;
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        .left-block {
+          float: left;
+          margin-top: 25px;
+
+          h5 {
+            display: inline-block;
+          }
+
+          h6 {
+            margin-top: 20px;
+            margin-left: 30px;
+          }
+        }
+
+        .right-block {
+          float: right;
+          margin-top: 15px;
+
+          .count-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+
+            .count-display {
+              padding: 10px 12px;
+              font-size: 16px;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+
+      .details-block.hide {
+        display: none;
+      }
     }
   }
 }
