@@ -12,7 +12,7 @@ const port = 3000;
 
 const cors = require ('cors');
 const corsOption = {
-  origin: 'http://localhost:4200',
+  origin: 'https://localhost:4200',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 };
