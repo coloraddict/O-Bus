@@ -1,34 +1,52 @@
 <div class="card booking-panel">
   <p-toolbar class="booking-toolbar">
-    <div class="row">
-      <div class="col">
-        <p-floatlabel>
-          <p-autocomplete
-            [(ngModel)]="selectedCity1"
-            [suggestions]="filteredCities1"
-            (completeMethod)="filterCities1($event)"
-            optionLabel="cityName"
-          >
-            <ng-template let-city pTemplate="item">
-              {{ city.cityName }}
-            </ng-template>
-          </p-autocomplete>
-          <label for="fromInput">From</label>
-        </p-floatlabel>
+    <div class="flex-container">
+      <div>
+        <p-autocomplete
+          [(ngModel)]="selectedCity1"
+          [suggestions]="filteredCities1"
+          (completeMethod)="filterCities1($event)"
+          optionLabel="cityName"
+          id="fromCity"
+        >
+          <ng-template let-city pTemplate="item">
+            {{ city.cityName }}
+          </ng-template>
+        </p-autocomplete>
       </div>
-      <div class="col">
-        <p-floatlabel>
-          <p-autoComplete
-            [(ngModel)]="selectedCity2"
-            [suggestions]="filteredCities2"
-            (completeMethod)="filterCities2($event)"
-            optionLabel="cityName"
-          >
-          </p-autoComplete>
-          <label for="toInput">To</label>
-        </p-floatlabel>
+      <div>
+        <p-autoComplete
+          [(ngModel)]="selectedCity2"
+          [suggestions]="filteredCities2"
+          (completeMethod)="filterCities2($event)"
+          optionLabel="cityName"
+        >
+        </p-autoComplete>
       </div>
-      <div class="col">
+      <div>
+        <p-datepicker
+          [showButtonBar]="true"
+          placeholder="From date"
+          class="booking-datepicker"
+          [(ngModel)]="fromDate"
+        />
+      </div>
+      <div>
+        <p-datepicker
+          [showButtonBar]="true"
+          placeholder="To date"
+          class="booking-datepicker"
+          [(ngModel)]="toDate"
+        />
+      </div>
+      <div>
+        <div class="traveller-detail"></div>
+      </div>
+      <div>
+        <p-button label="Search Buses" class="booking-button" />
+      </div>
+    </div>
+    <!-- <div class="row">>
         <p-floatlabel>
           <p-datepicker [showButtonBar]="true" placeholder="From date" class="booking-datepicker" />
           <label for="dateInput">Date</label>
@@ -50,7 +68,6 @@
             class="w-full md:w-56 booking-select"
             id="city"
           />
-          <!-- <label for="city">City</label> -->
         </p-floatlabel>
       </div>
       <div class="col">
@@ -58,6 +75,6 @@
           <p-button label="Search Buses" class="booking-button" />
         </p-floatlabel>
       </div>
-    </div>
+    </div> -->
   </p-toolbar>
 </div>

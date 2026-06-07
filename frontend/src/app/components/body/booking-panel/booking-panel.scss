@@ -1,21 +1,47 @@
 .card.booking-panel {
-  width: 80%;
+  width: auto;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
 
-.booking-toolbar {
-  border-radius: 3rem;
-  padding: 3rem;
-  background: #ffffff;
-  width: 100%;
-  border: none;
+  .booking-toolbar {
+    border-radius: 3rem;
+    padding: 15px;
+    background: #ffffff;
+    width: 100%;
+    border: none;
+
+    .flex-container {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .flex-container div {
+      margin: 1px;
+    }
+
+    .flex-container div small {
+      display: block;
+      color: #333;
+      margin-bottom: 2px;
+    }
+
+    .traveller-detail {
+      display: block;
+      width: 200px;
+      height: 62px;
+      padding: 20px;
+      background-color: #ddd;
+      border-radius: 5px;
+    }
+  }
 }
 
 .booking-datepicker {
-  width: 100px;
+  width: 200px;
 }
 
 .booking-select {
@@ -24,16 +50,19 @@
 }
 
 :host ::ng-deep p-button.booking-button .p-button {
-  width: 100px;
-  padding: 10px 0;
+  display: block;
+  width: 200px;
+  padding: 20px;
   background-color: #fa6b6b;
   border: none;
 }
 
 :host ::ng-deep .p-inputtext {
-  padding: 10px;
+  padding: 20px 10px;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #ddd;
+  border: none;
+  text-align: center;
 }
 
 :host ::ng-deep p-select.booking-select.p-select {

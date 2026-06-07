@@ -36,12 +36,15 @@ export class BookingPanel implements OnInit {
   filteredCities1: any[] = [];
   filteredCities2: any[] = [];
   cityList: any[] = [];
-  selectedCity1: any;
-  selectedCity2: any;
+  selectedCity1: any = 'Mumbai';
+  selectedCity2: any = 'Bengaluru';
+  fromDate: Date = new Date();
+  toDate: Date = new Date();
 
   bookingService = inject(BookingPanelService);
 
   ngOnInit() {
+    this.toDate.setDate(this.fromDate.getDate() + 1);
     this.country = [
       { name: 'New York', code: 'NY' },
       { name: 'Rome', code: 'RM' },
