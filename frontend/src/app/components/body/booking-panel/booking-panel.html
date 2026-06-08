@@ -62,7 +62,7 @@
           <span> {{ travelService.total() }} - No discount </span>
 
           @if (showDetails) {
-            <app-travel-detail></app-travel-detail>
+            <app-travel-detail [ngStyle]="{ display: isTravelDetailVisible }"></app-travel-detail>
           }
         </div>
       </div>

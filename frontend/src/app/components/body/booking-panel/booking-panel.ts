@@ -11,6 +11,7 @@ import { BookingPanelService } from '../../../services/booking-panel.service';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { TravelDetail } from './travel-detail/travel-detail';
 import { TravelService } from '../../../services/travel.service';
+import { NgStyle } from '@angular/common';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -29,6 +30,7 @@ interface AutoCompleteCompleteEvent {
     FormsModule,
     AutoCompleteModule,
     TravelDetail,
+    NgStyle,
   ],
   templateUrl: './booking-panel.html',
   styleUrl: './booking-panel.scss',
@@ -47,6 +49,8 @@ export class BookingPanel implements OnInit {
 
   bookingService = inject(BookingPanelService);
   protected readonly travelService = inject(TravelService);
+
+  isTravelDetailVisible: string = 'none';
 
   ngOnInit() {
     // this.toDate.setDate(this.fromDate.getDate() + 1);
@@ -79,6 +83,6 @@ export class BookingPanel implements OnInit {
   }
 
   addTravellerDetails() {
-    // this.showDetails = !this.showDetails;
+    this.isTravelDetailVisible = this.isTravelDetailVisible === 'none' ? 'block' : 'none';
   }
 }
