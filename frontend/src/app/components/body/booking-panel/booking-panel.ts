@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { BookingPanelService } from '../../../services/booking-panel.service';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { TravelDetail } from './travel-detail/travel-detail';
+import { TravelService } from '../../../services/travel.service';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -45,6 +46,7 @@ export class BookingPanel implements OnInit {
   showDetails: boolean = true;
 
   bookingService = inject(BookingPanelService);
+  protected readonly travelService = inject(TravelService);
 
   ngOnInit() {
     // this.toDate.setDate(this.fromDate.getDate() + 1);

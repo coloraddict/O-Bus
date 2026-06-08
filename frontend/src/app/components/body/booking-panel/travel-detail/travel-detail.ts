@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
+import { TravelService } from '../../../../services/travel.service';
 
 @Component({
   selector: 'app-travel-detail',
@@ -23,6 +24,8 @@ export class TravelDetail {
   adultAgeList: any = [];
   youthAgeList: any = [];
   seniorAgeList: any = [];
+
+  protected readonly travelService = inject(TravelService);
 
   constructor(private fb: FormBuilder) {
     this.adultFormGroup = this.fb.group({
@@ -63,6 +66,7 @@ export class TravelDetail {
   }
 
   createAdult(): FormGroup {
+    this.travelService.increment('adult');
     return this.fb.group({
       age: [null],
     });
@@ -74,11 +78,13 @@ export class TravelDetail {
 
   removeAdult() {
     if (this.adults.length > 1) {
+      this.travelService.decrement('adult');
       this.adults.removeAt(this.adults.length - 1);
     }
   }
 
   createYouth(): FormGroup {
+    this.travelService.increment('youth');
     return this.fb.group({
       age: [null],
     });
@@ -90,11 +96,13 @@ export class TravelDetail {
 
   removeYouth() {
     if (this.youths.length > 1) {
+      this.travelService.decrement('youth');
       this.youths.removeAt(this.youths.length - 1);
     }
   }
 
   createSenior(): FormGroup {
+    this.travelService.increment('senior');
     return this.fb.group({
       age: [null],
     });
@@ -106,6 +114,7 @@ export class TravelDetail {
 
   removeSenior() {
     if (this.seniors.length > 1) {
+      this.travelService.decrement('senior');
       this.seniors.removeAt(this.seniors.length - 1);
     }
   }
