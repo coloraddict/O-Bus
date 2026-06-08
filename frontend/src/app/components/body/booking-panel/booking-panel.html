@@ -63,7 +63,17 @@
 
           @if (showDetails) {
             <div class="details-block">
-              <div class="left-block"></div>
+              <div class="left-block">
+                <div>
+                  <h5>Adult:&nbsp;</h5>
+                  <span>(26-57 years)</span>
+                  <h6>Adult 1</h6>
+                </div>
+
+                <div>
+                  <h6>Adult 2</h6>
+                </div>
+              </div>
               <div class="right-block">
                 <div class="count-container">
                   <div><p-button icon="pi pi-minus-circle" aria-label="Save" /></div>
@@ -71,16 +81,55 @@
                   <div><p-button icon="pi pi-plus-circle" aria-label="Save" /></div>
                 </div>
               </div>
-              <div>
-                <h5>Adult:&nbsp;</h5>
-                <span>(26-57 years)</span>
-                <h6>Adult 1</h6>
-              </div>
+              <div class="block-hr"><hr /></div>
+              <div class="left-block no-margin">
+                <div>
+                  <h5>Youth:&nbsp;</h5>
+                  <span>(0-25 years)</span>
+                  <h6>Youth 1</h6>
+                </div>
 
-              <div>
-                <h6>Adult 2</h6>
+                <div>
+                  <h6>Youth 2</h6>
+                </div>
               </div>
-              <hr />
+              <div class="right-block no-margin">
+                <div class="count-container">
+                  <div><p-button icon="pi pi-minus-circle" aria-label="Save" /></div>
+                  <div class="count-display"><p>0</p></div>
+                  <div><p-button icon="pi pi-plus-circle" aria-label="Save" /></div>
+                </div>
+                <div class="age-list">
+                  <p-select
+                    [(ngModel)]="value1"
+                    [options]="cityList"
+                    optionLabel="name"
+                    size="small"
+                    placeholder="Small"
+                    class="w-full md:w-56"
+                  />
+                </div>
+              </div>
+              <div class="block-hr"><hr /></div>
+              <div class="left-block no-margin">
+                <div>
+                  <h5>Senior:&nbsp;</h5>
+                  <span>(58+ years)</span>
+                  <h6>Senior 1</h6>
+                </div>
+
+                <div>
+                  <h6>Senior 2</h6>
+                </div>
+              </div>
+              <div class="right-block no-margin">
+                <div class="count-container">
+                  <div><p-button icon="pi pi-minus-circle" aria-label="Save" /></div>
+                  <div class="count-display"><p>0</p></div>
+                  <div><p-button icon="pi pi-plus-circle" aria-label="Save" /></div>
+                </div>
+              </div>
+              <div class="block-hr"></div>
             </div>
           }
         </div>

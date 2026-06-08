@@ -41,6 +41,7 @@ export class BookingPanel implements OnInit {
   fromDate: Date = new Date();
   toDate: any;
   showDetails: boolean = true;
+  value1: any;
 
   bookingService = inject(BookingPanelService);
 
@@ -75,6 +76,6 @@ export class BookingPanel implements OnInit {
   }
 
   addTravellerDetails() {
-    this.showDetails = !this.showDetails;
+    // this.showDetails = !this.showDetails;
   }
 }

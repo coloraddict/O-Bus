@@ -43,24 +43,30 @@
       .details-block {
         display: block;
         width: 450px;
-        padding: 15px;
+        padding: 0 25px 25px 25px;
         margin-top: 5px;
         background-color: #ddd;
         position: absolute;
         top: 100%;
         left: -50px;
+        -webkit-box-shadow: -1px 7px 12px 3px rgba(161, 161, 161, 0.76);
+        box-shadow: -1px 7px 12px 3px rgba(161, 161, 161, 0.76);
 
         .left-block {
           float: left;
           margin-top: 25px;
 
           h5 {
-            display: inline-block;
+            display: inline-block !important;
           }
 
           h6 {
             margin-top: 20px;
             margin-left: 30px;
+          }
+
+          &.no-margin {
+            margin-top: 0;
           }
         }
 
@@ -73,12 +79,24 @@
             flex-direction: row;
             justify-content: space-around;
 
+            .age-list {
+              display: block;
+            }
+
             .count-display {
               padding: 10px 12px;
               font-size: 16px;
               font-weight: 700;
             }
           }
+          &.no-margin {
+            margin-top: 0;
+          }
+        }
+
+        .block-hr {
+          clear: both;
+          padding: 1px 0 0 0;
         }
       }
 
