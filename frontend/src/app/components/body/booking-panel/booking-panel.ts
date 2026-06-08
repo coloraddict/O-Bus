@@ -9,6 +9,7 @@ import { Country } from '../../../types/country.model';
 import { FormsModule } from '@angular/forms';
 import { BookingPanelService } from '../../../services/booking-panel.service';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { TravelDetail } from './travel-detail/travel-detail';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -26,6 +27,7 @@ interface AutoCompleteCompleteEvent {
     SelectModule,
     FormsModule,
     AutoCompleteModule,
+    TravelDetail,
   ],
   templateUrl: './booking-panel.html',
   styleUrl: './booking-panel.scss',
@@ -41,7 +43,6 @@ export class BookingPanel implements OnInit {
   fromDate: Date = new Date();
   toDate: any;
   showDetails: boolean = true;
-  value1: any;
 
   bookingService = inject(BookingPanelService);
 
