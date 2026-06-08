@@ -1,63 +1,47 @@
 .details-block {
   display: block;
   width: 450px;
-  padding: 0 25px 25px 25px;
+  padding: 25px;
   margin-top: 5px;
-  background-color: #ddd;
+  background-color: #fff;
   position: absolute;
   top: 100%;
   left: -50px;
   -webkit-box-shadow: -1px 7px 12px 3px rgba(161, 161, 161, 0.76);
   box-shadow: -1px 7px 12px 3px rgba(161, 161, 161, 0.76);
+  border-radius: 5px;
 
-  .left-block {
-    float: left;
-    margin-top: 25px;
-
-    h5 {
-      display: inline-block !important;
-    }
-
-    h6 {
-      margin-top: 20px;
-      margin-left: 30px;
-    }
-
-    &.no-margin {
-      margin-top: 0;
-    }
+  h4 {
+    display: inline-block;
+    line-height: 2;
   }
 
-  .right-block {
-    float: right;
-    margin-top: 15px;
-
-    .count-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-
-      .age-list {
-        display: block;
-      }
-
-      .count-display {
-        padding: 10px 12px;
-        font-size: 16px;
-        font-weight: 700;
-      }
-    }
-    &.no-margin {
-      margin-top: 0;
-    }
+  h6 {
+    margin-top: 10px;
+    margin-left: 30px;
   }
 
-  .block-hr {
-    clear: both;
-    padding: 1px 0 0 0;
+  .counter-block {
+    display: flex;
+    flex-direction: row;
+
+    .count-display {
+      padding: 8px 15px 0 15px;
+      vertical-align: middle;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 1;
+    }
   }
 }
 
 .details-block.hide {
   display: none;
+}
+
+:host ::ng-deep p-select.p-select {
+  width: 130px;
+  background-color: transparent;
+  position: absolute;
+  right: 18px;
 }
