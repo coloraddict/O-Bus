@@ -6,182 +6,119 @@
     </div>
     <div class="col-md-4">
       <div class="counter-block">
-        <span><p-button icon="pi pi-minus-circle" aria-label="Save" /></span>
-        <span class="count-display"><p>0</p></span>
-        <span><p-button icon="pi pi-plus-circle" aria-label="Save" /></span>
+        <span
+          ><p-button icon="pi pi-minus-circle" aria-label="Save" (click)="removeAdult()"
+        /></span>
+        <span class="count-display"
+          ><p>{{ adults.length }}</p></span
+        >
+        <span><p-button icon="pi pi-plus-circle" aria-label="Save" (click)="addAdult()" /></span>
       </div>
     </div>
-    <div class="row mt-2">
-      <div class="col-md-8">
-        <h6>Adult 1</h6>
+
+    <!-- Adult form group starts here -->
+    <form [formGroup]="adultFormGroup">
+      <div formArrayName="adults">
+        @for (adult of adults.controls; track $index; let i = $index) {
+          <div class="row mt-2" [formGroupName]="i">
+            <div class="col-md-8">
+              <h6>Adult {{ i + 1 }}</h6>
+            </div>
+            <div class="col-md-4">
+              <p-select
+                [options]="adultAgeList"
+                optionLabel="age"
+                size="small"
+                placeholder=""
+                class="w-full md:w-56"
+              />
+            </div>
+          </div>
+        }
       </div>
-      <div class="col-md-4">
-        <p-select
-          [(ngModel)]="value1"
-          [options]="cityList"
-          optionLabel="name"
-          size="small"
-          placeholder="Small"
-          class="w-full md:w-56"
-        />
-      </div>
-    </div>
+    </form>
+    <!-- Adult form group starts here -->
   </div>
   <div class="block-hr"><hr /></div>
   <div class="row">
     <div class="col-md-8">
       <h4>Youth:&nbsp;</h4>
-      <span>(26-57 years)</span>
+      <span>(0-25 years)</span>
     </div>
     <div class="col-md-4">
       <div class="counter-block">
-        <span><p-button icon="pi pi-minus-circle" aria-label="Save" /></span>
-        <span class="count-display"><p>0</p></span>
-        <span><p-button icon="pi pi-plus-circle" aria-label="Save" /></span>
+        <span
+          ><p-button icon="pi pi-minus-circle" aria-label="Save" (click)="removeYouth()"
+        /></span>
+        <span class="count-display"
+          ><p>{{ youths.length }}</p></span
+        >
+        <span><p-button icon="pi pi-plus-circle" aria-label="Save" (click)="addYouth()" /></span>
       </div>
     </div>
-    <div class="row mt-2">
-      <div class="col-md-8">
-        <h6>Youth 1</h6>
+
+    <!-- Youth form group starts here -->
+    <form [formGroup]="youthFormGroup">
+      <div formArrayName="youths">
+        @for (youth of youths.controls; track $index; let i = $index) {
+          <div class="row mt-2" [formGroupName]="i">
+            <div class="col-md-8">
+              <h6>Youth {{ i + 1 }}</h6>
+            </div>
+            <div class="col-md-4">
+              <p-select
+                [options]="youthAgeList"
+                optionLabel="age"
+                size="small"
+                placeholder=""
+                class="w-full md:w-56"
+              />
+            </div>
+          </div>
+        }
       </div>
-      <div class="col-md-4">
-        <p-select
-          [(ngModel)]="value1"
-          [options]="cityList"
-          optionLabel="name"
-          size="small"
-          placeholder="Small"
-          class="w-full md:w-56"
-        />
-      </div>
-    </div>
-    <div class="row mt-2">
-      <div class="col-md-8">
-        <h6>Youth 1</h6>
-      </div>
-      <div class="col-md-4">
-        <p-select
-          [(ngModel)]="value1"
-          [options]="cityList"
-          optionLabel="name"
-          size="small"
-          placeholder="Small"
-          class="w-full md:w-56"
-        />
-      </div>
-    </div>
+    </form>
+    <!-- Youth form group ends here -->
   </div>
   <div class="block-hr"><hr /></div>
   <div class="row">
     <div class="col-md-8">
       <h4>Senior:&nbsp;</h4>
-      <span>(26-57 years)</span>
+      <span>(58+ years)</span>
     </div>
     <div class="col-md-4">
       <div class="counter-block">
-        <span><p-button icon="pi pi-minus-circle" aria-label="Save" /></span>
-        <span class="count-display"><p>0</p></span>
-        <span><p-button icon="pi pi-plus-circle" aria-label="Save" /></span>
+        <span
+          ><p-button icon="pi pi-minus-circle" aria-label="Save" (click)="removeSenior()"
+        /></span>
+        <span class="count-display"
+          ><p>{{ seniors.length }}</p></span
+        >
+        <span><p-button icon="pi pi-plus-circle" aria-label="Save" (click)="addSenior()" /></span>
       </div>
     </div>
-    <div class="row mt-2">
-      <div class="col-md-8">
-        <h6>Senior 1</h6>
+
+    <!-- Senior form group starts here -->
+    <form [formGroup]="seniorFormGroup">
+      <div formArrayName="seniors">
+        @for (senior of seniors.controls; track $index; let i = $index) {
+          <div class="row mt-2" [formGroupName]="i">
+            <div class="col-md-8">
+              <h6>Senior 1</h6>
+            </div>
+            <div class="col-md-4">
+              <p-select
+                [options]="seniorAgeList"
+                optionLabel="age"
+                size="small"
+                placeholder=""
+                class="w-full md:w-56"
+              />
+            </div>
+          </div>
+        }
       </div>
-      <div class="col-md-4">
-        <p-select
-          [(ngModel)]="value1"
-          [options]="cityList"
-          optionLabel="name"
-          size="small"
-          placeholder="Small"
-          class="w-full md:w-56"
-        />
-      </div>
-    </div>
-    <div class="row mt-2">
-      <div class="col-md-8">
-        <h6>Senior 1</h6>
-      </div>
-      <div class="col-md-4">
-        <p-select
-          [(ngModel)]="value1"
-          [options]="cityList"
-          optionLabel="name"
-          size="small"
-          placeholder="Small"
-          class="w-full md:w-56"
-        />
-      </div>
-    </div>
+    </form>
+    <!-- Senior form group ends here -->
   </div>
 </div>
-<!-- <div class="details-block">
-  <div class="left-block">
-    <div>
-      <h5>Adult:&nbsp;</h5>
-      <span>(26-57 years)</span>
-      <h6>Adult 1</h6>
-    </div>
-
-    <div>
-      <h6>Adult 2</h6>
-    </div>
-  </div>
-  <div class="right-block">
-    <div class="count-container">
-      <div><p-button icon="pi pi-minus-circle" aria-label="Save" /></div>
-      <div class="count-display"><p>0</p></div>
-      <div><p-button icon="pi pi-plus-circle" aria-label="Save" /></div>
-    </div>
-  </div>
-  <div class="block-hr"><hr /></div>
-  <div class="left-block no-margin">
-    <div>
-      <h5>Youth:&nbsp;</h5>
-      <span>(0-25 years)</span>
-      <h6>Youth 1</h6>
-    </div>
-
-    <div>
-      <h6>Youth 2</h6>
-    </div>
-  </div>
-  <div class="right-block no-margin">
-    <div class="count-container">
-      <div><p-button icon="pi pi-minus-circle" aria-label="Save" /></div>
-      <div class="count-display"><p>0</p></div>
-      <div><p-button icon="pi pi-plus-circle" aria-label="Save" /></div>
-    </div>
-    <div class="age-list">
-      <p-select
-        [(ngModel)]="value1"
-        [options]="cityList"
-        optionLabel="name"
-        size="small"
-        placeholder="Small"
-        class="w-full md:w-56"
-      />
-    </div>
-  </div>
-  <div class="block-hr"><hr /></div>
-  <div class="left-block no-margin">
-    <div>
-      <h5>Senior:&nbsp;</h5>
-      <span>(58+ years)</span>
-      <h6>Senior 1</h6>
-    </div>
-
-    <div>
-      <h6>Senior 2</h6>
-    </div>
-  </div>
-  <div class="right-block no-margin">
-    <div class="count-container">
-      <div><p-button icon="pi pi-minus-circle" aria-label="Save" /></div>
-      <div class="count-display"><p>0</p></div>
-      <div><p-button icon="pi pi-plus-circle" aria-label="Save" /></div>
-    </div>
-  </div>
-  <div class="block-hr"></div>
-</div> -->

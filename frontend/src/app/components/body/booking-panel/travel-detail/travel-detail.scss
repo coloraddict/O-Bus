@@ -39,6 +39,18 @@
   display: none;
 }
 
+:host ::ng-deep .p-button {
+  border: none;
+  background: #3f51b5;
+  color: #fff;
+}
+
+:host ::ng-deep .p-button:not(:disabled):hover {
+  border: none;
+  background: #007ad9;
+  color: #fff;
+}
+
 :host ::ng-deep p-select.p-select {
   width: 130px;
   background-color: transparent;
