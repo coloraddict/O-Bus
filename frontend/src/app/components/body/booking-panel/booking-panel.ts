@@ -45,7 +45,6 @@ export class BookingPanel implements OnInit {
   selectedCity2: any = 'Bengaluru';
   fromDate: Date = new Date();
   toDate: any;
-  showDetails: boolean = true;
 
   bookingService = inject(BookingPanelService);
   protected readonly travelService = inject(TravelService);
@@ -53,7 +52,6 @@ export class BookingPanel implements OnInit {
   isTravelDetailVisible: string = 'none';
 
   ngOnInit() {
-    // this.toDate.setDate(this.fromDate.getDate() + 1);
     this.country = [
       { name: 'New York', code: 'NY' },
       { name: 'Rome', code: 'RM' },

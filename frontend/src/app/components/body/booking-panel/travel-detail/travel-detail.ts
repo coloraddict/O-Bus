@@ -118,4 +118,8 @@ export class TravelDetail {
       this.seniors.removeAt(this.seniors.length - 1);
     }
   }
+
+  onChildClick(event: MouseEvent) {
+    event.stopPropagation();
+  }
 }
