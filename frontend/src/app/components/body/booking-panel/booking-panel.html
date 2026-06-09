@@ -43,8 +43,8 @@
         <div class="traveller-detail" (click)="addTravellerDetails()">
           <span>
             <svg
-              width="25px"
-              height="25px"
+              width="20px"
+              height="20px"
               viewBox="0 0 16 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -59,6 +59,7 @@
               />
             </svg>
           </span>
+          &nbsp;
           <span> {{ travelService.total() }} - No discount </span>
 
           <app-travel-detail [ngStyle]="{ display: isTravelDetailVisible }"></app-travel-detail>
