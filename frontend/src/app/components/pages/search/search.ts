@@ -7,7 +7,6 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { Table, TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { InputTextModule } from 'primeng/inputtext';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-search',
@@ -20,7 +19,6 @@ import { NgClass } from '@angular/common';
     TagModule,
     InputTextModule,
     FormsModule,
-    NgClass,
   ],
   templateUrl: './search.html',
   styleUrl: './search.scss',
@@ -32,6 +30,7 @@ export class Search {
   loading: boolean = true;
   activityValues: number[] = [0, 100];
   value!: string;
+  buses!: any[];
 
   ngOnInit() {
     this.loading = false;
@@ -71,6 +70,52 @@ export class Search {
       { label: 'Negotiation', value: 'negotiation' },
       { label: 'Renewal', value: 'renewal' },
       { label: 'Proposal', value: 'proposal' },
+    ];
+
+    this.buses = [
+      {
+        name: 'Royal Exclusive',
+        departure: '10:00 PM',
+        coachType: 'AC',
+        seatsAvailable: 36,
+        fare: 300,
+      },
+      {
+        name: 'Royal Exclusive',
+        departure: '12:00 PM',
+        coachType: 'AC',
+        seatsAvailable: 36,
+        fare: 300,
+      },
+      {
+        name: 'Royal Exclusive',
+        departure: '3:00 PM',
+        coachType: 'Non AC',
+        seatsAvailable: 36,
+        fare: 1300,
+      },
+      {
+        name: 'Tisha Exclusive',
+        departure: '7:00 PM',
+        coachType: 'Non AC',
+        seatsAvailable: 250,
+        fare: 1300,
+      },
+      {
+        name: 'Tisha Exclusive',
+        departure: '9:00 AM',
+        coachType: 'AC',
+        seatsAvailable: 250,
+        fare: 1300,
+      },
+      { name: 'Asia Line', departure: '9:00 AM', coachType: 'AC', seatsAvailable: 300, fare: 1300 },
+      {
+        name: 'Asia Line',
+        departure: '9:00 AM',
+        coachType: 'Non AC',
+        seatsAvailable: 300,
+        fare: 1300,
+      },
     ];
   }
 

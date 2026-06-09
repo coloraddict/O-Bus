@@ -1,0 +1,15 @@
+:host ::ng-deep {
+  .p-datatable-table {
+    min-width: unset !important;
+    width: 100% !important;
+  }
+
+  .p-columnfilter {
+    width: 100% !important;
+
+    input {
+      width: 100% !important;
+      min-width: unset !important;
+    }
+  }
+}
