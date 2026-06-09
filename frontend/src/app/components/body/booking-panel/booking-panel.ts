@@ -12,6 +12,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { TravelDetail } from './travel-detail/travel-detail';
 import { TravelService } from '../../../services/travel.service';
 import { NgStyle } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -51,6 +52,8 @@ export class BookingPanel implements OnInit {
 
   isTravelDetailVisible: string = 'none';
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
     this.country = [
       { name: 'New York', code: 'NY' },
@@ -82,5 +85,9 @@ export class BookingPanel implements OnInit {
 
   addTravellerDetails() {
     this.isTravelDetailVisible = this.isTravelDetailVisible === 'none' ? 'block' : 'none';
+  }
+
+  onSearch() {
+    this.router.navigateByUrl('search');
   }
 }
