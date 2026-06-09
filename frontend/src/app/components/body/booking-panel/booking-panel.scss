@@ -20,7 +20,7 @@
     }
 
     .flex-container div {
-      margin: 1px;
+      margin: 0 1px;
     }
 
     .flex-container div small {
@@ -32,7 +32,7 @@
     .traveller-detail {
       display: block;
       width: 200px;
-      height: 58px;
+      height: 100%;
       padding: 20px;
       background-color: #ddd;
       border-radius: 5px;
@@ -58,6 +58,12 @@
   padding: 20px;
   background-color: #fa6b6b;
   border: none;
+}
+
+:host ::ng-deep p-button.booking-button .p-button:not(:disabled):hover {
+  border: none;
+  background: #f00;
+  color: #fff;
 }
 
 :host ::ng-deep .p-inputtext {
