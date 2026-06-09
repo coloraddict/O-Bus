@@ -1,4 +1,6 @@
-@import 'primeicons/primeicons.css';
+@import "primeng/resources/themes/aura-light-blue/theme.css"; // optional legacy
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
 
 body {
   font-family: Roboto;
