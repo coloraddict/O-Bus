@@ -7,6 +7,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { Table, TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-search',
@@ -19,6 +20,7 @@ import { InputTextModule } from 'primeng/inputtext';
     TagModule,
     InputTextModule,
     FormsModule,
+    ButtonModule,
   ],
   templateUrl: './search.html',
   styleUrl: './search.scss',
@@ -144,4 +146,6 @@ export class Search {
         return null;
     }
   }
+
+  onViewSeats(bus: any) {}
 }

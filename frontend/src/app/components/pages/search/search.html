@@ -38,6 +38,7 @@
               <th>Coach Type</th>
               <th>Availability</th>
               <th>Fare</th>
+              <th>Action</th>
             </tr>
             <tr>
               <th>
@@ -89,6 +90,7 @@
                   [showMenu]="false"
                 ></p-columnFilter>
               </th>
+              <th></th>
             </tr>
           </ng-template>
           <ng-template #body let-bus>
@@ -109,6 +111,15 @@
               </td>
               <td style="text-align: center">
                 {{ bus.fare }}
+              </td>
+              <td>
+                <!-- ✅ new button -->
+                <p-button
+                  label="View Seats"
+                  (onClick)="onViewSeats(bus)"
+                  severity="danger"
+                  size="small"
+                />
               </td>
             </tr>
           </ng-template>
