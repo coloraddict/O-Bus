@@ -2,6 +2,9 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/
 import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
+import Lara from '@primeng/themes/lara'; // clean, flat
+import Nora from '@primeng/themes/nora'; // bold borders
+import Material from '@primeng/themes/material';
 
 import { routes } from './app.routes';
 
@@ -11,11 +14,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     providePrimeNG({
       theme: {
-        preset: Aura,
+        preset: Material,
         options: {
           prefix: 'p',
-          darkModeSelector: 'system',
-          cssLayer: false,
+          darkModeSelector: 'false',
         },
       },
     }),
