@@ -72,15 +72,15 @@ export class BookingPanel implements OnInit {
   filterCities1(event: AutoCompleteCompleteEvent) {
     const query = event.query.toLowerCase();
     this.filteredCities1 = this.cityList
-      .filter((city) => city.cityName.toLowerCase().includes(query))
-      .filter((city) => !this.selectedCity2 || city.cityName !== this.selectedCity2.cityName);
+      .filter((city) => city.name.toLowerCase().includes(query))
+      .filter((city) => !this.selectedCity2 || city.name !== this.selectedCity2.name);
   }
 
   filterCities2(event: any) {
     const query = event.query.toLowerCase();
     this.filteredCities2 = this.cityList
-      .filter((city) => city.cityName.toLowerCase().includes(query))
-      .filter((city) => !this.selectedCity1 || city.cityName !== this.selectedCity1.cityName);
+      .filter((city) => city.name.toLowerCase().includes(query))
+      .filter((city) => !this.selectedCity1 || city.name !== this.selectedCity1.name);
   }
 
   addTravellerDetails() {

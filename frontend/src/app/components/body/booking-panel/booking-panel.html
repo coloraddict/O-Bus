@@ -6,11 +6,11 @@
           [(ngModel)]="selectedCity1"
           [suggestions]="filteredCities1"
           (completeMethod)="filterCities1($event)"
-          optionLabel="cityName"
+          optionLabel="name"
           id="fromCity"
         >
           <ng-template let-city pTemplate="item">
-            {{ city.cityName }}
+            {{ city.name }}
           </ng-template>
         </p-autocomplete>
       </div>
@@ -19,7 +19,7 @@
           [(ngModel)]="selectedCity2"
           [suggestions]="filteredCities2"
           (completeMethod)="filterCities2($event)"
-          optionLabel="cityName"
+          optionLabel="name"
         >
         </p-autoComplete>
       </div>
