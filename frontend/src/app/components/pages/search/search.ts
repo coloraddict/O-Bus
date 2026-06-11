@@ -16,6 +16,7 @@ import { DroppingPoint } from '../../../models/dropping-point';
 // import { JsonPipe } from '@angular/common';
 import { BadgeModule } from 'primeng/badge';
 import { Drawer, DrawerModule } from 'primeng/drawer';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-search',
@@ -33,6 +34,7 @@ import { Drawer, DrawerModule } from 'primeng/drawer';
     // JsonPipe,
     BadgeModule,
     DrawerModule,
+    MessageModule,
   ],
   templateUrl: './search.html',
   styleUrl: './search.scss',
@@ -71,10 +73,10 @@ export class Search {
 
   searchService = inject(SearchService);
 
-  // visible1: boolean = false;
   visible2: boolean = false;
-  // visible3: boolean = false;
-  // visible4: boolean = false;
+
+  titleList: any = [{ title: 'Mr' }, { title: 'Mrs' }, { title: 'Miss' }];
+  selectedTitle: string = '';
 
   constructor() {}
 
