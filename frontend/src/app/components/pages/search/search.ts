@@ -13,7 +13,7 @@ import { Seat, SeatStatus } from '../../../models/seat';
 import { SearchService } from '../../../services/search-service';
 import { BoardingPoint } from '../../../models/boarding-point';
 import { DroppingPoint } from '../../../models/dropping-point';
-// import { JsonPipe } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { BadgeModule } from 'primeng/badge';
 
 @Component({
@@ -29,7 +29,7 @@ import { BadgeModule } from 'primeng/badge';
     FormsModule,
     ButtonModule,
     DialogModule,
-    // JsonPipe,
+    JsonPipe,
     BadgeModule,
   ],
   templateUrl: './search.html',
@@ -61,14 +61,11 @@ export class Search {
       })),
   );
 
-  cities!: any[];
-  selectedCity: any | undefined;
-
   boardingPoint: BoardingPoint[] = [];
-  selectedBoardingPoint!: string;
+  selectedBoardingPoint?: string = '';
 
   droppingPoint: DroppingPoint[] = [];
-  selectedDroppingPoint!: string;
+  selectedDroppingPoint?: string = '';
 
   searchService = inject(SearchService);
 
@@ -124,5 +121,9 @@ export class Search {
 
   get selectedSeatLabels(): string {
     return this.selectedSeats.map((s) => s.id).join(', ');
+  }
+
+  get isSelectDisabled(): boolean {
+    return this.selectedSeats.length === 0;
   }
 }

@@ -181,10 +181,11 @@
           <div class="card flex justify-center">
             <p-select
               [options]="boardingPoint"
-              [(ngModel)]="selectedCity"
+              [(ngModel)]="selectedBoardingPoint"
               optionLabel="placeName"
               placeholder="Select Boarding Point"
               class="w-full md:w-56"
+              [disabled]="isSelectDisabled"
             />
           </div>
         </div>
@@ -193,10 +194,11 @@
           <div class="card flex justify-center">
             <p-select
               [options]="droppingPoint"
-              [(ngModel)]="selectedCity"
+              [(ngModel)]="selectedDroppingPoint"
               optionLabel="placeName"
               placeholder="Select Dropping Point"
               class="w-full md:w-56"
+              [disabled]="isSelectDisabled"
             />
           </div>
         </div>
@@ -208,7 +210,11 @@
         <div class="col-md-4 text-right">
           <button
             class="confirm"
-            [disabled]="selectedSeats.length === 0"
+            [disabled]="
+              selectedSeats.length === 0 ||
+              selectedBoardingPoint === '' ||
+              selectedDroppingPoint === ''
+            "
             (click)="confirmBooking()"
           >
             Confirm Booking
