@@ -159,24 +159,9 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8">
-      <!-- <div class="row">
-        <div class="col-md-8 text-center">
-          @if (selectedSeats.length > 0) {
-            <h6>Selected seats</h6>
-          } @else {
-            <h6>No seats selected</h6>
-          }
-          <div class="badges">
-            @for (seat of selectedSeats; track seat) {
-              <p-badge value="{{ seat.row + seat.col }}" badgeSize="xlarge" severity="success" />
-            }
-          </div>
-        </div>
-      </div> -->
+    <div class="col-md-6 col-sm-4">
       <div class="row">
-        <!-- <div class="col-md-2"></div> -->
-        <div class="col-md-4">
+        <div class="col-md-6">
           <label for="" class="mb-2"><strong>Boarding Point</strong></label>
           <div class="card flex justify-center">
             <p-select
@@ -189,7 +174,7 @@
             />
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <label for="" class="mb-2"><strong>Dropoff Point</strong></label>
           <div class="card flex justify-center">
             <p-select
@@ -202,11 +187,9 @@
             />
           </div>
         </div>
-        <!-- <div class="col-md-2"></div> -->
       </div>
       <div class="row mt-4">
-        <!-- <div class="col-md-2"></div> -->
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="row">
             <div class="col-md-12">
               <h6>Service Details</h6>
@@ -267,26 +250,45 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-md-2"></div> -->
       </div>
-      <div class="row mt-3">
-        <!-- <div class="col-md-2"></div> -->
-        <div class="col-md-4"></div>
-        <div class="col-md-4 text-right">
-          <button
-            class="confirm"
-            [disabled]="
-              selectedSeats.length === 0 ||
-              selectedBoardingPoint === '' ||
-              selectedDroppingPoint === ''
-            "
-            (click)="confirmBooking()"
-          >
-            Confirm Booking
-          </button>
-        </div>
-        <!-- <div class="col-md-2"></div> -->
+    </div>
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-12"><h6>Fare Details</h6></div>
       </div>
+      <div class="row">
+        <div class="col-md-6"><p>Ticket Fare</p></div>
+        <div class="col-md-6"><p>₹ 400.00</p></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><p>GST (5%)</p></div>
+        <div class="col-md-6"><p>₹20.00</p></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><p>Bus Total Fare</p></div>
+        <div class="col-md-6"><p>₹ 420.00</p></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><p>Grand Total</p></div>
+        <div class="col-md-6"><p>₹ 420.00</p></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><p>Payable Amount</p></div>
+        <div class="col-md-6"><p>₹ 420.00</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12 text-right">
+      <button
+        class="confirm"
+        [disabled]="
+          selectedSeats.length === 0 || selectedBoardingPoint === '' || selectedDroppingPoint === ''
+        "
+        (click)="confirmBooking()"
+      >
+        Confirm Booking
+      </button>
     </div>
   </div>
 </p-dialog>
