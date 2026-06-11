@@ -56,6 +56,9 @@ export class Search {
       })),
   );
 
+  cities!: any[];
+  selectedCity: any | undefined;
+
   ngOnInit() {
     this.loading = false;
     this.customers = [
@@ -189,11 +192,15 @@ export class Search {
     seat.status = seat.status === 'selected' ? 'available' : 'selected';
   }
 
+  confirmBooking() {
+    this.selectedSeats.forEach((s) => (s.status = 'booked'));
+  }
+
   get selectedSeats(): Seat[] {
     return this.seats.filter((s) => s.status === 'selected');
   }
 
-  confirmBooking() {
-    this.selectedSeats.forEach((s) => (s.status = 'booked'));
+  get selectedSeatLabels(): string {
+    return this.selectedSeats.map((s) => s.id).join(', ');
   }
 }
