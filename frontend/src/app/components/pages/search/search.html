@@ -118,7 +118,7 @@
                 <!-- ✅ new button -->
                 <p-button
                   label="View Seats"
-                  (onClick)="onViewSeats(bus)"
+                  (click)="showDialog()"
                   severity="danger"
                   size="small"
                 />
@@ -135,3 +135,57 @@
     </div>
   </div>
 </div>
+
+<p-dialog header="Select seats" [modal]="true" [(visible)]="visible" [style]="{ width: '70rem' }">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="bus-shell">
+        <div class="driver-row">
+          <span class="door-label">door →</span>
+          <span class="steering">🚌</span>
+        </div>
+
+        <div class="seat-grid">
+          @for (row of rows; track row) {
+            @for (colItem of cols; track colItem) {
+              @if (colItem === null) {
+                <div class="aisle">{{ row }}</div>
+              } @else {
+                <button
+                  class="seat"
+                  [class.available]="getStatus(row, colItem) === 'available'"
+                  [class.selected]="getStatus(row, colItem) === 'selected'"
+                  [class.booked]="getStatus(row, colItem) === 'booked'"
+                  [disabled]="getStatus(row, colItem) === 'booked'"
+                  (click)="onSeatClick(row, colItem)"
+                >
+                  {{ row }}{{ colItem }}
+                </button>
+              }
+            }
+          }
+        </div>
+
+        <div class="legend">
+          <span class="legend-item available">Available</span>
+          <span class="legend-item selected">Selected</span>
+          <span class="legend-item booked">Booked</span>
+        </div>
+
+        <div class="summary">
+          <p>
+            Selected:
+            @if (selectedSeats.length === 0) {
+              None
+            } @else {
+              {{ selectedSeats.map((s) => s.id).join(', ') }}
+            }
+          </p>
+          <button [disabled]="selectedSeats.length === 0" (click)="confirmBooking()">
+            Confirm Booking
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>

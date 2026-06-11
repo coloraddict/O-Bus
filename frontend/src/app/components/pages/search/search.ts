@@ -8,6 +8,8 @@ import { Table, TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { Seat, SeatStatus } from '../../../models/seat';
 
 @Component({
   selector: 'app-search',
@@ -21,6 +23,7 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     FormsModule,
     ButtonModule,
+    DialogModule,
   ],
   templateUrl: './search.html',
   styleUrl: './search.scss',
@@ -33,6 +36,25 @@ export class Search {
   activityValues: number[] = [0, 100];
   value!: string;
   buses!: any[];
+  visible: boolean = false;
+
+  rows = [1, 2, 3, 4, 5, 6, 7, 8];
+  cols = ['A', 'B', null, 'C', 'D']; // null = aisle placeholder
+
+  seats: Seat[] = this.rows.flatMap((row) =>
+    this.cols
+      .filter((col): col is string => col !== null)
+      .map((col) => ({
+        id: `${row}${col}`,
+        row,
+        col,
+        status: (['1A', '1D', '3B', '3C', '5A', '5D', '6B', '7C', '8A', '8D'].includes(
+          `${row}${col}`,
+        )
+          ? 'booked'
+          : 'available') as SeatStatus,
+      })),
+  );
 
   ngOnInit() {
     this.loading = false;
@@ -148,4 +170,30 @@ export class Search {
   }
 
   onViewSeats(bus: any) {}
+
+  showDialog() {
+    this.visible = true;
+  }
+
+  getSeat(row: number, col: string): Seat {
+    return this.seats.find((s) => s.row === row && s.col === col)!;
+  }
+
+  getStatus(row: number, col: string): SeatStatus {
+    return this.getSeat(row, col).status;
+  }
+
+  onSeatClick(row: number, col: string) {
+    const seat = this.getSeat(row, col);
+    if (seat.status === 'booked') return;
+    seat.status = seat.status === 'selected' ? 'available' : 'selected';
+  }
+
+  get selectedSeats(): Seat[] {
+    return this.seats.filter((s) => s.status === 'selected');
+  }
+
+  confirmBooking() {
+    this.selectedSeats.forEach((s) => (s.status = 'booked'));
+  }
 }

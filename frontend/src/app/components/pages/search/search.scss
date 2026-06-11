@@ -1,15 +1,98 @@
-:host ::ng-deep {
-  .p-datatable-table {
-    min-width: unset !important;
-    width: 100% !important;
-  }
+.bus-shell {
+  border: 2px solid #ccc;
+  border-radius: 32px 32px 16px 16px;
+  padding: 1rem;
+  max-width: 420px;
+  margin: 0 auto;
+  background: #f9f9f9;
+}
 
-  .p-columnfilter {
-    width: 100% !important;
+.driver-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1.5px dashed #ccc;
+  margin-bottom: 1rem;
+}
 
-    input {
-      width: 100% !important;
-      min-width: unset !important;
-    }
-  }
+/* CSS Grid — the core layout */
+.seat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 20px 1fr 1fr;
+  gap: 8px;
+}
+
+.aisle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #aaa;
+}
+
+.seat {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: 1.5px solid;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.seat.available {
+  background: white;
+  border-color: #1d9e75;
+  color: #0f6e56;
+}
+.seat.selected {
+  background: #1d9e75;
+  border-color: #0f6e56;
+  color: white;
+}
+.seat.booked {
+  background: #eee;
+  border-color: #ccc;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 1rem;
+  font-size: 12px;
+}
+
+.legend-item.available {
+  color: #1d9e75;
+}
+.legend-item.selected {
+  color: #0f6e56;
+  font-weight: 500;
+}
+.legend-item.booked {
+  color: #aaa;
+}
+
+.summary {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 13px;
+}
+
+.summary button {
+  margin-top: 8px;
+  padding: 8px 20px;
+  background: #1d9e75;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.summary button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
 }
