@@ -143,3 +143,7 @@
 .text-right {
   text-align: right;
 }
+
+:host ::ng-deep p-columnfilter input {
+  width: 150px;
+}

@@ -17,22 +17,8 @@
           [paginator]="true"
           [globalFilterFields]="['name', 'departure', 'coachType', 'seatsAvailable', 'fare']"
           [scrollable]="false"
+          [resizableColumns]="true"
         >
-          <ng-template #caption>
-            <div class="flex">
-              <p-iconfield iconPosition="left" class="ml-auto">
-                <p-inputicon>
-                  <i class="pi pi-search"></i>
-                </p-inputicon>
-                <input
-                  pInputText
-                  type="text"
-                  (input)="dt1.filterGlobal($event.target.value, 'contains')"
-                  placeholder="Search keyword"
-                />
-              </p-iconfield>
-            </div>
-          </ng-template>
           <ng-template #header>
             <tr>
               <th>Name</th>
@@ -105,13 +91,13 @@
                   <span>{{ bus.departure }}</span>
                 </div>
               </td>
-              <td style="text-align: center">
+              <td>
                 {{ bus.coachType }}
               </td>
-              <td style="text-align: center">
+              <td>
                 {{ bus.seatsAvailable }}
               </td>
-              <td style="text-align: center">
+              <td>
                 {{ bus.fare }}
               </td>
               <td>
