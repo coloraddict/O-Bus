@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { Seat, SeatStatus } from '../../../models/seat';
+import { SearchService } from '../../../services/search-service';
 
 @Component({
   selector: 'app-search',
@@ -29,8 +30,6 @@ import { Seat, SeatStatus } from '../../../models/seat';
   styleUrl: './search.scss',
 })
 export class Search {
-  customers!: any[];
-  representatives!: any[];
   statuses!: any[];
   loading: boolean = true;
   activityValues: number[] = [0, 100];
@@ -59,45 +58,16 @@ export class Search {
   cities!: any[];
   selectedCity: any | undefined;
 
+  searchService = inject(SearchService);
+
+  constructor() {}
+
   ngOnInit() {
     this.loading = false;
-    this.customers = [
-      {
-        name: 'Scott Tiger',
-        country: { code: '0011', name: 'US' },
-        representative: { name: 'Scptt Toger', image: 'amyelsner.png' },
-        status: 'unqualified',
-        verified: true,
-      },
-      {
-        name: 'Scott Tiger',
-        country: { code: '0011', name: 'US' },
-        representative: { name: 'Scptt Toger', image: 'amyelsner.png' },
-        status: 'unqualified',
-        verified: true,
-      },
-    ];
-    this.representatives = [
-      { name: 'Amy Elsner', image: 'amyelsner.png' },
-      { name: 'Anna Fali', image: 'annafali.png' },
-      { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-      { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-      { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-      { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-      { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-      { name: 'Onyama Limba', image: 'onyamalimba.png' },
-      { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-      { name: 'Xuxue Feng', image: 'xuxuefeng.png' },
-    ];
 
-    this.statuses = [
-      { label: 'Unqualified', value: 'unqualified' },
-      { label: 'Qualified', value: 'qualified' },
-      { label: 'New', value: 'new' },
-      { label: 'Negotiation', value: 'negotiation' },
-      { label: 'Renewal', value: 'renewal' },
-      { label: 'Proposal', value: 'proposal' },
-    ];
+    this.searchService.getBuses().subscribe((res: any) => {
+      this.buses = JSON.parse(res);
+    });
 
     this.buses = [
       {
