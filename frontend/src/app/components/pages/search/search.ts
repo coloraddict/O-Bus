@@ -11,6 +11,8 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { Seat, SeatStatus } from '../../../models/seat';
 import { SearchService } from '../../../services/search-service';
+import { BoardingPoint } from '../../../models/boarding-point';
+import { DroppingPoint } from '../../../models/dropping-point';
 
 @Component({
   selector: 'app-search',
@@ -58,6 +60,12 @@ export class Search {
   cities!: any[];
   selectedCity: any | undefined;
 
+  boardingPoint: BoardingPoint[] = [];
+  selectedBoardingPoint!: string;
+
+  droppingPoint: DroppingPoint[] = [];
+  selectedDroppingPoint!: string;
+
   searchService = inject(SearchService);
 
   constructor() {}
@@ -69,77 +77,17 @@ export class Search {
       this.buses = JSON.parse(res);
     });
 
-    this.buses = [
-      {
-        name: 'Royal Exclusive',
-        departure: '10:00 PM',
-        coachType: 'AC',
-        seatsAvailable: 36,
-        fare: 300,
-      },
-      {
-        name: 'Royal Exclusive',
-        departure: '12:00 PM',
-        coachType: 'AC',
-        seatsAvailable: 36,
-        fare: 300,
-      },
-      {
-        name: 'Royal Exclusive',
-        departure: '3:00 PM',
-        coachType: 'Non AC',
-        seatsAvailable: 36,
-        fare: 1300,
-      },
-      {
-        name: 'Tisha Exclusive',
-        departure: '7:00 PM',
-        coachType: 'Non AC',
-        seatsAvailable: 250,
-        fare: 1300,
-      },
-      {
-        name: 'Tisha Exclusive',
-        departure: '9:00 AM',
-        coachType: 'AC',
-        seatsAvailable: 250,
-        fare: 1300,
-      },
-      { name: 'Asia Line', departure: '9:00 AM', coachType: 'AC', seatsAvailable: 300, fare: 1300 },
-      {
-        name: 'Asia Line',
-        departure: '9:00 AM',
-        coachType: 'Non AC',
-        seatsAvailable: 300,
-        fare: 1300,
-      },
-    ];
+    this.searchService.getBordingPoints().subscribe((res: any) => {
+      this.boardingPoint = JSON.parse(res);
+    });
+
+    this.searchService.getDroppingPoints().subscribe((res: any) => {
+      this.droppingPoint = JSON.parse(res);
+    });
   }
 
   clear(table: Table) {
     table.clear();
-  }
-
-  getSeverity(status: string) {
-    switch (status) {
-      case 'unqualified':
-        return 'danger';
-
-      case 'qualified':
-        return 'success';
-
-      case 'new':
-        return 'info';
-
-      case 'negotiation':
-        return 'warn';
-
-      case 'renewal':
-        return null;
-
-      default:
-        return null;
-    }
   }
 
   onViewSeats(bus: any) {}

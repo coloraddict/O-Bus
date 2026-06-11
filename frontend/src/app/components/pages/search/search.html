@@ -198,10 +198,10 @@
           <label for="" class="mb-2"><strong>Boarding Point</strong></label>
           <div class="card flex justify-center">
             <p-select
-              [options]="cities"
+              [options]="boardingPoint"
               [(ngModel)]="selectedCity"
-              optionLabel="name"
-              placeholder="Boarding Point"
+              optionLabel="placeName"
+              placeholder="Select Boarding Point"
               class="w-full md:w-56"
             />
           </div>
@@ -210,10 +210,10 @@
           <label for="" class="mb-2"><strong>Dropoff Point</strong></label>
           <div class="card flex justify-center">
             <p-select
-              [options]="cities"
+              [options]="droppingPoint"
               [(ngModel)]="selectedCity"
-              optionLabel="name"
-              placeholder="Dropping Point"
+              optionLabel="placeName"
+              placeholder="Select Dropping Point"
               class="w-full md:w-56"
             />
           </div>
