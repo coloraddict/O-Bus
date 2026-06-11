@@ -151,7 +151,7 @@ button.confirm:disabled {
 .badges {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .badges .p-badge {

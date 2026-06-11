@@ -13,8 +13,9 @@ import { Seat, SeatStatus } from '../../../models/seat';
 import { SearchService } from '../../../services/search-service';
 import { BoardingPoint } from '../../../models/boarding-point';
 import { DroppingPoint } from '../../../models/dropping-point';
-import { JsonPipe } from '@angular/common';
+// import { JsonPipe } from '@angular/common';
 import { BadgeModule } from 'primeng/badge';
+import { Drawer, DrawerModule } from 'primeng/drawer';
 
 @Component({
   selector: 'app-search',
@@ -29,8 +30,9 @@ import { BadgeModule } from 'primeng/badge';
     FormsModule,
     ButtonModule,
     DialogModule,
-    JsonPipe,
+    // JsonPipe,
     BadgeModule,
+    DrawerModule,
   ],
   templateUrl: './search.html',
   styleUrl: './search.scss',
@@ -68,6 +70,11 @@ export class Search {
   selectedDroppingPoint?: string = '';
 
   searchService = inject(SearchService);
+
+  // visible1: boolean = false;
+  visible2: boolean = false;
+  // visible3: boolean = false;
+  // visible4: boolean = false;
 
   constructor() {}
 
@@ -112,6 +119,7 @@ export class Search {
   }
 
   confirmBooking() {
+    this.visible2 = true;
     this.selectedSeats.forEach((s) => (s.status = 'booked'));
   }
 

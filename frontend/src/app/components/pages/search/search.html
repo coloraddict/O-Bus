@@ -160,8 +160,8 @@
       </div>
     </div>
     <div class="col-md-8">
-      <div class="row mt-5">
-        <div class="col-md-12 text-center">
+      <!-- <div class="row">
+        <div class="col-md-8 text-center">
           @if (selectedSeats.length > 0) {
             <h6>Selected seats</h6>
           } @else {
@@ -173,9 +173,9 @@
             }
           </div>
         </div>
-      </div>
-      <div class="row mt-5">
-        <div class="col-md-2"></div>
+      </div> -->
+      <div class="row">
+        <!-- <div class="col-md-2"></div> -->
         <div class="col-md-4">
           <label for="" class="mb-2"><strong>Boarding Point</strong></label>
           <div class="card flex justify-center">
@@ -202,10 +202,75 @@
             />
           </div>
         </div>
-        <div class="col-md-2"></div>
+        <!-- <div class="col-md-2"></div> -->
+      </div>
+      <div class="row mt-4">
+        <!-- <div class="col-md-2"></div> -->
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-12">
+              <h6>Service Details</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>From</p></div>
+            <div class="col-md-9"><p>Mumbai</p></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>To</p></div>
+            <div class="col-md-9"><p>Mumbai Darshan</p></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Date</p></div>
+            <div class="col-md-9"><p>12/06/2026</p></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Service</p></div>
+            <div class="col-md-9"><p>MUMBAI DARSHAN - KALYAN (AC)</p></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Seats</p></div>
+            <div class="col-md-9">
+              <div class="badges">
+                @for (seat of selectedSeats; track seat) {
+                  <p-badge
+                    value="{{ seat.row + seat.col }}"
+                    badgeSize="xlarge"
+                    severity="success"
+                  />
+                }
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Bus Type</p></div>
+            <div class="col-md-9">
+              <p>2+2, Air Suspension, AC (45 seats)</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Boarding</p></div>
+            <div class="col-md-9">
+              <p>
+                06:30 AM - Kalyan (W) - Ramdev Hotel <br />
+                <small>Kalyan (W) Ramdev Hotel</small>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Dropoff</p></div>
+            <div class="col-md-9">
+              <p>
+                09:10 PM - Rabale Railway Station <br />
+                <small>Rabale Railway Station</small>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-2"></div> -->
       </div>
       <div class="row mt-3">
-        <div class="col-md-2"></div>
+        <!-- <div class="col-md-2"></div> -->
         <div class="col-md-4"></div>
         <div class="col-md-4 text-right">
           <button
@@ -220,8 +285,21 @@
             Confirm Booking
           </button>
         </div>
-        <div class="col-md-2"></div>
+        <!-- <div class="col-md-2"></div> -->
       </div>
     </div>
   </div>
 </p-dialog>
+
+<p-drawer
+  header="Right Drawer"
+  [(visible)]="visible2"
+  position="right"
+  [style]="{ width: '40rem' }"
+>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+    laboris nisi ut aliquip ex ea commodo consequat.
+  </p>
+</p-drawer>
