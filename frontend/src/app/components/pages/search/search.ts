@@ -13,6 +13,8 @@ import { Seat, SeatStatus } from '../../../models/seat';
 import { SearchService } from '../../../services/search-service';
 import { BoardingPoint } from '../../../models/boarding-point';
 import { DroppingPoint } from '../../../models/dropping-point';
+// import { JsonPipe } from '@angular/common';
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
   selector: 'app-search',
@@ -27,6 +29,8 @@ import { DroppingPoint } from '../../../models/dropping-point';
     FormsModule,
     ButtonModule,
     DialogModule,
+    // JsonPipe,
+    BadgeModule,
   ],
   templateUrl: './search.html',
   styleUrl: './search.scss',

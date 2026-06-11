@@ -82,8 +82,8 @@
   font-size: 13px;
 }
 
-.summary button {
-  margin-top: 8px;
+button.confirm {
+  // margin-top: 8px;
   padding: 8px 20px;
   background: #1d9e75;
   color: white;
@@ -92,7 +92,7 @@
   cursor: pointer;
 }
 
-.summary button:disabled {
+button.confirm:disabled {
   background: #ccc;
   cursor: not-allowed;
 }
@@ -146,4 +146,14 @@
 
 :host ::ng-deep p-columnfilter input {
   width: 150px;
+}
+
+.badges {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.badges .p-badge {
+  margin: 1px;
 }
