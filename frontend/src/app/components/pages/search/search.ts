@@ -20,10 +20,8 @@ import { Seat, SeatStatus } from '../../../models/seat';
 import { SearchService } from '../../../services/search-service';
 import { BoardingPoint } from '../../../models/boarding-point';
 import { DroppingPoint } from '../../../models/dropping-point';
-// import { JsonPipe } from '@angular/common';
-import { BadgeModule } from 'primeng/badge';
 import { Drawer, DrawerModule } from 'primeng/drawer';
-import { MessageModule } from 'primeng/message';
+import { SeatDetail } from './seat-detail/seat-detail';
 
 @Component({
   selector: 'app-search',
@@ -39,10 +37,8 @@ import { MessageModule } from 'primeng/message';
     ReactiveFormsModule,
     ButtonModule,
     DialogModule,
-    // JsonPipe,
-    BadgeModule,
     DrawerModule,
-    MessageModule,
+    SeatDetail,
   ],
   templateUrl: './search.html',
   styleUrl: './search.scss',
@@ -56,7 +52,7 @@ export class Search {
   visible: boolean = false;
 
   rows = [1, 2, 3, 4, 5, 6, 7, 8];
-  cols = ['A', 'B', null, 'C', 'D']; // null = aisle placeholder
+  cols = ['A', 'B', null, 'C', 'D'];
 
   seats: Seat[] = this.rows.flatMap((row) =>
     this.cols
@@ -102,14 +98,6 @@ export class Search {
     this.searchService.getBuses().subscribe((res: any) => {
       this.buses = JSON.parse(res);
     });
-
-    this.searchService.getBordingPoints().subscribe((res: any) => {
-      this.boardingPoint = JSON.parse(res);
-    });
-
-    this.searchService.getDroppingPoints().subscribe((res: any) => {
-      this.droppingPoint = JSON.parse(res);
-    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -146,12 +134,10 @@ export class Search {
     const current = this.passengers.length;
 
     if (count > current) {
-      // Add missing rows
       for (let i = current; i < count; i++) {
         this.passengers.push(this.createPassengerRow());
       }
     } else if (count < current) {
-      // Remove extra rows from the end
       for (let i = current; i > count; i--) {
         this.passengers.removeAt(i - 1);
       }
@@ -166,37 +152,6 @@ export class Search {
 
   showDialog() {
     this.visible = true;
-  }
-
-  getSeat(row: number, col: string): Seat {
-    return this.seats.find((s) => s.row === row && s.col === col)!;
-  }
-
-  getStatus(row: number, col: string): SeatStatus {
-    return this.getSeat(row, col).status;
-  }
-
-  onSeatClick(row: number, col: string) {
-    const seat = this.getSeat(row, col);
-    if (seat.status === 'booked') return;
-    seat.status = seat.status === 'selected' ? 'available' : 'selected';
-  }
-
-  confirmBooking() {
-    this.visible2 = true;
-    this.selectedSeats.forEach((s) => (s.status = 'booked'));
-  }
-
-  get selectedSeats(): Seat[] {
-    return this.seats.filter((s) => s.status === 'selected');
-  }
-
-  get selectedSeatLabels(): string {
-    return this.selectedSeats.map((s) => s.id).join(', ');
-  }
-
-  get isSelectDisabled(): boolean {
-    return this.selectedSeats.length === 0;
   }
 
   onSubmitPassengers() {
