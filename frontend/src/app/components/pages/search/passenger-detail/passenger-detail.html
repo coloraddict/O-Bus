@@ -1,37 +1,44 @@
-<form [formGroup]="passengerForm">
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th scope="col">S.No.</th>
-        <th scope="col">Title</th>
-        <th scope="col">Name</th>
-        <th scope="col">Age</th>
-      </tr>
-    </thead>
-    <tbody formArrayName="passengers">
-      @for (passenger of passengers.controls; track i; let i = $index) {
-        <tr [formGroupName]="i">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>
-            <p-select
-              [options]="titleList"
-              optionLabel="title"
-              placeholder="Select title"
-              class="w-full md:w-56"
-              formControlName="title"
-            />
-          </td>
-          <td><input type="text" pInputText formControlName="name" /></td>
-          <td><input type="number" pInputText formControlName="age" /></td>
+<p-drawer
+  header="Passenger Details"
+  [(visible)]="visible"
+  position="right"
+  [style]="{ width: '50rem' }"
+>
+  <form [formGroup]="passengerForm">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">S.No.</th>
+          <th scope="col">Title</th>
+          <th scope="col">Name</th>
+          <th scope="col">Age</th>
         </tr>
-      }
-    </tbody>
-  </table>
-  <div class="row">
-    <div class="col-md-12 text-right">
-      <p-button type="submit" [disabled]="passengerForm.invalid" (click)="onSubmitPassengers()">
-        &nbsp;&nbsp;Submit&nbsp;&nbsp;
-      </p-button>
+      </thead>
+      <tbody formArrayName="passengers">
+        @for (passenger of passengers.controls; track i; let i = $index) {
+          <tr [formGroupName]="i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              <p-select
+                [options]="titleList"
+                optionLabel="title"
+                placeholder="Select title"
+                class="w-full md:w-56"
+                formControlName="title"
+              />
+            </td>
+            <td><input type="text" pInputText formControlName="name" /></td>
+            <td><input type="number" pInputText formControlName="age" /></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-md-12 text-right">
+        <p-button type="submit" [disabled]="passengerForm.invalid" (click)="onSubmitPassengers()">
+          &nbsp;&nbsp;Submit&nbsp;&nbsp;
+        </p-button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</p-drawer>

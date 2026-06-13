@@ -8,11 +8,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { DrawerModule } from 'primeng/drawer';
 import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-passenger-detail',
-  imports: [FormsModule, ReactiveFormsModule, SelectModule, ButtonModule],
+  imports: [FormsModule, ReactiveFormsModule, SelectModule, ButtonModule, DrawerModule],
   templateUrl: './passenger-detail.html',
   styleUrl: './passenger-detail.scss',
 })
@@ -23,6 +24,8 @@ export class PassengerDetail {
 
   titleList: any = [{ title: 'Mr' }, { title: 'Mrs' }, { title: 'Miss' }];
   selectedTitle: string = '';
+
+  @Input() visible: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
