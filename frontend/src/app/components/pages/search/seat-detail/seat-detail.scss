@@ -64,6 +64,14 @@
   font-size: 12px;
 }
 
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #555;
+}
+
 .legend-item.available {
   color: #1d9e75;
 }
