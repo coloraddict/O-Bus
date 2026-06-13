@@ -125,11 +125,4 @@
   <app-seat-detail></app-seat-detail>
 </p-dialog>
 
-<p-drawer
-  header="Passenger Details"
-  [(visible)]="visible2"
-  position="right"
-  [style]="{ width: '50rem' }"
->
-  <app-passenger-detail></app-passenger-detail>
-</p-drawer>
+<app-passenger-detail [visible]="false"></app-passenger-detail>

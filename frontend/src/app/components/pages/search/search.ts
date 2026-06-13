@@ -1,24 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { Table, TableModule } from 'primeng/table';
-import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { SearchService } from '../../../services/search-service';
-import { Drawer, DrawerModule } from 'primeng/drawer';
 import { SeatDetail } from './seat-detail/seat-detail';
 import { PassengerDetail } from './passenger-detail/passenger-detail';
 
 @Component({
   selector: 'app-search',
-  imports: [
-    TableModule,
-    InputTextModule,
-    ButtonModule,
-    DialogModule,
-    DrawerModule,
-    SeatDetail,
-    PassengerDetail,
-  ],
+  imports: [TableModule, ButtonModule, DialogModule, SeatDetail, PassengerDetail],
   templateUrl: './search.html',
   styleUrl: './search.scss',
 })
