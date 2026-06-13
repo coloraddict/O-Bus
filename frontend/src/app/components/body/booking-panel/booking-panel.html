@@ -9,6 +9,7 @@
             optionLabel="name"
             placeholder="Boarding city"
             formControlName="fromCity"
+            [showClear]="true"
           >
             <ng-template let-city pTemplate="item">
               {{ city.name }}
@@ -22,6 +23,7 @@
             optionLabel="name"
             placeholder="Destination city"
             formControlName="toCity"
+            [showClear]="true"
           >
           </p-autoComplete>
         </div>

@@ -83,6 +83,7 @@ export class BookingPanel implements OnInit {
   }
 
   filterCities1(event: AutoCompleteCompleteEvent) {
+    console.log(event);
     const query = event.query.toLowerCase();
     this.filteredCities1 = this.cityList
       .filter((city) => city.name.toLowerCase().includes(query))
