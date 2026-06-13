@@ -1,73 +1,81 @@
-<div class="card booking-panel">
-  <p-toolbar class="booking-toolbar">
-    <div class="flex-container">
-      <div>
-        <p-autocomplete
-          [(ngModel)]="selectedCity1"
-          [suggestions]="filteredCities1"
-          (completeMethod)="filterCities1($event)"
-          optionLabel="name"
-          id="fromCity"
-        >
-          <ng-template let-city pTemplate="item">
-            {{ city.name }}
-          </ng-template>
-        </p-autocomplete>
-      </div>
-      <div>
-        <p-autoComplete
-          [(ngModel)]="selectedCity2"
-          [suggestions]="filteredCities2"
-          (completeMethod)="filterCities2($event)"
-          optionLabel="name"
-        >
-        </p-autoComplete>
-      </div>
-      <div>
-        <p-datepicker
-          [showButtonBar]="true"
-          placeholder="From date"
-          class="booking-datepicker"
-          [(ngModel)]="fromDate"
-        />
-      </div>
-      <div>
-        <p-datepicker
-          [showButtonBar]="true"
-          placeholder="+ Add return"
-          class="booking-datepicker"
-          [(ngModel)]="toDate"
-        />
-      </div>
-      <div>
-        <div class="traveller-detail" (click)="addTravellerDetails()">
-          <span>
-            <svg
-              width="20px"
-              height="20px"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z"
-                fill="#000000"
-              />
-              <path
-                d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z"
-                fill="#000000"
-              />
-            </svg>
-          </span>
-          &nbsp;
-          <span> {{ travelService.total() }} - No discount </span>
+<form [formGroup]="searchForm">
+  <div class="card booking-panel">
+    <p-toolbar class="booking-toolbar">
+      <div class="flex-container">
+        <div>
+          <p-autocomplete
+            [suggestions]="filteredCities1"
+            (completeMethod)="filterCities1($event)"
+            optionLabel="name"
+            placeholder="Boarding city"
+            formControlName="fromCity"
+          >
+            <ng-template let-city pTemplate="item">
+              {{ city.name }}
+            </ng-template>
+          </p-autocomplete>
+        </div>
+        <div>
+          <p-autoComplete
+            [suggestions]="filteredCities2"
+            (completeMethod)="filterCities2($event)"
+            optionLabel="name"
+            placeholder="Destination city"
+            formControlName="toCity"
+          >
+          </p-autoComplete>
+        </div>
+        <div>
+          <p-datepicker
+            [showButtonBar]="true"
+            placeholder="From date"
+            class="booking-datepicker"
+            formControlName="fromDate"
+          />
+        </div>
+        <div>
+          <p-datepicker
+            [showButtonBar]="true"
+            placeholder="+ Add return"
+            class="booking-datepicker"
+            formControlName="toDate"
+          />
+        </div>
+        <div>
+          <div class="traveller-detail" (click)="addTravellerDetails()">
+            <span>
+              <svg
+                width="20px"
+                height="20px"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z"
+                  fill="#000000"
+                />
+                <path
+                  d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z"
+                  fill="#000000"
+                />
+              </svg>
+            </span>
+            &nbsp;
+            <span> {{ travelService.total() }} - No discount </span>
 
-          <app-travel-detail [ngStyle]="{ display: isTravelDetailVisible }"></app-travel-detail>
+            <app-travel-detail [ngStyle]="{ display: isTravelDetailVisible }"></app-travel-detail>
+          </div>
+        </div>
+        <div>
+          <p-button
+            label="Search Buses"
+            class="booking-button"
+            (click)="onSearch()"
+            [disabled]="searchForm.invalid"
+          />
         </div>
       </div>
-      <div>
-        <p-button label="Search Buses" class="booking-button" (click)="onSearch()" />
-      </div>
-    </div>
-  </p-toolbar>
-</div>
+    </p-toolbar>
+  </div>
+</form>

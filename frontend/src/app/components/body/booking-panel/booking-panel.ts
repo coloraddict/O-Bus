@@ -6,7 +6,13 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { DatePickerModule } from 'primeng/datepicker';
 import { SelectModule } from 'primeng/select';
 import { Country } from '../../../types/country.model';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { BookingPanelService } from '../../../services/booking-panel.service';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { TravelDetail } from './travel-detail/travel-detail';
@@ -32,6 +38,8 @@ interface AutoCompleteCompleteEvent {
     AutoCompleteModule,
     TravelDetail,
     NgStyle,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './booking-panel.html',
   styleUrl: './booking-panel.scss',
@@ -46,26 +54,31 @@ export class BookingPanel implements OnInit {
   selectedCity2: any = 'Bengaluru';
   fromDate: Date = new Date();
   toDate: any;
+  passengerCount = 0;
 
   bookingService = inject(BookingPanelService);
   protected readonly travelService = inject(TravelService);
 
   isTravelDetailVisible: string = 'none';
 
-  constructor(private router: Router) {}
+  searchForm!: FormGroup;
+
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+  ) {
+    this.searchForm = this.fb.group({
+      fromCity: ['', [Validators.required]],
+      toCity: ['', [Validators.required]],
+      fromDate: ['', [Validators.required]],
+      toDate: [''],
+      passengerCount: [0],
+    });
+  }
 
   ngOnInit() {
-    this.country = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' },
-    ];
-
     this.bookingService.getCities().subscribe((res: any) => {
       this.cityList = res.cities;
-      console.log(this.cityList);
     });
   }
 
