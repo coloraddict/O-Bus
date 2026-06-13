@@ -1,0 +1,82 @@
+import { Component, Input, SimpleChanges } from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { SelectModule } from 'primeng/select';
+
+@Component({
+  selector: 'app-passenger-detail',
+  imports: [FormsModule, ReactiveFormsModule, SelectModule, ButtonModule],
+  templateUrl: './passenger-detail.html',
+  styleUrl: './passenger-detail.scss',
+})
+export class PassengerDetail {
+  passengerForm!: FormGroup;
+
+  @Input() passengerCount: number = 5;
+
+  titleList: any = [{ title: 'Mr' }, { title: 'Mrs' }, { title: 'Miss' }];
+  selectedTitle: string = '';
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.passengerForm = this.fb.group({
+      passengers: this.fb.array(this.buildRows(this.passengerCount)),
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['passengerCount'] && !changes['passengerCount'].firstChange) {
+      this.rebuildArray(changes['passengerCount'].currentValue);
+    }
+  }
+
+  private buildRows(count: number): FormGroup[] {
+    return Array.from({ length: count }, () => this.createPassengerRow());
+  }
+
+  createPassengerRow(): FormGroup {
+    return this.fb.group({
+      title: [null, Validators.required],
+      name: [null, Validators.required],
+      age: [null, Validators.required],
+    });
+  }
+
+  get passengers(): FormArray {
+    return this.passengerForm.get('passengers') as FormArray;
+  }
+
+  private rebuildArray(count: number) {
+    const current = this.passengers.length;
+
+    if (count > current) {
+      for (let i = current; i < count; i++) {
+        this.passengers.push(this.createPassengerRow());
+      }
+    } else if (count < current) {
+      for (let i = current; i > count; i--) {
+        this.passengers.removeAt(i - 1);
+      }
+    }
+  }
+
+  onSubmitPassengers() {
+    console.log(this.passengerForm.value);
+  }
+
+  addPassenger() {
+    this.passengers.push(this.createPassengerRow());
+  }
+
+  removePassenger(index: number) {
+    this.passengers.removeAt(index);
+  }
+}
