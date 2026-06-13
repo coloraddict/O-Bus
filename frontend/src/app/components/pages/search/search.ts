@@ -1,5 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input, OnInit, SimpleChanges, inject } from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { SelectModule } from 'primeng/select';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -29,6 +36,7 @@ import { MessageModule } from 'primeng/message';
     TagModule,
     InputTextModule,
     FormsModule,
+    ReactiveFormsModule,
     ButtonModule,
     DialogModule,
     // JsonPipe,
@@ -78,10 +86,18 @@ export class Search {
   titleList: any = [{ title: 'Mr' }, { title: 'Mrs' }, { title: 'Miss' }];
   selectedTitle: string = '';
 
-  constructor() {}
+  passengerForm!: FormGroup;
+
+  @Input() passengerCount: number = 5;
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.loading = false;
+
+    this.passengerForm = this.fb.group({
+      passengers: this.fb.array(this.buildRows(this.passengerCount)),
+    });
 
     this.searchService.getBuses().subscribe((res: any) => {
       this.buses = JSON.parse(res);
@@ -94,6 +110,52 @@ export class Search {
     this.searchService.getDroppingPoints().subscribe((res: any) => {
       this.droppingPoint = JSON.parse(res);
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['passengerCount'] && !changes['passengerCount'].firstChange) {
+      this.rebuildArray(changes['passengerCount'].currentValue);
+    }
+  }
+
+  private buildRows(count: number): FormGroup[] {
+    return Array.from({ length: count }, () => this.createPassengerRow());
+  }
+
+  createPassengerRow(): FormGroup {
+    return this.fb.group({
+      title: [null, Validators.required],
+      name: [null, Validators.required],
+      age: [null, Validators.required],
+    });
+  }
+
+  get passengers(): FormArray {
+    return this.passengerForm.get('passengers') as FormArray;
+  }
+
+  addPassenger() {
+    this.passengers.push(this.createPassengerRow());
+  }
+
+  removePassenger(index: number) {
+    this.passengers.removeAt(index);
+  }
+
+  private rebuildArray(count: number) {
+    const current = this.passengers.length;
+
+    if (count > current) {
+      // Add missing rows
+      for (let i = current; i < count; i++) {
+        this.passengers.push(this.createPassengerRow());
+      }
+    } else if (count < current) {
+      // Remove extra rows from the end
+      for (let i = current; i > count; i--) {
+        this.passengers.removeAt(i - 1);
+      }
+    }
   }
 
   clear(table: Table) {
@@ -135,5 +197,9 @@ export class Search {
 
   get isSelectDisabled(): boolean {
     return this.selectedSeats.length === 0;
+  }
+
+  onSubmitPassengers() {
+    console.log(this.passengerForm.value);
   }
 }
