@@ -120,6 +120,7 @@ export class BookingPanel implements OnInit {
 
   onSearch() {
     if (this.searchForm.invalid) return;
+    this.travelService.setInitialTravelPlan(this.searchForm.value);
     this.router.navigateByUrl('search');
   }
 }
