@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -8,13 +8,14 @@ import { SelectModule } from 'primeng/select';
 import { Country } from '../../../types/country.model';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { BookingPanelService } from '../../../services/booking-panel.service';
-import { AutoCompleteModule } from 'primeng/autocomplete';
+import { AutoCompleteModule, AutoCompleteSelectEvent } from 'primeng/autocomplete';
 import { TravelDetail } from './travel-detail/travel-detail';
 import { TravelService } from '../../../services/travel.service';
 import { NgStyle } from '@angular/common';
@@ -49,6 +50,8 @@ export class BookingPanel implements OnInit {
   selectedCountry: Country | undefined;
   filteredCities1: any[] = [];
   filteredCities2: any[] = [];
+  selectedCities1: any[] = [];
+  selectedCities2: any[] = [];
   cityList: any[] = [];
   selectedCity1: any = 'Mumbai';
   selectedCity2: any = 'Bengaluru';
@@ -63,6 +66,8 @@ export class BookingPanel implements OnInit {
 
   searchForm!: FormGroup;
 
+  formSubmitted: boolean = false;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -72,7 +77,12 @@ export class BookingPanel implements OnInit {
       toCity: ['', [Validators.required]],
       fromDate: ['', [Validators.required]],
       toDate: [''],
-      passengerCount: [0],
+      passengerCount: [0, [Validators.required, Validators.min(1)]],
+    });
+
+    effect(() => {
+      const value = this.travelService.total();
+      this.searchForm.patchValue({ passengerCount: value });
     });
   }
 
@@ -83,7 +93,6 @@ export class BookingPanel implements OnInit {
   }
 
   filterCities1(event: AutoCompleteCompleteEvent) {
-    console.log(event);
     const query = event.query.toLowerCase();
     this.filteredCities1 = this.cityList
       .filter((city) => city.name.toLowerCase().includes(query))
@@ -97,11 +106,20 @@ export class BookingPanel implements OnInit {
       .filter((city) => !this.selectedCity1 || city.name !== this.selectedCity1.name);
   }
 
+  onSelectCity1(event: AutoCompleteSelectEvent) {
+    this.selectedCity1 = event.value;
+  }
+
+  onSelectCity2(event: AutoCompleteSelectEvent) {
+    this.selectedCity2 = event.value;
+  }
+
   addTravellerDetails() {
     this.isTravelDetailVisible = this.isTravelDetailVisible === 'none' ? 'block' : 'none';
   }
 
   onSearch() {
+    if (this.searchForm.invalid) return;
     this.router.navigateByUrl('search');
   }
 }
