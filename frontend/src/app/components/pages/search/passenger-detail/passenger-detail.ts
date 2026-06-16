@@ -22,7 +22,7 @@ import { TravelDetail } from '../../../../models/travel';
 export class PassengerDetail {
   passengerForm!: FormGroup;
 
-  @Input() passengerCount: number = 5;
+  passengerCount: number = 5;
 
   titleList: any = [{ title: 'Mr' }, { title: 'Mrs' }, { title: 'Miss' }];
   selectedTitle: string = '';
@@ -33,20 +33,19 @@ export class PassengerDetail {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {
     this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
       this.passengerCount = res.passengerCount;
-
       this.passengerForm = this.fb.group({
         passengers: this.fb.array(this.buildRows(this.passengerCount)),
       });
-    });
-  }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['passengerCount'] && !changes['passengerCount'].firstChange) {
-      this.rebuildArray(changes['passengerCount'].currentValue);
-    }
+      if (changes['passengerCount'] && !changes['passengerCount'].firstChange) {
+        this.rebuildArray(changes['passengerCount'].currentValue);
+      }
+    });
   }
 
   private buildRows(count: number): FormGroup[] {
