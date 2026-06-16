@@ -117,3 +117,27 @@ button.confirm:disabled {
 .badges .p-badge {
   margin: 1px;
 }
+
+.fare-summary h5 {
+  margin-top: 15px;
+}
+
+.fare-summary p.label {
+  font-weight: 700;
+}
+
+.fare-summary p.label.no-margin {
+  margin: 0;
+}
+
+.fare-summary p.deductions li {
+  font-size: 11px;
+}
+
+p.terms-conditions {
+  font-size: 10px;
+}
+
+:host ::ng-deep p-panel .p-panel-header {
+  display: none;
+}

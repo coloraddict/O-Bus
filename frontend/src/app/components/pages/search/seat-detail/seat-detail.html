@@ -129,29 +129,38 @@
     </div>
   </div>
   <div class="col-md-3">
-    <div class="row">
-      <div class="col-md-12"><h6>Fare Details</h6></div>
-    </div>
-    <div class="row">
-      <div class="col-md-6"><p>Ticket Fare</p></div>
-      <div class="col-md-6"><p>₹ 400.00</p></div>
-    </div>
-    <div class="row">
-      <div class="col-md-6"><p>GST (5%)</p></div>
-      <div class="col-md-6"><p>₹20.00</p></div>
-    </div>
-    <div class="row">
-      <div class="col-md-6"><p>Bus Total Fare</p></div>
-      <div class="col-md-6"><p>₹ 420.00</p></div>
-    </div>
-    <div class="row">
-      <div class="col-md-6"><p>Grand Total</p></div>
-      <div class="col-md-6"><p>₹ 420.00</p></div>
-    </div>
-    <div class="row">
-      <div class="col-md-6"><p>Payable Amount</p></div>
-      <div class="col-md-6"><p>₹ 420.00</p></div>
-    </div>
+    <p-panel class="fare-summary">
+      <div class="row">
+        <div class="col-md-12"><h5>Fare Details</h5></div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md-6"><p class="label">Ticket Fare</p></div>
+        <div class="col-md-6"><p>₹ 400.00</p></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><p class="label">GST (5%)</p></div>
+        <div class="col-md-6"><p>₹20.00</p></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><p class="label">Bus Total Fare</p></div>
+        <div class="col-md-6"><p>₹ 420.00</p></div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md-6"><p class="label no-margin">Grand Total</p></div>
+        <div class="col-md-6"><p class="label no-margin">₹ 420.00</p></div>
+      </div>
+      <hr />
+      <ul class="deductions">
+        <li>OBus recovers only 57% of cost of travel on an average.</li>
+        <li>Rounding off next multiple of Rs. 5 is included in Base fare.</li>
+        <li>
+          Final fare based on passenger(s) added will be displayed on REVIEW JOURNEY page including
+          concessions / dynamic fare charges etc. whichever applicable.
+        </li>
+      </ul>
+    </p-panel>
   </div>
 </div>
 <div class="row mt-3">
@@ -167,3 +176,7 @@
     </button>
   </div>
 </div>
+<p class="terms-conditions text-center">
+  By proceeding to payment, I confirm that I agree to the
+  <a href="#">Cancellation Policy</a> and <a href="#">Terms of Service</a>
+</p>

@@ -7,10 +7,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
 import { BadgeModule } from 'primeng/badge';
 import { SearchService } from '../../../../services/search-service';
+import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'app-seat-detail',
-  imports: [SelectModule, FormsModule, ReactiveFormsModule, MessageModule, BadgeModule],
+  imports: [
+    SelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MessageModule,
+    BadgeModule,
+    PanelModule,
+  ],
   templateUrl: './seat-detail.html',
   styleUrl: './seat-detail.scss',
 })
