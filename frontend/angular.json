@@ -71,7 +71,10 @@
               "buildTarget": "O-Bus:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "liveReload": false
+          }
         },
         "test": {
           "builder": "@angular/build:unit-test"
