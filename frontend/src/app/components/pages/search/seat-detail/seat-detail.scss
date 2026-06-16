@@ -126,12 +126,18 @@ button.confirm:disabled {
   font-weight: 700;
 }
 
+.fare-summary ul.deductions {
+  padding: 0;
+  padding-left: 10px;
+}
+
 .fare-summary p.label.no-margin {
   margin: 0;
 }
 
-.fare-summary p.deductions li {
+.fare-summary ul.deductions li {
   font-size: 11px;
+  margin: 10px 0;
 }
 
 p.terms-conditions {
