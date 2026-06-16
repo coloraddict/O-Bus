@@ -4,6 +4,9 @@ export interface TravelDetail {
   fromDate: string;
   toDate: string;
   passengerCount: number;
+  boarding: string;
+  dropping: string;
+  seats: string;
 }
 
 export interface City {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Seat, SeatStatus } from '../../../../models/seat';
 import { BoardingPoint } from '../../../../models/boarding-point';
 import { DroppingPoint } from '../../../../models/dropping-point';
@@ -8,6 +8,7 @@ import { MessageModule } from 'primeng/message';
 import { BadgeModule } from 'primeng/badge';
 import { SearchService } from '../../../../services/search-service';
 import { PanelModule } from 'primeng/panel';
+import { TravelService } from '../../../../services/travel.service';
 
 @Component({
   selector: 'app-seat-detail',
@@ -29,6 +30,9 @@ export class SeatDetail {
   visible2: boolean = false;
 
   searchService = inject(SearchService);
+  travelService = inject(TravelService);
+
+  @Output() onConfirm = new EventEmitter<any>();
 
   ngOnInit() {
     this.searchService.getBordingPoints().subscribe((res: any) => {
@@ -86,5 +90,14 @@ export class SeatDetail {
   confirmBooking() {
     this.visible2 = true;
     this.selectedSeats.forEach((s) => (s.status = 'booked'));
+    const detailObj = {
+      boarding: this.selectedBoardingPoint,
+      dropping: this.selectedDroppingPoint,
+      seats: this.selectedSeats,
+    };
+
+    this.travelService.updateOtherInfo(detailObj);
+
+    this.onConfirm.emit(detailObj);
   }
 }

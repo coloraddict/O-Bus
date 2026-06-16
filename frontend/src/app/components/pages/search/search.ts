@@ -67,4 +67,9 @@ export class Search {
   showDialog() {
     this.visible = true;
   }
+
+  onConfirm($event: any) {
+    this.travelDetail = $event;
+    console.log(this.travelDetail);
+  }
 }

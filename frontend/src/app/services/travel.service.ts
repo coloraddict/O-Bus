@@ -45,4 +45,10 @@ export class TravelService {
   getInitialTravelPlan() {
     return of(this.travelDetail);
   }
+
+  updateOtherInfo(travelInfo: any) {
+    this.travelDetail.boarding = travelInfo.boarding;
+    this.travelDetail.dropping = travelInfo.dropping;
+    this.travelDetail.seats = travelInfo.seats;
+  }
 }
