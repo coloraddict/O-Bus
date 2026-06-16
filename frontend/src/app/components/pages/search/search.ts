@@ -39,6 +39,8 @@ export class Search {
 
   travelDetail!: TravelDetail;
 
+  isTravelConfirm: boolean = false;
+
   constructor(private router: Router) {}
 
   ngOnInit() {
@@ -69,7 +71,6 @@ export class Search {
   }
 
   onConfirm($event: any) {
-    this.travelDetail = $event;
-    console.log(this.travelDetail);
+    this.isTravelConfirm = true;
   }
 }
