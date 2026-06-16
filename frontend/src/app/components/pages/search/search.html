@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row my-5">
     <div class="col-md-12">
-      <h1 class="text-center">Mumbai - Lucknow on June 12, 2026</h1>
+      <h1 class="text-center">
+        {{ travelDetail.fromCity.name }} - {{ travelDetail.toCity.name }} on
+        {{ travelDetail.fromDate | date: 'dd MMM yyyy' }}
+      </h1>
     </div>
   </div>
   <div class="row">

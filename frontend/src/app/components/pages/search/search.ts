@@ -5,10 +5,21 @@ import { DialogModule } from 'primeng/dialog';
 import { SearchService } from '../../../services/search-service';
 import { SeatDetail } from './seat-detail/seat-detail';
 import { PassengerDetail } from './passenger-detail/passenger-detail';
+import { TravelService } from '../../../services/travel.service';
+import { DatePipe, JsonPipe } from '@angular/common';
+import { TravelDetail } from '../../../models/travel';
 
 @Component({
   selector: 'app-search',
-  imports: [TableModule, ButtonModule, DialogModule, SeatDetail, PassengerDetail],
+  imports: [
+    TableModule,
+    ButtonModule,
+    DialogModule,
+    SeatDetail,
+    PassengerDetail,
+    // JsonPipe,
+    DatePipe,
+  ],
   templateUrl: './search.html',
   styleUrl: './search.scss',
 })
@@ -21,8 +32,11 @@ export class Search {
   visible: boolean = false;
 
   searchService = inject(SearchService);
+  travelService = inject(TravelService);
 
   visible2: boolean = false;
+
+  travelDetail!: TravelDetail;
 
   constructor() {}
 
@@ -31,6 +45,10 @@ export class Search {
 
     this.searchService.getBuses().subscribe((res: any) => {
       this.buses = JSON.parse(res);
+    });
+
+    this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
+      this.travelDetail = res;
     });
   }
 

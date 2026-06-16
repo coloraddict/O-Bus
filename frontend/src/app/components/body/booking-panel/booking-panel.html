@@ -6,6 +6,7 @@
           <p-autocomplete
             [suggestions]="filteredCities1"
             (completeMethod)="filterCities1($event)"
+            (onSelect)="onSelectCity1($event)"
             optionLabel="name"
             placeholder="Boarding city"
             formControlName="fromCity"
@@ -20,6 +21,7 @@
           <p-autoComplete
             [suggestions]="filteredCities2"
             (completeMethod)="filterCities2($event)"
+            (onSelect)="onSelectCity2($event)"
             optionLabel="name"
             placeholder="Destination city"
             formControlName="toCity"
