@@ -8,6 +8,7 @@ import { PassengerDetail } from './passenger-detail/passenger-detail';
 import { TravelService } from '../../../services/travel.service';
 import { DatePipe, JsonPipe } from '@angular/common';
 import { TravelDetail } from '../../../models/travel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -38,7 +39,7 @@ export class Search {
 
   travelDetail!: TravelDetail;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.loading = false;
@@ -50,6 +51,11 @@ export class Search {
     this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
       this.travelDetail = res;
     });
+
+    if (!this.travelDetail) {
+      this.router.navigate(['']);
+      return;
+    }
   }
 
   clear(table: Table) {
