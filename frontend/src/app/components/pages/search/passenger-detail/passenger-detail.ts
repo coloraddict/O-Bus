@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, SimpleChanges } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -10,6 +10,8 @@ import {
 import { ButtonModule } from 'primeng/button';
 import { DrawerModule } from 'primeng/drawer';
 import { SelectModule } from 'primeng/select';
+import { TravelService } from '../../../../services/travel.service';
+import { TravelDetail } from '../../../../models/travel';
 
 @Component({
   selector: 'app-passenger-detail',
@@ -27,11 +29,17 @@ export class PassengerDetail {
 
   @Input() visible: boolean = false;
 
+  travelService = inject(TravelService);
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.passengerForm = this.fb.group({
-      passengers: this.fb.array(this.buildRows(this.passengerCount)),
+    this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
+      this.passengerCount = res.passengerCount;
+
+      this.passengerForm = this.fb.group({
+        passengers: this.fb.array(this.buildRows(this.passengerCount)),
+      });
     });
   }
 
