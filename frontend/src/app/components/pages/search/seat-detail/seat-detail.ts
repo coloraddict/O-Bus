@@ -89,7 +89,6 @@ export class SeatDetail {
 
   confirmBooking() {
     this.visible2 = true;
-    this.selectedSeats.forEach((s) => (s.status = 'booked'));
     const detailObj = {
       boarding: this.selectedBoardingPoint,
       dropping: this.selectedDroppingPoint,
