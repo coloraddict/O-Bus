@@ -31,21 +31,24 @@ export class PassengerDetail {
 
   travelService = inject(TravelService);
 
+  travelDetail!: TravelDetail;
+
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnInit() {
     this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
-      this.passengerCount = res.passengerCount;
+      this.travelDetail = res;
+      this.passengerCount = this.travelDetail.passengerCount;
       this.passengerForm = this.fb.group({
         passengers: this.fb.array(this.buildRows(this.passengerCount)),
       });
-
-      if (changes['passengerCount'] && !changes['passengerCount'].firstChange) {
-        this.rebuildArray(changes['passengerCount'].currentValue);
-      }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['passengerCount'] && !changes['passengerCount'].firstChange) {
+      this.rebuildArray(changes['passengerCount'].currentValue);
+    }
   }
 
   private buildRows(count: number): FormGroup[] {
