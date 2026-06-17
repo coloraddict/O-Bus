@@ -125,7 +125,11 @@
 </div>
 
 <p-dialog header="Select seats" [modal]="true" [(visible)]="visible" [style]="{ width: '90rem' }">
-  <app-seat-detail (onConfirm)="onConfirm($event)"></app-seat-detail>
+  {{ isTravelConfirm }}
+  <app-seat-detail (onConfirm)="onConfirm()"></app-seat-detail>
 </p-dialog>
 
-<app-passenger-detail [visible]="isTravelConfirm"></app-passenger-detail>
+<app-passenger-detail
+  [visible]="isTravelConfirm"
+  (hide)="onHidePassengerDetail()"
+></app-passenger-detail>

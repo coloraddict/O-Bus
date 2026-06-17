@@ -3,6 +3,7 @@
   [(visible)]="visible"
   position="right"
   [style]="{ width: '50rem' }"
+  (onHide)="onHideDetails()"
 >
   <form [formGroup]="passengerForm">
     <table class="table table-striped table-hover">

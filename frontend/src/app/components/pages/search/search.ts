@@ -52,6 +52,7 @@ export class Search {
 
     this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
       this.travelDetail = res;
+      console.log(this.travelDetail);
     });
 
     if (!this.travelDetail) {
@@ -70,7 +71,11 @@ export class Search {
     this.visible = true;
   }
 
-  onConfirm($event: any) {
+  onConfirm() {
     this.isTravelConfirm = true;
+  }
+
+  onHidePassengerDetail() {
+    this.isTravelConfirm = false;
   }
 }

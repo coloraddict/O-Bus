@@ -1,4 +1,4 @@
-import { Component, inject, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -28,6 +28,7 @@ export class PassengerDetail {
   selectedTitle: string = '';
 
   @Input() visible: boolean = false;
+  @Output() hide = new EventEmitter();
 
   travelService = inject(TravelService);
 
@@ -91,5 +92,9 @@ export class PassengerDetail {
 
   removePassenger(index: number) {
     this.passengers.removeAt(index);
+  }
+
+  onHideDetails() {
+    this.hide.emit(false);
   }
 }
