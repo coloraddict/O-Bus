@@ -9,6 +9,8 @@ import { BadgeModule } from 'primeng/badge';
 import { SearchService } from '../../../../services/search-service';
 import { PanelModule } from 'primeng/panel';
 import { TravelService } from '../../../../services/travel.service';
+import { TravelDetail } from '../../../../models/travel';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-seat-detail',
@@ -19,6 +21,7 @@ import { TravelService } from '../../../../services/travel.service';
     MessageModule,
     BadgeModule,
     PanelModule,
+    DatePipe,
   ],
   templateUrl: './seat-detail.html',
   styleUrl: './seat-detail.scss',
@@ -34,6 +37,8 @@ export class SeatDetail {
 
   @Output() onConfirm = new EventEmitter<any>();
 
+  travelDetail!: TravelDetail;
+
   ngOnInit() {
     this.searchService.getBordingPoints().subscribe((res: any) => {
       this.boardingPoint = JSON.parse(res);
@@ -41,6 +46,10 @@ export class SeatDetail {
 
     this.searchService.getDroppingPoints().subscribe((res: any) => {
       this.droppingPoint = JSON.parse(res);
+    });
+
+    this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
+      this.travelDetail = res;
     });
   }
 

@@ -1,182 +1,194 @@
-<div class="row">
-  <div class="col-md-3 col-sm-4">
-    <div class="bus-shell">
-      <div class="driver-row">
-        <span class="door-label">door →</span>
-        <span class="steering">🚌</span>
-      </div>
+@if (travelDetail) {
+  <div class="row">
+    <div class="col-md-3 col-sm-4">
+      <div class="bus-shell">
+        <div class="driver-row">
+          <span class="door-label">door →</span>
+          <span class="steering">🚌</span>
+        </div>
 
-      <div class="seat-grid">
-        @for (row of rows; track row) {
-          @for (colItem of cols; track colItem) {
-            @if (colItem === null) {
-              <div class="aisle">{{ row }}</div>
-            } @else {
-              <button
-                class="seat"
-                [class.available]="getStatus(row, colItem) === 'available'"
-                [class.selected]="getStatus(row, colItem) === 'selected'"
-                [class.booked]="getStatus(row, colItem) === 'booked'"
-                [disabled]="getStatus(row, colItem) === 'booked'"
-                (click)="onSeatClick(row, colItem)"
-              >
-                {{ row }}{{ colItem }}
-              </button>
+        <div class="seat-grid">
+          @for (row of rows; track row) {
+            @for (colItem of cols; track colItem) {
+              @if (colItem === null) {
+                <div class="aisle">{{ row }}</div>
+              } @else {
+                <button
+                  class="seat"
+                  [class.available]="getStatus(row, colItem) === 'available'"
+                  [class.selected]="getStatus(row, colItem) === 'selected'"
+                  [class.booked]="getStatus(row, colItem) === 'booked'"
+                  [disabled]="getStatus(row, colItem) === 'booked'"
+                  (click)="onSeatClick(row, colItem)"
+                >
+                  {{ row }}{{ colItem }}
+                </button>
+              }
             }
           }
-        }
-      </div>
+        </div>
 
-      <div class="legend">
-        <span class="legend-item available">Available</span>
-        <span class="legend-item selected">Selected</span>
-        <span class="legend-item booked">Booked</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6 col-sm-4">
-    <div class="row">
-      <div class="col-md-6">
-        <label for="" class="mb-2"><strong>Boarding Point</strong></label>
-        <div class="card flex justify-center">
-          <p-select
-            [options]="boardingPoint"
-            [(ngModel)]="selectedBoardingPoint"
-            optionLabel="placeName"
-            placeholder="Select Boarding Point"
-            class="w-full md:w-56"
-            [disabled]="isSelectDisabled"
-          />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <label for="" class="mb-2"><strong>Dropoff Point</strong></label>
-        <div class="card flex justify-center">
-          <p-select
-            [options]="droppingPoint"
-            [(ngModel)]="selectedDroppingPoint"
-            optionLabel="placeName"
-            placeholder="Select Dropping Point"
-            class="w-full md:w-56"
-            [disabled]="isSelectDisabled"
-          />
+        <div class="legend">
+          <span class="legend-item available">Available</span>
+          <span class="legend-item selected">Selected</span>
+          <span class="legend-item booked">Booked</span>
         </div>
       </div>
     </div>
-    <div class="row mt-4">
-      <div class="col-md-12">
-        <div class="row">
-          <div class="col-md-12">
-            <h6>Service Details</h6>
+    <div class="col-md-6 col-sm-4">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="" class="mb-2"><strong>Boarding Point</strong></label>
+          <div class="card flex justify-center">
+            <p-select
+              [options]="boardingPoint"
+              [(ngModel)]="selectedBoardingPoint"
+              optionLabel="placeName"
+              placeholder="Select Boarding Point"
+              class="w-full md:w-56"
+              [disabled]="isSelectDisabled"
+            />
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-3"><p>From</p></div>
-          <div class="col-md-9"><p>Mumbai</p></div>
+        <div class="col-md-6">
+          <label for="" class="mb-2"><strong>Dropoff Point</strong></label>
+          <div class="card flex justify-center">
+            <p-select
+              [options]="droppingPoint"
+              [(ngModel)]="selectedDroppingPoint"
+              optionLabel="placeName"
+              placeholder="Select Dropping Point"
+              class="w-full md:w-56"
+              [disabled]="isSelectDisabled"
+            />
+          </div>
         </div>
-        <div class="row">
-          <div class="col-md-3"><p>To</p></div>
-          <div class="col-md-9"><p>Mumbai Darshan</p></div>
-        </div>
-        <div class="row">
-          <div class="col-md-3"><p>Date</p></div>
-          <div class="col-md-9"><p>12/06/2026</p></div>
-        </div>
-        <div class="row">
-          <div class="col-md-3"><p>Service</p></div>
-          <div class="col-md-9"><p>MUMBAI DARSHAN - KALYAN (AC)</p></div>
-        </div>
-        <div class="row">
-          <div class="col-md-3"><p>Seats</p></div>
-          <div class="col-md-9">
-            <div class="badges">
-              @if (selectedSeats.length == 0) {
-                <p-message severity="error" variant="simple" size="small"
-                  >No seats selected</p-message
-                >
-              }
-              @for (seat of selectedSeats; track seat) {
-                <p-badge value="{{ seat.row + seat.col }}" badgeSize="xlarge" severity="success" />
-              }
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+              <h6>Service Details</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>From</p></div>
+            <div class="col-md-9">
+              <p>{{ travelDetail.fromCity.name }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>To</p></div>
+            <div class="col-md-9">
+              <p>{{ travelDetail.toCity.name }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Date</p></div>
+            <div class="col-md-9">
+              <p>{{ travelDetail.fromDate | date: 'dd MMM yyyy' }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Service</p></div>
+            <div class="col-md-9"><p>MUMBAI DARSHAN - KALYAN (AC)</p></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Seats</p></div>
+            <div class="col-md-9">
+              <div class="badges">
+                @if (selectedSeats.length == 0) {
+                  <p-message severity="error" variant="simple" size="small"
+                    >No seats selected</p-message
+                  >
+                }
+                @for (seat of selectedSeats; track seat) {
+                  <p-badge
+                    value="{{ seat.row + seat.col }}"
+                    badgeSize="xlarge"
+                    severity="success"
+                  />
+                }
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Bus Type</p></div>
+            <div class="col-md-9">
+              <p>2+2, Air Suspension, AC (45 seats)</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Boarding</p></div>
+            <div class="col-md-9">
+              <p>
+                06:30 AM - Kalyan (W) - Ramdev Hotel <br />
+                <small>Kalyan (W) Ramdev Hotel</small>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><p>Dropoff</p></div>
+            <div class="col-md-9">
+              <p>
+                09:10 PM - Rabale Railway Station <br />
+                <small>Rabale Railway Station</small>
+              </p>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-3"><p>Bus Type</p></div>
-          <div class="col-md-9">
-            <p>2+2, Air Suspension, AC (45 seats)</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3"><p>Boarding</p></div>
-          <div class="col-md-9">
-            <p>
-              06:30 AM - Kalyan (W) - Ramdev Hotel <br />
-              <small>Kalyan (W) Ramdev Hotel</small>
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3"><p>Dropoff</p></div>
-          <div class="col-md-9">
-            <p>
-              09:10 PM - Rabale Railway Station <br />
-              <small>Rabale Railway Station</small>
-            </p>
-          </div>
-        </div>
       </div>
     </div>
+    <div class="col-md-3">
+      <p-panel class="fare-summary">
+        <div class="row">
+          <div class="col-md-12"><h5>Fare Details</h5></div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-md-6"><p class="label">Ticket Fare</p></div>
+          <div class="col-md-6"><p>₹ 400.00</p></div>
+        </div>
+        <div class="row">
+          <div class="col-md-6"><p class="label">GST (5%)</p></div>
+          <div class="col-md-6"><p>₹20.00</p></div>
+        </div>
+        <div class="row">
+          <div class="col-md-6"><p class="label">Bus Total Fare</p></div>
+          <div class="col-md-6"><p>₹ 420.00</p></div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-md-6"><p class="label no-margin">Grand Total</p></div>
+          <div class="col-md-6"><p class="label no-margin">₹ 420.00</p></div>
+        </div>
+        <hr />
+        <ul class="deductions">
+          <li>OBus recovers only 57% of cost of travel on an average.</li>
+          <li>Rounding off next multiple of Rs. 5 is included in Base fare.</li>
+          <li>
+            Final fare based on passenger(s) added will be displayed on REVIEW JOURNEY page
+            including concessions / dynamic fare charges etc. whichever applicable.
+          </li>
+        </ul>
+      </p-panel>
+    </div>
   </div>
-  <div class="col-md-3">
-    <p-panel class="fare-summary">
-      <div class="row">
-        <div class="col-md-12"><h5>Fare Details</h5></div>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="col-md-6"><p class="label">Ticket Fare</p></div>
-        <div class="col-md-6"><p>₹ 400.00</p></div>
-      </div>
-      <div class="row">
-        <div class="col-md-6"><p class="label">GST (5%)</p></div>
-        <div class="col-md-6"><p>₹20.00</p></div>
-      </div>
-      <div class="row">
-        <div class="col-md-6"><p class="label">Bus Total Fare</p></div>
-        <div class="col-md-6"><p>₹ 420.00</p></div>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="col-md-6"><p class="label no-margin">Grand Total</p></div>
-        <div class="col-md-6"><p class="label no-margin">₹ 420.00</p></div>
-      </div>
-      <hr />
-      <ul class="deductions">
-        <li>OBus recovers only 57% of cost of travel on an average.</li>
-        <li>Rounding off next multiple of Rs. 5 is included in Base fare.</li>
-        <li>
-          Final fare based on passenger(s) added will be displayed on REVIEW JOURNEY page including
-          concessions / dynamic fare charges etc. whichever applicable.
-        </li>
-      </ul>
-    </p-panel>
+  <div class="row mt-3">
+    <div class="col-md-12 text-right">
+      <button
+        class="confirm"
+        [disabled]="
+          selectedSeats.length === 0 || selectedBoardingPoint === '' || selectedDroppingPoint === ''
+        "
+        (click)="confirmBooking()"
+      >
+        Confirm Booking
+      </button>
+    </div>
   </div>
-</div>
-<div class="row mt-3">
-  <div class="col-md-12 text-right">
-    <button
-      class="confirm"
-      [disabled]="
-        selectedSeats.length === 0 || selectedBoardingPoint === '' || selectedDroppingPoint === ''
-      "
-      (click)="confirmBooking()"
-    >
-      Confirm Booking
-    </button>
-  </div>
-</div>
-<p class="terms-conditions text-center">
-  By proceeding to payment, I confirm that I agree to the
-  <a href="#">Cancellation Policy</a> and <a href="#">Terms of Service</a>
-</p>
+  <p class="terms-conditions text-center">
+    By proceeding to payment, I confirm that I agree to the
+    <a href="#">Cancellation Policy</a> and <a href="#">Terms of Service</a>
+  </p>
+}
