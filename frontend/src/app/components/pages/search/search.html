@@ -2,8 +2,10 @@
   <div class="row my-5">
     <div class="col-md-12">
       <h1 class="text-center">
-        {{ travelDetail.fromCity.name }} - {{ travelDetail.toCity.name }} on
-        {{ travelDetail.fromDate | date: 'dd MMM yyyy' }}
+        @if (travelDetail) {
+          {{ travelDetail.fromCity.name }} - {{ travelDetail.toCity.name }} on
+          {{ travelDetail.fromDate | date: 'dd MMM yyyy' }}
+        }
       </h1>
     </div>
   </div>
@@ -24,7 +26,7 @@
         >
           <ng-template #header>
             <tr>
-              <th>Name</th>
+              <th><strong>Name</strong></th>
               <th>Departure</th>
               <th>Coach Type</th>
               <th>Availability</th>
