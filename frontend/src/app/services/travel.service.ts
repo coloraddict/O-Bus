@@ -47,12 +47,6 @@ export class TravelService {
     return this.travelDetailState;
   }
 
-  updateOtherInfo(travelInfo: any) {
-    // this.travelDetailState.boarding = travelInfo.boarding;
-    // this.travelDetailState.dropping = travelInfo.dropping;
-    // this.travelDetailState.seats = travelInfo.seats;
-  }
-
   updateTravelInfo(partial: Partial<TravelDetail>) {
     this.travelDetailState.next({
       ...this.travelDetailState.getValue(),
