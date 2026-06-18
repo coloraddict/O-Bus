@@ -18,7 +18,7 @@
       <tbody formArrayName="passengers">
         @for (passenger of passengers.controls; track i; let i = $index) {
           <tr [formGroupName]="i">
-            <th scope="row">{{ i + 1 }}</th>
+            <th scope="row" class="text-center align-middle">{{ i + 1 }}</th>
             <td>
               <p-select
                 [options]="titleList"
@@ -28,8 +28,8 @@
                 formControlName="title"
               />
             </td>
-            <td><input type="text" pInputText formControlName="name" /></td>
-            <td><input type="number" pInputText formControlName="age" /></td>
+            <td><input pInputText type="text" formControlName="name" class="w-full" /></td>
+            <td><input pInputText type="number" formControlName="age" class="w-full" /></td>
           </tr>
         }
       </tbody>
