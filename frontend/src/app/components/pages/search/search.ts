@@ -52,7 +52,6 @@ export class Search {
 
     this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
       this.travelDetail = res;
-      console.log(this.travelDetail);
     });
 
     if (!this.travelDetail) {
@@ -67,8 +66,9 @@ export class Search {
 
   onViewSeats(bus: any) {}
 
-  showDialog() {
+  showDialog(busDetail: any) {
     this.visible = true;
+    this.travelService.updateTravelInfo(busDetail);
   }
 
   onConfirm() {
