@@ -5,6 +5,14 @@
         @if (travelDetail && travelDetail.fromCity) {
           {{ travelDetail?.fromCity?.name }} - {{ travelDetail?.toCity?.name }} on
           {{ travelDetail.fromDate | date: 'dd MMM yyyy' }}
+        } @else {
+          <p class="back-link">Please select Boarding & Destination</p>
+          <!-- <button pButton routerLink="/">
+            <i class="pi pi-home" style="font-size: 2rem"></i>Home
+          </button> -->
+          <a href="" routerLink="/" style="text-decoration: none">
+            <p-button icon="pi pi-home" label="Home"></p-button
+          ></a>
         }
       </h1>
     </div>
