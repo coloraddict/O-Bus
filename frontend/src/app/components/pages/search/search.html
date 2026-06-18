@@ -2,7 +2,7 @@
   <div class="row my-5">
     <div class="col-md-12">
       <h1 class="text-center">
-        @if (travelDetail) {
+        @if (travelDetail && travelDetail.fromCity) {
           {{ travelDetail.fromCity.name }} - {{ travelDetail.toCity.name }} on
           {{ travelDetail.fromDate | date: 'dd MMM yyyy' }}
         }
