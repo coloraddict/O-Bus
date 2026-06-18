@@ -1,12 +1,13 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { of } from 'rxjs';
-import { TravelDetail } from '../components/body/booking-panel/travel-detail/travel-detail';
+import { BehaviorSubject, of } from 'rxjs';
+import { TravelDetail } from '../models/travel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TravelService {
-  travelDetail: any;
+  private travelDetailState = new BehaviorSubject<TravelDetail>({} as TravelDetail);
+  state$ = this.travelDetailState.asObservable();
 
   readonly adultCount = signal<number>(0);
   readonly youthCount = signal<number>(0);
@@ -39,16 +40,23 @@ export class TravelService {
   }
 
   setInitialTravelPlan(travelDetail: TravelDetail) {
-    this.travelDetail = JSON.parse(JSON.stringify(travelDetail));
+    this.travelDetailState.next(JSON.parse(JSON.stringify(travelDetail)));
   }
 
   getInitialTravelPlan() {
-    return of(this.travelDetail);
+    return this.travelDetailState;
   }
 
   updateOtherInfo(travelInfo: any) {
-    this.travelDetail.boarding = travelInfo.boarding;
-    this.travelDetail.dropping = travelInfo.dropping;
-    this.travelDetail.seats = travelInfo.seats;
+    // this.travelDetailState.boarding = travelInfo.boarding;
+    // this.travelDetailState.dropping = travelInfo.dropping;
+    // this.travelDetailState.seats = travelInfo.seats;
+  }
+
+  updateTravelInfo(partial: Partial<TravelDetail>) {
+    this.travelDetailState.next({
+      ...this.travelDetailState.getValue(),
+      ...partial,
+    });
   }
 }
