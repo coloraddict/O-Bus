@@ -90,6 +90,8 @@ export class BookingPanel implements OnInit {
     this.bookingService.getCities().subscribe((res: any) => {
       this.cityList = res.cities;
     });
+
+    this.travelService.resetPassengerCount();
   }
 
   filterCities1(event: AutoCompleteCompleteEvent) {

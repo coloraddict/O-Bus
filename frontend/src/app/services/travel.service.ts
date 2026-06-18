@@ -53,4 +53,10 @@ export class TravelService {
       ...partial,
     });
   }
+
+  resetPassengerCount() {
+    this.adultCount.set(1);
+    this.youthCount.set(1);
+    this.seniorCount.set(1);
+  }
 }
