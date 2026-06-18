@@ -147,3 +147,8 @@ p.terms-conditions {
 :host ::ng-deep p-panel .p-panel-header {
   display: none;
 }
+
+.no-data {
+  color: red;
+  font-size: 12px;
+}
