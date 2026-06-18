@@ -10,7 +10,8 @@ import { SearchService } from '../../../../services/search-service';
 import { PanelModule } from 'primeng/panel';
 import { TravelService } from '../../../../services/travel.service';
 import { TravelDetail } from '../../../../models/travel';
-import { DatePipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-seat-detail',
@@ -22,6 +23,7 @@ import { DatePipe } from '@angular/common';
     BadgeModule,
     PanelModule,
     DatePipe,
+    // JsonPipe,
   ],
   templateUrl: './seat-detail.html',
   styleUrl: './seat-detail.scss',
@@ -39,6 +41,8 @@ export class SeatDetail {
 
   travelDetail!: TravelDetail;
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
     this.searchService.getBordingPoints().subscribe((res: any) => {
       this.boardingPoint = JSON.parse(res);
@@ -51,6 +55,11 @@ export class SeatDetail {
     this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
       this.travelDetail = res;
     });
+
+    if (!this.travelDetail) {
+      this.router.navigate(['']);
+      return;
+    }
   }
 
   seats: Seat[] = this.rows.flatMap((row) =>
