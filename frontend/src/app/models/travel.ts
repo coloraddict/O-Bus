@@ -1,3 +1,5 @@
+import { Seat } from '../models/seat';
+
 export interface TravelDetail {
   fromCity: City;
   toCity: City;
@@ -6,7 +8,7 @@ export interface TravelDetail {
   passengerCount: number;
   boarding: string;
   dropping: string;
-  seats: string;
+  seats: Seat[];
 }
 
 export interface City {
