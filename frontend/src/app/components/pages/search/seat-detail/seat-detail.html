@@ -91,7 +91,9 @@
           </div>
           <div class="row">
             <div class="col-md-3"><p>Service</p></div>
-            <div class="col-md-9"><p>MUMBAI DARSHAN - KALYAN (AC)</p></div>
+            <div class="col-md-9">
+              <p>{{ travelDetail.name }} ({{ travelDetail.coachType }})</p>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-3"><p>Seats</p></div>
@@ -121,19 +123,27 @@
           <div class="row">
             <div class="col-md-3"><p>Boarding</p></div>
             <div class="col-md-9">
-              <p>
-                06:30 AM - Kalyan (W) - Ramdev Hotel <br />
-                <small>Kalyan (W) Ramdev Hotel</small>
-              </p>
+              @if (selectedBoardingPoint) {
+                <p>
+                  06:30 AM - {{ selectedBoardingPoint.placeName }} - Ramdev Hotel <br />
+                  <small>{{ selectedBoardingPoint.placeName }} (W) Ramdev Hotel</small>
+                </p>
+              } @else {
+                <p class="no-data">No boarding point selected</p>
+              }
             </div>
           </div>
           <div class="row">
             <div class="col-md-3"><p>Dropoff</p></div>
             <div class="col-md-9">
-              <p>
-                09:10 PM - Rabale Railway Station <br />
-                <small>Rabale Railway Station</small>
-              </p>
+              @if (selectedDroppingPoint) {
+                <p>
+                  09:10 PM - {{ selectedDroppingPoint.placeName }} <br />
+                  <small>{{ selectedDroppingPoint.placeName }} Near Vaibhav Telecom</small>
+                </p>
+              } @else {
+                <p class="no-data">No dropping point selected</p>
+              }
             </div>
           </div>
         </div>

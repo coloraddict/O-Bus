@@ -78,10 +78,10 @@ export class SeatDetail {
   );
 
   boardingPoint: BoardingPoint[] = [];
-  selectedBoardingPoint?: string = '';
+  selectedBoardingPoint?: any = '';
 
   droppingPoint: DroppingPoint[] = [];
-  selectedDroppingPoint?: string = '';
+  selectedDroppingPoint?: any = '';
 
   getSeat(row: number, col: string): Seat {
     return this.seats.find((s) => s.row === row && s.col === col)!;
