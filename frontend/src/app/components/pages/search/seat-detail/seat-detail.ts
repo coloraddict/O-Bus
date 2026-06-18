@@ -98,14 +98,15 @@ export class SeatDetail {
 
   confirmBooking() {
     this.visible2 = true;
-    const detailObj = {
-      boarding: this.selectedBoardingPoint,
-      dropping: this.selectedDroppingPoint,
-      seats: this.selectedSeats,
-    };
 
-    this.travelService.updateOtherInfo(detailObj);
-
-    this.onConfirm.emit(detailObj);
+    if (this.selectedBoardingPoint && this.selectedDroppingPoint) {
+      const detailObj = {
+        boarding: this.selectedBoardingPoint,
+        dropping: this.selectedDroppingPoint,
+        seats: this.selectedSeats,
+      };
+      this.travelService.updateTravelInfo(detailObj);
+      this.onConfirm.emit(detailObj);
+    }
   }
 }
