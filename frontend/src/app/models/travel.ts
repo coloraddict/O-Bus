@@ -1,8 +1,8 @@
 import { Seat } from '../models/seat';
 
 export interface TravelDetail {
-  fromCity: City;
-  toCity: City;
+  fromCity: City | undefined;
+  toCity: City | undefined;
   fromDate: string;
   toDate: string;
   passengerCount: number;
@@ -13,7 +13,7 @@ export interface TravelDetail {
 
 export interface City {
   _id: string;
-  name: string;
+  name: string | undefined;
   state: string;
   lat: string;
   lon: string;
