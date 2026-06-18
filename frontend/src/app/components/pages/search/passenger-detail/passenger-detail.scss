@@ -1,8 +1,16 @@
 :host ::ng-deep p-select.p-select {
   width: 100px;
+  padding: 8px;
 }
 
 :host ::ng-deep p-select.p-select .p-select-label {
   padding: 2px 10px;
   font-size: 12px;
+}
+
+:host ::ng-deep input[pInputText] {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
 }
