@@ -34,15 +34,16 @@ export class PassengerDetail {
 
   travelDetail!: TravelDetail;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {
+    this.passengerForm = this.fb.group({
+      passengers: this.fb.array(this.buildRows(this.passengerCount)),
+    });
+  }
 
   ngOnInit() {
     this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
       this.travelDetail = res;
       this.passengerCount = this.travelDetail.passengerCount;
-      this.passengerForm = this.fb.group({
-        passengers: this.fb.array(this.buildRows(this.passengerCount)),
-      });
     });
   }
 
