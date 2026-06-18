@@ -9,6 +9,7 @@ import { TravelService } from '../../../services/travel.service';
 import { DatePipe, JsonPipe } from '@angular/common';
 import { TravelDetail } from '../../../models/travel';
 import { Router } from '@angular/router';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @Component({
   selector: 'app-search',
@@ -20,6 +21,7 @@ import { Router } from '@angular/router';
     PassengerDetail,
     // JsonPipe,
     DatePipe,
+    GoogleMapsModule,
   ],
   templateUrl: './search.html',
   styleUrl: './search.scss',
@@ -40,6 +42,15 @@ export class Search {
   travelDetail!: TravelDetail;
 
   isTravelConfirm: boolean = false;
+
+  center: google.maps.LatLngLiteral = {
+    lat: 19.076,
+    lng: 72.8777,
+  };
+
+  zoom = 12;
+
+  markerPositions: google.maps.LatLngLiteral[] = [{ lat: 19.076, lng: 72.8777 }];
 
   constructor(private router: Router) {}
 
