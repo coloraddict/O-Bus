@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, inject, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
@@ -7,6 +7,8 @@ import Nora from '@primeng/themes/nora'; // bold borders
 import Material from '@primeng/themes/material';
 
 import { routes } from './app.routes';
+import { ApiLoaderService } from './services/api-loader.service';
+import { provideAppInitializer } from '@angular/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,5 +23,6 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    provideAppInitializer(() => inject(ApiLoaderService).loadGoogleMapsApi()),
   ],
 };
