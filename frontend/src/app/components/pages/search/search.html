@@ -16,10 +16,11 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <google-map [center]="center" [zoom]="zoom" height="300px" width="100%">
-        <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition">
-        </map-marker>
-      </google-map>
+      @if (mapsReady) {
+        <google-map [center]="center" [zoom]="zoom" height="300px" width="100%">
+          <map-marker [position]="center"></map-marker>
+        </google-map>
+      }
     </div>
     <div class="col-md-6"></div>
   </div>
