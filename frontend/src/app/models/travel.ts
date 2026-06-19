@@ -20,6 +20,6 @@ export interface City {
   _id: string;
   name: string | undefined;
   state: string;
-  lat: string;
-  lon: string;
+  lat: number;
+  lon: number;
 }

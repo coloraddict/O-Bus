@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -13,6 +13,7 @@ export class ApiLoaderService {
       }
 
       const script = document.createElement('script');
+
       script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}`;
 
       script.async = true;
@@ -23,11 +24,8 @@ export class ApiLoaderService {
         resolve();
       };
 
-      script.onerror = (error) => {
-        reject(error);
-      };
+      script.onerror = (error) => reject(error);
 
-      script.onload = () => resolve();
       document.head.appendChild(script);
     });
   }

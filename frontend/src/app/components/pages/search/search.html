@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <h1 class="text-center">
         @if (travelDetail && travelDetail.fromCity) {
-          {{ travelDetail?.fromCity?.name }} - {{ travelDetail?.toCity?.name }} on
+          {{ travelDetail.fromCity.name }} - {{ travelDetail.toCity.name }} on
           {{ travelDetail.fromDate | date: 'dd MMM yyyy' }}
         } @else {
           <p class="back-link">Please select Boarding & Destination</p>
@@ -18,11 +18,19 @@
     <div class="col-md-6">
       @if (mapsReady) {
         <google-map [center]="center" [zoom]="zoom" height="300px" width="100%">
-          <map-marker [position]="center"></map-marker>
+          @for (marker of markerPositions; track marker) {
+            <map-marker [position]="marker"></map-marker>
+          }
         </google-map>
       }
     </div>
-    <div class="col-md-6"></div>
+    <div class="col-md-6">
+      <div class="route-info">
+        Distance: {{ distance }}
+        <br />
+        Duration: {{ duration }}
+      </div>
+    </div>
   </div>
   <div class="row mt-4">
     <div class="col-md-12">
