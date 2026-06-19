@@ -99,11 +99,26 @@
             <div class="col-md-3"><p>Seats</p></div>
             <div class="col-md-9">
               <div class="badges">
-                @if (selectedSeats.length == 0) {
+                @if (selectedSeats.length === 0) {
                   <p-message severity="error" variant="simple" size="small"
                     >No seats selected</p-message
                   >
+                } @else if (selectedSeats.length < travelDetail.passengerCount) {
+                  @if (travelDetail.passengerCount - selectedSeats.length > 0) {
+                    @if (travelDetail.passengerCount - selectedSeats.length === 1) {
+                      <p-message severity="error" variant="simple" size="small"
+                        >{{ travelDetail.passengerCount - selectedSeats.length }} seat
+                        remaining</p-message
+                      >
+                    } @else {
+                      <p-message severity="error" variant="simple" size="small"
+                        >{{ travelDetail.passengerCount - selectedSeats.length }} seats
+                        remaining</p-message
+                      >
+                    }
+                  }
                 }
+                &nbsp;
                 @for (seat of selectedSeats; track seat) {
                   <p-badge
                     value="{{ seat.row + seat.col }}"
@@ -189,7 +204,9 @@
       <button
         class="confirm"
         [disabled]="
-          selectedSeats.length === 0 || selectedBoardingPoint === '' || selectedDroppingPoint === ''
+          selectedSeats.length < travelDetail.passengerCount ||
+          !selectedBoardingPoint ||
+          !selectedDroppingPoint
         "
         (click)="confirmBooking()"
       >
