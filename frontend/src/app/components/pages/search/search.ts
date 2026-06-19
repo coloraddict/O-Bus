@@ -52,9 +52,14 @@ export class Search {
 
   markerPositions: google.maps.LatLngLiteral[] = [{ lat: 19.076, lng: 72.8777 }];
 
+  mapsReady = false;
+
   constructor(private router: Router) {}
 
   ngOnInit() {
+    if ((window as any).google?.maps) {
+      this.mapsReady = true;
+    }
     this.loading = false;
 
     this.searchService.getBuses().subscribe((res: any) => {
