@@ -36,21 +36,18 @@ export class PassengerDetail {
 
   constructor(private fb: FormBuilder) {
     this.passengerForm = this.fb.group({
-      passengers: this.fb.array(this.buildRows(this.passengerCount)),
+      passengers: this.fb.array([]),
     });
   }
 
   ngOnInit() {
-    this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
-      this.travelDetail = res;
-      this.passengerCount = this.travelDetail.passengerCount;
-    });
-  }
+    this.travelService.getInitialTravelPlan().subscribe((travelDetail: TravelDetail) => {
+      this.travelDetail = travelDetail;
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['passengerCount'] && !changes['passengerCount'].firstChange) {
-      this.rebuildArray(changes['passengerCount'].currentValue);
-    }
+      const seatCount = travelDetail.seats?.length ?? 0;
+
+      this.rebuildArray(seatCount);
+    });
   }
 
   private buildRows(count: number): FormGroup[] {
@@ -70,16 +67,10 @@ export class PassengerDetail {
   }
 
   private rebuildArray(count: number) {
-    const current = this.passengers.length;
+    this.passengers.clear();
 
-    if (count > current) {
-      for (let i = current; i < count; i++) {
-        this.passengers.push(this.createPassengerRow());
-      }
-    } else if (count < current) {
-      for (let i = current; i > count; i--) {
-        this.passengers.removeAt(i - 1);
-      }
+    for (let i = 0; i < count; i++) {
+      this.passengers.push(this.createPassengerRow());
     }
   }
 
