@@ -114,8 +114,9 @@ export class SeatDetail {
         dropping: this.selectedDroppingPoint,
         seats: this.selectedSeats,
       };
-      this.travelService.updateTravelInfo(detailObj);
-      this.onConfirm.emit(detailObj);
+      this.travelService.updateTravelInfo(detailObj).subscribe((res) => {
+        this.onConfirm.emit(detailObj);
+      });
     }
   }
 }

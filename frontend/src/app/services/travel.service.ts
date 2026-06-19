@@ -44,7 +44,7 @@ export class TravelService {
   }
 
   getInitialTravelPlan() {
-    return this.travelDetailState;
+    return this.state$;
   }
 
   updateTravelInfo(partial: Partial<TravelDetail>) {
@@ -52,6 +52,7 @@ export class TravelService {
       ...this.travelDetailState.getValue(),
       ...partial,
     });
+    return this.state$;
   }
 
   resetPassengerCount() {
