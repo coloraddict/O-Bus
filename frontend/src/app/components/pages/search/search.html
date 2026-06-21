@@ -14,7 +14,7 @@
       </h1>
     </div>
   </div>
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-md-6">
       @if (mapsReady) {
         <google-map [center]="center" [zoom]="zoom" height="300px" width="100%">
@@ -32,6 +32,8 @@
       </div>
     </div>
   </div>
+    <div class="col-md-6"></div>
+  </div> -->
   <div class="row mt-4">
     <div class="col-md-12">
       <div class="card">
@@ -157,4 +159,5 @@
 <app-passenger-detail
   [visible]="isTravelConfirm"
   (hide)="onHidePassengerDetail()"
+  [travelDetail]="travelDetail"
 ></app-passenger-detail>
