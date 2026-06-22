@@ -2,7 +2,7 @@
   <div class="row mt-5 mb-3">
     <div class="col-md-12">
       <h1 class="text-center">
-        @if (travelDetail && travelDetail.fromCity) {
+        @if (travelDetail && travelDetail.fromCity && travelDetail.toCity) {
           {{ travelDetail.fromCity.name }} - {{ travelDetail.toCity.name }} on
           {{ travelDetail.fromDate | date: 'dd MMM yyyy' }}
         } @else {
@@ -14,7 +14,7 @@
       </h1>
     </div>
   </div>
-  <!-- <div class="row">
+  <div class="row">
     <div class="col-md-6">
       @if (mapsReady) {
         <google-map [center]="center" [zoom]="zoom" height="300px" width="100%">
@@ -32,121 +32,119 @@
       </div>
     </div>
   </div>
-    <div class="col-md-6"></div>
-  </div> -->
-  <div class="row mt-4">
-    <div class="col-md-12">
-      <div class="card">
-        <p-table
-          #dt1
-          [value]="buses"
-          dataKey="id"
-          [rows]="10"
-          [rowsPerPageOptions]="[5, 10, 25, 50]"
-          [loading]="loading"
-          [paginator]="true"
-          [globalFilterFields]="['name', 'departure', 'coachType', 'seatsAvailable', 'fare']"
-          [scrollable]="false"
-          [resizableColumns]="true"
-        >
-          <ng-template #header>
-            <tr>
-              <th><strong>Name</strong></th>
-              <th>Departure</th>
-              <th>Coach Type</th>
-              <th>Seats</th>
-              <th>Fare</th>
-              <th>Action</th>
-            </tr>
-            <tr>
-              <th>
-                <p-columnFilter
-                  type="text"
-                  field="name"
-                  placeholder="Type to search"
-                  ariaLabel="Filter Name"
-                  filterOn="input"
-                  [showMenu]="false"
-                ></p-columnFilter>
-              </th>
-              <th>
-                <p-columnFilter
-                  type="text"
-                  field="departure"
-                  placeholder="Enter key to search"
-                  ariaLabel="Filter Departure"
-                  [showMenu]="false"
-                ></p-columnFilter>
-              </th>
-              <th>
-                <p-columnFilter
-                  type="text"
-                  field="coachType"
-                  placeholder="Type to search"
-                  ariaLabel="Filter Coach"
-                  filterOn="input"
-                  [showMenu]="false"
-                ></p-columnFilter>
-              </th>
-              <th>
-                <p-columnFilter
-                  type="text"
-                  field="seatsAvailable"
-                  placeholder="Type to search"
-                  ariaLabel="Filter Seats"
-                  filterOn="input"
-                  [showMenu]="false"
-                ></p-columnFilter>
-              </th>
-              <th>
-                <p-columnFilter
-                  type="text"
-                  field="fare"
-                  placeholder="Type to search"
-                  ariaLabel="Filter Fare"
-                  filterOn="input"
-                  [showMenu]="false"
-                ></p-columnFilter>
-              </th>
-              <th></th>
-            </tr>
-          </ng-template>
-          <ng-template #body let-bus>
-            <tr>
-              <td>
-                {{ bus.name }}
-              </td>
-              <td>
-                <div class="flex items-center gap-2">
-                  <span>{{ bus.departure }}</span>
-                </div>
-              </td>
-              <td>
-                {{ bus.coachType }}
-              </td>
-              <td>
-                {{ bus.seatsAvailable }}
-              </td>
-              <td>
-                {{ bus.fare }}
-              </td>
-              <td>
-                <p-button
-                  label="View Seats"
-                  (click)="showDialog(bus)"
-                  severity="danger"
-                  size="small"
-                />
-              </td>
-            </tr>
-          </ng-template>
-          <ng-template #emptymessage>
-            <tr>
-              <td colspan="5">No buses found.</td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-12">
+    <div class="card">
+      <p-table
+        #dt1
+        [value]="buses"
+        dataKey="id"
+        [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [loading]="loading"
+        [paginator]="true"
+        [globalFilterFields]="['name', 'departure', 'coachType', 'seatsAvailable', 'fare']"
+        [scrollable]="false"
+        [resizableColumns]="true"
+      >
+        <ng-template #header>
+          <tr>
+            <th><strong>Name</strong></th>
+            <th>Departure</th>
+            <th>Coach Type</th>
+            <th>Seats</th>
+            <th>Fare</th>
+            <th>Action</th>
+          </tr>
+          <tr>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="name"
+                placeholder="Type to search"
+                ariaLabel="Filter Name"
+                filterOn="input"
+                [showMenu]="false"
+              ></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="departure"
+                placeholder="Enter key to search"
+                ariaLabel="Filter Departure"
+                [showMenu]="false"
+              ></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="coachType"
+                placeholder="Type to search"
+                ariaLabel="Filter Coach"
+                filterOn="input"
+                [showMenu]="false"
+              ></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="seatsAvailable"
+                placeholder="Type to search"
+                ariaLabel="Filter Seats"
+                filterOn="input"
+                [showMenu]="false"
+              ></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="fare"
+                placeholder="Type to search"
+                ariaLabel="Filter Fare"
+                filterOn="input"
+                [showMenu]="false"
+              ></p-columnFilter>
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-bus>
+          <tr>
+            <td>
+              {{ bus.name }}
+            </td>
+            <td>
+              <div class="flex items-center gap-2">
+                <span>{{ bus.departure }}</span>
+              </div>
+            </td>
+            <td>
+              {{ bus.coachType }}
+            </td>
+            <td>
+              {{ bus.seatsAvailable }}
+            </td>
+            <td>
+              {{ bus.fare }}
+            </td>
+            <td>
+              <p-button
+                label="View Seats"
+                (click)="showDialog(bus)"
+                severity="danger"
+                size="small"
+              />
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+          <tr>
+            <td colspan="5">No buses found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
   </div>
 </div>
