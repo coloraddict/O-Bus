@@ -22,7 +22,7 @@ import { ApiLoaderService } from '../../../services/api-loader.service';
     PassengerDetail,
     // JsonPipe,
     DatePipe,
-    // GoogleMapsModule,
+    GoogleMapsModule,
   ],
   templateUrl: './search.html',
   styleUrl: './search.scss',
