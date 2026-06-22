@@ -49,7 +49,7 @@ export class PassengerDetail {
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(this.travelDetail);
-    this.passengerCount = this.travelDetail.seats.length;
+    this.passengerCount = this.travelDetail?.seats?.length;
     if (changes['passengerCount'] && !changes['passengerCount'].firstChange) {
       this.rebuildArray(changes['passengerCount'].currentValue);
     }
