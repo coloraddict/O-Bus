@@ -41,17 +41,16 @@ export class PassengerDetail {
   }
 
   ngOnInit() {
-    // this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
-    //   this.travelDetail = res;
-    //   this.passengerCount = this.travelDetail.seats.length;
-    // });
+    this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
+      this.travelDetail = res;
+      this.passengerCount = this.travelDetail.seats.length;
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.travelDetail);
-    this.passengerCount = this.travelDetail?.seats?.length;
-    if (changes['passengerCount'] && !changes['passengerCount'].firstChange) {
-      this.rebuildArray(changes['passengerCount'].currentValue);
+    if (changes['travelDetail']?.currentValue) {
+      this.passengerCount = this.travelDetail.seats.length;
+      this.rebuildArray(this.passengerCount);
     }
   }
 
