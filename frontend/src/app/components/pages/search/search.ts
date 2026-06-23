@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, ViewChild } from '@angular/core';
 import { Table, TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -67,28 +67,38 @@ export class Search {
 
   apiLoader = inject(ApiLoaderService);
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
-  async ngOnInit() {
-    await this.apiLoader.loadGoogleMapsApi();
+  ngOnInit() {
+    this.searchService.getBuses().subscribe((res: any) => {
+      this.buses = JSON.parse(res);
+    });
+
+    this.travelService.getInitialTravelPlan().subscribe((travel: TravelDetail) => {
+      this.travelDetail = travel;
+      if (travel && travel.fromCity && travel.toCity) {
+        this.loadDuration(travel);
+        this.loadGoogleMaps(travel);
+      }
+    });
+  }
+
+  ngAfterViewInit(travel: TravelDetail) {
+    // this.loadDuration(travel);
+  }
+
+  loadGoogleMaps(travel: TravelDetail) {
     this.mapsReady = true;
-    this.loading = false;
 
     if ((window as any).google?.maps) {
       this.mapsReady = true;
     }
     this.loading = false;
 
-    this.searchService.getBuses().subscribe((res: any) => {
-      this.buses = JSON.parse(res);
-    });
-
-    this.travelService.getInitialTravelPlan().subscribe((travel: TravelDetail) => {
-      console.log(travel);
-      if (!travel.fromCity || !travel.toCity) {
-        return;
-      }
-
+    if (travel && travel.fromCity && travel.toCity) {
       this.markerPositions = [
         {
           lat: Number(travel.fromCity.lat),
@@ -138,7 +148,7 @@ export class Search {
 
           travelMode: google.maps.TravelMode.DRIVING,
         })
-        .then((result) => {
+        .then((result: any) => {
           this.directionsRenderer.setDirections(result);
 
           const leg = result.routes[0].legs[0];
@@ -146,9 +156,24 @@ export class Search {
           this.distance = leg.distance?.text ?? '';
           this.duration = leg.duration?.text ?? '';
         })
-        .catch((error) => {
+        .catch((error: any) => {
           console.error('Directions API error', error);
         });
+    }
+  }
+
+  loadDuration(travel: any) {
+    const coordinates = {
+      locations: [
+        [travel.fromCity.lon, travel.fromCity.lat],
+        [travel.toCity.lon, travel.toCity.lat],
+      ],
+      metrics: ['distance', 'duration'],
+    };
+    this.travelService.getRouteDuration(coordinates).subscribe((res: any) => {
+      this.distance = res.distanceKm + ' Kms';
+      this.duration = res.durationHours + ' Hrs : ' + res.durationMinutes + ' Mins';
+      this.cdr.detectChanges();
     });
   }
 
