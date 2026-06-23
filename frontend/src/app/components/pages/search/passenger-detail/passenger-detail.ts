@@ -43,13 +43,13 @@ export class PassengerDetail {
   ngOnInit() {
     this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
       this.travelDetail = res;
-      this.passengerCount = this.travelDetail.seats.length;
+      this.passengerCount = this.travelDetail?.seats?.length;
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['travelDetail']?.currentValue) {
-      this.passengerCount = this.travelDetail.seats.length;
+      this.passengerCount = this.travelDetail?.seats?.length;
       this.rebuildArray(this.passengerCount);
     }
   }

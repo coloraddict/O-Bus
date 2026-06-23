@@ -184,8 +184,9 @@ export class Search {
   onViewSeats(bus: any) {}
 
   showDialog(busDetail: any) {
-    this.visible = true;
-    this.travelService.updateTravelInfo(busDetail);
+    this.travelService.updateTravelInfo(busDetail).subscribe((res) => {
+      this.visible = true;
+    });
   }
 
   onConfirm() {

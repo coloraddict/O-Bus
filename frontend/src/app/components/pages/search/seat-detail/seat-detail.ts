@@ -41,6 +41,11 @@ export class SeatDetail {
 
   travelDetail!: TravelDetail;
 
+  totalFare = 0;
+  GSTCharge = 5;
+  totalGST = 0;
+  netFare = 0;
+
   constructor(private router: Router) {}
 
   ngOnInit() {
@@ -54,6 +59,9 @@ export class SeatDetail {
 
     this.travelService.getInitialTravelPlan().subscribe((res: TravelDetail) => {
       this.travelDetail = res;
+      this.totalFare = this.travelDetail.fare * this.travelDetail.passengerCount;
+      this.totalGST = (this.totalFare * this.GSTCharge) / 100;
+      this.netFare = this.totalFare + this.totalGST;
     });
 
     if (!this.travelDetail) {

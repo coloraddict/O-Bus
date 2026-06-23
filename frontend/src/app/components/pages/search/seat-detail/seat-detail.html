@@ -172,20 +172,26 @@
         <hr />
         <div class="row">
           <div class="col-md-6"><p class="label">Ticket Fare</p></div>
-          <div class="col-md-6"><p>₹ 400.00</p></div>
+          <div class="col-md-6">
+            <p>₹ {{ travelDetail.fare + '.00' }}</p>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-6"><p class="label">GST (5%)</p></div>
-          <div class="col-md-6"><p>₹20.00</p></div>
+          <div class="col-md-6"><p>₹ 20.00</p></div>
         </div>
         <div class="row">
           <div class="col-md-6"><p class="label">Bus Total Fare</p></div>
-          <div class="col-md-6"><p>₹ 420.00</p></div>
+          <div class="col-md-6">
+            <p>₹ {{ netFare + '.00' }}</p>
+          </div>
         </div>
         <hr />
         <div class="row">
           <div class="col-md-6"><p class="label no-margin">Grand Total</p></div>
-          <div class="col-md-6"><p class="label no-margin">₹ 420.00</p></div>
+          <div class="col-md-6">
+            <p class="label no-margin">₹ {{ netFare + '.00' }}</p>
+          </div>
         </div>
         <hr />
         <ul class="deductions">
