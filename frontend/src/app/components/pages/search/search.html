@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <h1 class="text-center">
         @if (travelDetail && travelDetail.fromCity) {
-          {{ travelDetail.fromCity.name }} - {{ travelDetail.toCity.name }} on
+          {{ travelDetail.fromCity.name }} - {{ travelDetail.toCity?.name }} on
           {{ travelDetail.fromDate | date: 'dd MMM yyyy' }}
         } @else {
           <p class="back-link">Please select Boarding & Destination</p>
