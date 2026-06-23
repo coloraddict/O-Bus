@@ -77,7 +77,7 @@ export class TravelDetail {
   }
 
   removeAdult() {
-    if (this.adults.length > 1) {
+    if (this.adults.length > 0) {
       this.travelService.decrement('adult');
       this.adults.removeAt(this.adults.length - 1);
     }
@@ -95,7 +95,7 @@ export class TravelDetail {
   }
 
   removeYouth() {
-    if (this.youths.length > 1) {
+    if (this.youths.length > 0) {
       this.travelService.decrement('youth');
       this.youths.removeAt(this.youths.length - 1);
     }
@@ -113,7 +113,7 @@ export class TravelDetail {
   }
 
   removeSenior() {
-    if (this.seniors.length > 1) {
+    if (this.seniors.length > 0) {
       this.travelService.decrement('senior');
       this.seniors.removeAt(this.seniors.length - 1);
     }
