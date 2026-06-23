@@ -1,6 +1,8 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { TravelDetail } from '../models/travel';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +16,8 @@ export class TravelService {
   readonly seniorCount = signal<number>(0);
 
   readonly total = computed(() => this.adultCount() + this.youthCount() + this.seniorCount());
+
+  constructor(private http: HttpClient) {}
 
   increment(category: string) {
     if (category === 'adult') {
@@ -59,5 +63,14 @@ export class TravelService {
     this.adultCount.set(1);
     this.youthCount.set(1);
     this.seniorCount.set(1);
+  }
+
+  getRouteDuration(coordinates: any) {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer =${environment.openRouteApiKey}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post('http://localhost:3000/api/travel/matrix', coordinates, { headers });
   }
 }
