@@ -32,10 +32,10 @@ export class TravelDetail {
       adults: this.fb.array([this.createAdult()]),
     });
     this.youthFormGroup = this.fb.group({
-      youths: this.fb.array([this.createYouth()]),
+      youths: this.fb.array([]),
     });
     this.seniorFormGroup = this.fb.group({
-      seniors: this.fb.array([this.createSenior()]),
+      seniors: this.fb.array([]),
     });
   }
 
@@ -43,11 +43,9 @@ export class TravelDetail {
     for (let i = 26; i <= 57; i++) {
       this.adultAgeList.push({ age: i + ' years' });
     }
-
     for (let i = 0; i <= 25; i++) {
       this.youthAgeList.push({ age: i + ' years' });
     }
-
     for (let i = 58; i < 100; i++) {
       this.seniorAgeList.push({ age: i + ' years' });
     }
