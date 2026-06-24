@@ -165,8 +165,8 @@ export class Search {
   loadDuration(travel: any) {
     const coordinates = {
       locations: [
-        [travel.fromCity.lon, travel.fromCity.lat],
-        [travel.toCity.lon, travel.toCity.lat],
+        [Number(travel.fromCity.lon), Number(travel.fromCity.lat)],
+        [Number(travel.toCity.lon), Number(travel.toCity.lat)],
       ],
       metrics: ['distance', 'duration'],
     };
