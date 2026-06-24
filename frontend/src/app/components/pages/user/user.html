@@ -143,36 +143,40 @@
 
             <!-- Saved Travelers -->
             <p-tabpanel value="3">
-              <p-table
-                [value]="[
-                  {
-                    name: 'Father',
-                    age: 65,
-                    gender: 'Male',
-                  },
-                  {
-                    name: 'Mother',
-                    age: 60,
-                    gender: 'Female',
-                  },
-                ]"
-              >
-                <ng-template pTemplate="header">
-                  <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                  </tr>
-                </ng-template>
+              <div class="row">
+                <div class="col-md-8">
+                  <p-table
+                    [value]="[
+                      {
+                        name: 'Father',
+                        age: 65,
+                        gender: 'Male',
+                      },
+                      {
+                        name: 'Mother',
+                        age: 60,
+                        gender: 'Female',
+                      },
+                    ]"
+                  >
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                      </tr>
+                    </ng-template>
 
-                <ng-template pTemplate="body" let-traveler>
-                  <tr>
-                    <td>{{ traveler.name }}</td>
-                    <td>{{ traveler.age }}</td>
-                    <td>{{ traveler.gender }}</td>
-                  </tr>
-                </ng-template>
-              </p-table>
+                    <ng-template pTemplate="body" let-traveler>
+                      <tr>
+                        <td>{{ traveler.name }}</td>
+                        <td>{{ traveler.age }}</td>
+                        <td>{{ traveler.gender }}</td>
+                      </tr>
+                    </ng-template>
+                  </p-table>
+                </div>
+              </div>
             </p-tabpanel>
           </p-tabpanels>
         </p-tabs>
