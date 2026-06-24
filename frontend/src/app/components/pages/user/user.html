@@ -1,0 +1,194 @@
+<form [formGroup]="profileForm">
+  <div class="container py-4">
+    <div class="row">
+      <!-- Left Panel -->
+      <div class="col-lg-4 mb-3">
+        <div class="card shadow-sm">
+          <div class="card-body text-center">
+            <img
+              src="https://i.pravatar.cc/200"
+              class="rounded-circle mb-3"
+              width="150"
+              height="150"
+              alt="Profile"
+            />
+
+            <h4>John Doe</h4>
+            <p class="text-muted">Frequent Traveller</p>
+
+            <p-fileupload
+              mode="basic"
+              chooseLabel="Upload Photo"
+              [auto]="true"
+              accept="image/*"
+              (onSelect)="uploadImage($event)"
+            >
+            </p-fileupload>
+          </div>
+        </div>
+
+        <div class="card mt-3 shadow-sm">
+          <div class="card-body">
+            <h5>Travel Statistics</h5>
+
+            <div class="d-flex justify-content-between">
+              <span>Total Trips</span>
+              <strong>58</strong>
+            </div>
+
+            <div class="d-flex justify-content-between mt-2">
+              <span>Reward Points</span>
+              <strong>1240</strong>
+            </div>
+
+            <div class="d-flex justify-content-between mt-2">
+              <span>Membership</span>
+              <span class="badge bg-warning text-dark"> Gold </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Panel -->
+      <div class="col-lg-8">
+        <p-tabs value="0">
+          <p-tablist>
+            <p-tab value="0">Profile</p-tab>
+            <p-tab value="1">Preferences</p-tab>
+            <p-tab value="2">Security</p-tab>
+            <p-tab value="3">Saved Travelers</p-tab>
+          </p-tablist>
+
+          <p-tabpanels>
+            <!-- Profile -->
+            <p-tabpanel value="0">
+              <form [formGroup]="profileForm" class="row g-1">
+                <div class="row">
+                  <div class="col-md-2"><label class="form-label"> First Name </label></div>
+                  <div class="col-md-3">
+                    <input pInputText class="form-control" formControlName="firstName" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2"><label class="form-label"> Last Name </label></div>
+                  <div class="col-md-3">
+                    <input pInputText class="form-control" formControlName="lastName" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2"><label class="form-label"> Email </label></div>
+                  <div class="col-md-3">
+                    <input pInputText class="form-control" formControlName="email" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2"><label class="form-label"> Mobile </label></div>
+                  <div class="col-md-3">
+                    <input pInputText class="form-control" formControlName="mobile" />
+                  </div>
+                </div>
+              </form>
+            </p-tabpanel>
+
+            <!-- Preferences -->
+            <p-tabpanel value="1">
+              <div class="row">
+                <div class="col-md-2"><label class="form-label"> Theme </label></div>
+                <div class="col-md-3">
+                  <p-select
+                    [options]="[
+                      { label: 'Light', value: 'light' },
+                      { label: 'Dark', value: 'dark' },
+                    ]"
+                    optionLabel="label"
+                    optionValue="value"
+                    formControlName="theme"
+                  >
+                  </p-select>
+                </div>
+              </div>
+              <div class="row mt-1">
+                <div class="col-md-2"><label class="form-label"> Preferred Seat </label></div>
+                <div class="col-md-3">
+                  <p-select
+                    [options]="[
+                      { label: 'Window', value: 'Window' },
+                      { label: 'Aisle', value: 'Aisle' },
+                    ]"
+                    optionLabel="label"
+                    optionValue="value"
+                    formControlName="preferredSeat"
+                  >
+                  </p-select>
+                </div>
+              </div>
+            </p-tabpanel>
+
+            <!-- Security -->
+            <p-tabpanel value="2">
+              <div class="card border-0">
+                <div class="mb-3">
+                  <button class="primary" pButton label="Change Password" severity="secondary">
+                    Change Password
+                  </button>
+                </div>
+
+                <div>
+                  <button class="primary" pButton label="Enable 2FA" severity="success">
+                    Enable 2 Factor Authentication
+                  </button>
+                </div>
+              </div>
+            </p-tabpanel>
+
+            <!-- Saved Travelers -->
+            <p-tabpanel value="3">
+              <p-table
+                [value]="[
+                  {
+                    name: 'Father',
+                    age: 65,
+                    gender: 'Male',
+                  },
+                  {
+                    name: 'Mother',
+                    age: 60,
+                    gender: 'Female',
+                  },
+                ]"
+              >
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-traveler>
+                  <tr>
+                    <td>{{ traveler.name }}</td>
+                    <td>{{ traveler.age }}</td>
+                    <td>{{ traveler.gender }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </p-tabpanel>
+          </p-tabpanels>
+        </p-tabs>
+
+        <div class="mt-4 text-end">
+          <button
+            class="primary"
+            pButton
+            label="Save Changes"
+            icon="pi pi-save"
+            (click)="saveProfile()"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
