@@ -1,0 +1,120 @@
+<form [formGroup]="travelerForm">
+  <div class="row">
+    <div class="col-md-12 mb-3 text-end">
+      <p-button label="Add Traveler" icon="pi pi-plus" (onClick)="addTraveler()" />&nbsp;
+      <!-- <p-button label="Save Preferences" icon="pi pi-save" (onClick)="saveTraveler()" /> -->
+    </div>
+
+    <div class="col-md-12">
+      <p-table [value]="travelers.controls">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th width="100">Action</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
+          <tr [formGroup]="row">
+            <td>
+              @if (row.get('isEdit')?.value) {
+                <input pInputText formControlName="name" class="w-100" placeholder="Name" />
+              } @else {
+                {{ row.get('name')?.value }}
+              }
+            </td>
+
+            <td>
+              @if (row.get('isEdit')?.value) {
+                <input pInputText type="number" formControlName="age" class="w-100" />
+              } @else {
+                {{ row.get('age')?.value }}
+              }
+            </td>
+
+            <td>
+              @if (row.get('isEdit')?.value) {
+                <p-select
+                  [options]="genderOptions"
+                  optionLabel="label"
+                  optionValue="value"
+                  formControlName="gender"
+                  [appendTo]="'body'"
+                  class="w-100"
+                >
+                </p-select>
+              } @else {
+                {{ row.get('gender')?.value }}
+              }
+            </td>
+
+            <td class="d-flex gap-2">
+              @if (row.get('isEdit')?.value) {
+                <p-button
+                  icon="pi pi-check"
+                  severity="success"
+                  [text]="true"
+                  (onClick)="saveTraveler(rowIndex)"
+                />
+              } @else {
+                <p-button
+                  icon="pi pi-pencil"
+                  severity="primary"
+                  [text]="true"
+                  (onClick)="editTraveler(rowIndex)"
+                />
+              }
+
+              <p-button
+                icon="pi pi-trash"
+                severity="danger"
+                [text]="true"
+                (onClick)="removeTraveler(rowIndex)"
+              />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- <div class="col-md-12 mt-3 text-end">
+      <p-button label="Save Preferences" icon="pi pi-save" (onClick)="save()" />
+    </div> -->
+  </div>
+</form>
+<!-- <div class="row">
+  <div class="col-md-8">
+    <p-table
+      [value]="[
+        {
+          name: 'Father',
+          age: 65,
+          gender: 'Male',
+        },
+        {
+          name: 'Mother',
+          age: 60,
+          gender: 'Female',
+        },
+      ]"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-traveler>
+        <tr>
+          <td>{{ traveler.name }}</td>
+          <td>{{ traveler.age }}</td>
+          <td>{{ traveler.gender }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div> -->

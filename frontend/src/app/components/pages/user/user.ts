@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TabsModule } from 'primeng/tabs';
 import { SelectModule } from 'primeng/select';
-import { TableModule } from 'primeng/table';
+import { Mylist } from './mylist/mylist';
 
 @Component({
   selector: 'app-user',
-  imports: [ReactiveFormsModule, FileUploadModule, TabsModule, SelectModule, TableModule],
+  imports: [ReactiveFormsModule, FileUploadModule, TabsModule, SelectModule, Mylist],
   templateUrl: './user.html',
   styleUrl: './user.scss',
 })
