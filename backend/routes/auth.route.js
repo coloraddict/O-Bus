@@ -7,6 +7,6 @@ router.post ('/register', authController.register);
 
 router.post ('/login', authController.login);
 
-router.put ('/travellers/:userId', authController.saveTravellers);
+router.put ('/travellers/:userId', checkAuth, authController.saveTravellers);
 
 module.exports = router;
