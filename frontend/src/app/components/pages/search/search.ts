@@ -58,10 +58,6 @@ export class Search {
   @ViewChild(GoogleMap)
   map!: GoogleMap;
 
-  directionsService!: google.maps.DirectionsService;
-
-  directionsRenderer!: google.maps.DirectionsRenderer;
-
   distance = '';
   duration = '';
 
@@ -123,42 +119,10 @@ export class Search {
         this.map.fitBounds(bounds);
       }
 
-      this.directionsService = new google.maps.DirectionsService();
-
-      this.directionsRenderer = new google.maps.DirectionsRenderer();
-
       if (!this.map?.googleMap) {
         console.warn('Google Map not ready');
         return;
       }
-
-      this.directionsRenderer.setMap(this.map.googleMap!);
-
-      this.directionsService
-        .route({
-          origin: {
-            lat: travel.fromCity.lat,
-            lng: travel.fromCity.lon,
-          },
-
-          destination: {
-            lat: travel.toCity.lat,
-            lng: travel.toCity.lon,
-          },
-
-          travelMode: google.maps.TravelMode.DRIVING,
-        })
-        .then((result: any) => {
-          this.directionsRenderer.setDirections(result);
-
-          const leg = result.routes[0].legs[0];
-
-          this.distance = leg.distance?.text ?? '';
-          this.duration = leg.duration?.text ?? '';
-        })
-        .catch((error: any) => {
-          console.error('Directions API error', error);
-        });
     }
   }
 
