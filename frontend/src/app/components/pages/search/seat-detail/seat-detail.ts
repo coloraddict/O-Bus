@@ -46,9 +46,18 @@ export class SeatDetail {
   totalGST = 0;
   netFare = 0;
 
+  boardingPoint: BoardingPoint[] = [];
+  selectedBoardingPoint?: any = '';
+
+  droppingPoint: DroppingPoint[] = [];
+  selectedDroppingPoint?: any = '';
+
   constructor(private router: Router) {}
 
   ngOnInit() {
+    this.selectedBoardingPoint = '';
+    this.selectedDroppingPoint = '';
+
     this.searchService.getBordingPoints().subscribe((res: any) => {
       this.boardingPoint = JSON.parse(res);
     });
@@ -84,12 +93,6 @@ export class SeatDetail {
           : 'available') as SeatStatus,
       })),
   );
-
-  boardingPoint: BoardingPoint[] = [];
-  selectedBoardingPoint?: any = '';
-
-  droppingPoint: DroppingPoint[] = [];
-  selectedDroppingPoint?: any = '';
 
   getSeat(row: number, col: string): Seat {
     return this.seats.find((s) => s.row === row && s.col === col)!;
