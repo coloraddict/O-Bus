@@ -1,9 +1,11 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-mylist',
@@ -24,7 +26,7 @@ export class Mylist {
     travelers: this.fb.array([]),
   });
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.travelers.push(
       this.createTraveler({
         name: 'Father',
@@ -76,15 +78,36 @@ export class Mylist {
   }
 
   saveTraveler(index: number): void {
-    const row = this.travelers.at(index);
-
-    if (row.invalid) {
-      row.markAllAsTouched();
-      return;
-    }
-
-    row.patchValue({
-      isEdit: false,
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
     });
+    const payload = {
+      travellers: this.travelers.value.map((t: any) => ({
+        name: t.name,
+        age: t.age,
+        gender: t.gender,
+      })),
+    };
+
+    this.http
+      .put(`http://localhost:3000/api/auth/travellers/6a1f1a49343d38eb7ac54900`, payload, {
+        headers,
+      })
+      .subscribe({
+        next: (response) => {
+          console.log('Saved');
+          const row = this.travelers.at(index);
+
+          if (row.invalid) {
+            row.markAllAsTouched();
+            return;
+          }
+
+          row.patchValue({
+            isEdit: false,
+          });
+        },
+      });
   }
 }

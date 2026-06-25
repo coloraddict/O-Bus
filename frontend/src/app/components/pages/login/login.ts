@@ -48,7 +48,8 @@ export class Login {
       this.loginForm.markAllAsTouched();
       return;
     }
-    this.authService.login(this.loginForm.value).subscribe((response) => {
+    this.authService.login(this.loginForm.value).subscribe((response: any) => {
+      localStorage.setItem('token', response.token);
       this.router.navigateByUrl('');
     });
   }
