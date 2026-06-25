@@ -91,6 +91,7 @@ export class PassengerDetail {
   }
 
   onHideDetails() {
+    this.passengerForm.reset();
     this.hide.emit(false);
   }
 }
