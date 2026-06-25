@@ -3,7 +3,6 @@ const jwt = require ('jsonwebtoken');
 const User = require ('../models/user');
 
 exports.register = (req, res, next) => {
-  console.log (req.body);
   bcrypt.hash (req.body.password, 10).then (hash => {
     const user = new User ({
       firstName: req.body.firstName,
@@ -60,4 +59,36 @@ exports.login = (req, res, next) => {
         message: 'Invalid authentication credentials',
       });
     });
+};
+
+exports.saveTravellers = async (req, res) => {
+  try {
+    console.log ('userId', req.userId);
+    const userId = req.params.userId;
+
+    const travellers = req.body.travellers;
+
+    const updateUser = await User.findByIdAndUpdate (
+      userId,
+      {
+        $set: {
+          travellers: travellers,
+        },
+      },
+      {
+        new: true,
+      }
+    );
+
+    res.status (200).json ({
+      message: 'Travellers saved successfully',
+      result: updateUser,
+    });
+  } catch (err) {
+    console.error (err);
+
+    res.status (500).json ({
+      message: 'Failed to save travellers',
+    });
+  }
 };
