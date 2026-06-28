@@ -61,8 +61,8 @@ export class TravelService {
 
   resetPassengerCount() {
     this.adultCount.set(1);
-    this.youthCount.set(1);
-    this.seniorCount.set(1);
+    this.youthCount.set(0);
+    this.seniorCount.set(0);
   }
 
   getRouteDuration(coordinates: any) {

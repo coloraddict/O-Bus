@@ -87,6 +87,7 @@ export class BookingPanel implements OnInit {
   }
 
   ngOnInit() {
+    this.travelService.resetPassengerCount();
     this.bookingService.getCities().subscribe((res: any) => {
       this.cityList = res.cities;
     });
