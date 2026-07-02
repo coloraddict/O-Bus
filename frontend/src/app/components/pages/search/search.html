@@ -15,16 +15,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       @if (mapsReady) {
-        <google-map [center]="center" [zoom]="zoom" height="300px" width="100%">
+        <google-map [center]="center" [zoom]="zoom" height="500px" width="100%">
           @for (marker of markerPositions; track marker) {
             <map-marker [position]="marker"></map-marker>
           }
         </google-map>
       }
-    </div>
-    <div class="col-md-6">
+
       <div class="route-info">
         Distance: <strong>{{ distance }}</strong>
         <br />
