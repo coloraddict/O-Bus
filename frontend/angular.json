@@ -35,7 +35,8 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/primeicons/primeicons.css"
-            ]
+            ],
+            "baseHref": "/O-Bus/"
           },
           "configurations": {
             "production": {
